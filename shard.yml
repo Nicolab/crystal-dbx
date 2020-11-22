@@ -1,0 +1,39 @@
+name: dbx
+version: 0.1.0
+crystal: 0.35.1
+license: MIT
+
+authors:
+  - Nicolas Talle <dev@nicolab.net>
+
+targets:
+  dbx:
+    main: src/app.cr
+
+
+dependencies:
+  db:
+    github: crystal-lang/crystal-db
+    version: ~> 0.10.0
+
+  # Pick / Uncomment your database(s)
+  # pg:
+  #   github: will/crystal-pg
+  #  # Add the last version, example: version: ~> 0.20.0
+
+  # mysql:
+  #   github: crystal-lang/crystal-mysql
+  #   # Add the last version, example: version: 0.10.0
+
+  # sqlite3:
+  #   github: crystal-lang/crystal-sqlite3
+  #   # Add the last version, example: version: 0.15.0
+
+development_dependencies:
+  ameba:
+    github: crystal-ameba/ameba
+    version: ~> 0.13
+
+  pg:
+    github: will/crystal-pg
+    version: ~> 0.22.1

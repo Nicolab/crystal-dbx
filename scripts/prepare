@@ -1,0 +1,3 @@
+# Prepare container(s) and install shards
+docker-compose build \
+  && ./scripts/run "shards install"

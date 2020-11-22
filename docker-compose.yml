@@ -1,0 +1,74 @@
+version: "3.7"
+
+x-app_env: &app_env local
+x-db-host: &db-host db
+x-db-port: &db-port 5432
+x-db-user: &db-user app
+x-db-name: &db-name app
+x-db-password: &db-password pass
+x-db-uri: &db-uri postgres://app:pass@db:5432/app
+
+networks:
+  backend:
+  db:
+    driver: bridge
+
+services:
+  db:
+    image: postgres:latest
+    # restart: unless-stopped
+    networks:
+      - db
+    ports:
+      - 5432:5432
+    # expose:
+    #   - 5432
+    environment:
+      POSTGRES_USER: *db-user
+      POSTGRES_DB: *db-name
+      POSTGRES_PASSWORD: *db-password
+
+  #--------------------------------------------------------------------------
+  # DB admin
+  #--------------------------------------------------------------------------
+
+  # adminer:
+  #   image: adminer
+  #   restart: unless-stopped
+  #   networks:
+  #     - db
+  #   ports:
+  #     - 8050:8080
+  #   depends_on:
+  #     - db
+
+  # ----------------------------------------------------------------------------
+  # App
+  # ----------------------------------------------------------------------------
+
+  # App - Backend spec
+  app:
+    build:
+      context: ./
+      # dockerfile: ./Dockerfile
+    user: ${CMD_USER:-app}
+    volumes:
+      - ./:/app/
+    ports:
+      - 8000:8000
+    networks:
+      - backend
+      - db
+    depends_on:
+      - db
+    environment:
+      APP_ENV: *app_env
+      LOG: trace
+      DB_HOST: *db-host
+      DB_PORT: *db-port
+      DB_NAME: *db-name
+      DB_USERNAME: *db-user
+      DB_PASSWORD: *db-password
+      DB_URI: *db-uri
+    command: bash
+    tty: true

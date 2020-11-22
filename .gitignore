@@ -1,0 +1,30 @@
+/local/
+/~/
+/home/
+/app
+/.cache
+/.tmp
+# /docs/
+/lib/
+/bin/
+/.shards/
+*.dwarf
+._*
+*.log
+.idea/
+
+# OS
+.DS_Store
+.DS_Store?
+*[Tt]humbs.db
+.Spotlight-V100
+.Trashes
+.Trash-1000/
+*.Trashes
+
+# Libraries don't need dependency lock
+# Dependencies will be locked in applications that use them
+/shard.lock
+
+package-lock.json
+yarn.lock
