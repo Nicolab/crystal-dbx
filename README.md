@@ -1,5 +1,7 @@
 # DBX
 
+[![CI Status](https://github.com/Nicolab/crystal-dbx/workflows/CI/badge.svg?branch=master)](https://github.com/Nicolab/crystal-dbx/actions) [![GitHub release](https://img.shields.io/github/release/Nicolab/crystal-dbx.svg)](https://github.com/Nicolab/crystal-dbx/releases) [![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://nicolab.github.io/crystal-dbx/)
+
 `DBX` is a very small module (no overhead) for [Crystal lang](https://crystal-lang.org). `DBX` adds multi-connection support to the database and useful helpers.
 
 `DBX` uses the common [crystal-db](https://github.com/crystal-lang/crystal-db) API for Crystal. You will need to have a specific driver to access a database.
