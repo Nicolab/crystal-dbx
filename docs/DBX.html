@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.34.0">
+<meta name="crystal_docs.project_version" content="master">
+<meta name="crystal_docs.project_name" content="dbx">
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+
+  <meta id="repository-name" content="dbx">
+  <title>DBX - dbx master</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          dbx
+        </a>
+      </h1>
+
+      <span class="project-version">
+        master
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="dbx/DBX" data-name="dbx">
+      <a href="DBX.html">DBX</a>
+      
+        <ul>
+  
+  <li class=" " data-id="dbx/DBX/DBHashType" data-name="dbx::dbhashtype">
+      <a href="DBX/DBHashType.html">DBHashType</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">module</span> DBX
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>DBX is a helper to handle multi DBs using the compatible drivers
+with the common <code>crystal-db</code> module.</p>
+
+<p>Example with PostgreSQL:</p>
+
+<pre><code><span class="c"># Connection URI / DSL https://www.postgresql.org/docs/current/libpq-connect.html#h5o-9</span>
+db <span class="o">=</span> <span class="t">DBX</span>.open(<span class="s">&quot;app&quot;</span>, <span class="s">&quot;postgres://...&quot;</span>, <span class="n">true</span>)
+
+pp <span class="t">DBX</span>.db?(<span class="s">&quot;app&quot;</span>) ? <span class="s">&quot;defined&quot;</span> : <span class="s">&quot;not defined&quot;</span>
+
+db.query <span class="s">&quot;select id, created_at, email from users&quot;</span> <span class="k">do</span> <span class="o">|</span>rs<span class="o">|</span>
+  rs.each <span class="k">do</span>
+    id <span class="o">=</span> rs.read(<span class="t">Int32</span>)
+    created_at <span class="o">=</span> rs.read(<span class="t">Time</span>)
+    email <span class="o">=</span> rs.read(<span class="t">String</span>)
+    puts <span class="s">&quot;#</span><span class="i">#{</span>id<span class="i">}</span><span class="s">: </span><span class="i">#{</span>email<span class="i">}</span><span class="s"> </span><span class="i">#{</span>created_at<span class="i">}</span><span class="s">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Closes all connections of this DB entry point and remove this DB entry point.</span>
+db.destroy(<span class="s">&quot;app&quot;</span>)</code></pre>
+
+<p>Model:</p>
+
+<pre><code><span class="k">class</span> <span class="t">User</span>
+  <span class="k">include</span> <span class="t">JSON</span><span class="t">::</span><span class="t">Serializable</span>
+  <span class="k">include</span> <span class="t">DB</span><span class="t">::</span><span class="t">Serializable</span>
+  <span class="k">include</span> <span class="t">DB</span><span class="t">::</span><span class="t">Serializable</span><span class="t">::</span><span class="t">NonStrict</span>
+
+  property lang : <span class="t">String</span>
+
+  @[<span class="t">JSON</span><span class="t">::</span><span class="t">Field</span>(key: <span class="s">&quot;firstName&quot;</span>)]
+  property first_name : <span class="t">String</span>?
+<span class="k">end</span>
+
+db <span class="o">=</span> <span class="t">DBX</span>.open <span class="s">&quot;app&quot;</span>, <span class="t">App</span>.cfg.db_uri
+
+user <span class="o">=</span> <span class="t">User</span>.from_rs(db.query(<span class="s">&quot;SELECT id, lang, first_name FROM users&quot;</span>))
+pp user.to_json
+
+user <span class="o">=</span> <span class="t">User</span>.from_json <span class="s">&quot;{\&quot;lang\&quot;:\&quot;fr\&quot;,\&quot;firstName\&quot;:\&quot;Nico\&quot;}&quot;</span>
+pp user</code></pre>
+
+<p>Resources:</p>
+
+<ul><li>https://crystal-lang.github.io/crystal-db/api/index.html</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+
+
+
+
+
+
+
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#db(name:String,uri:String,strict=false):DB::Database-class-method" class="signature"><strong>.db</strong>(name : String, uri : String, strict = <span class="n">false</span>) : DB::Database</a>
+        
+          <div class="summary"><p>Same as <code><a href="DBX.html#open(name:String,uri:String,strict=false):DB::Database-class-method">.open</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#db(name:String):DB::Database-class-method" class="signature"><strong>.db</strong>(name : String) : DB::Database</a>
+        
+          <div class="summary"><p>Uses a given DB entry point.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#db?(name:String):Bool-class-method" class="signature"><strong>.db?</strong>(name : String) : Bool</a>
+        
+          <div class="summary"><p>Checks that a DB entry point exists.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dbs:DBHashType-class-method" class="signature"><strong>.dbs</strong> : DBHashType</a>
+        
+          <div class="summary"><p>Returns all <code>DB::Database</code> instances.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#destroy(name:String)-class-method" class="signature"><strong>.destroy</strong>(name : String)</a>
+        
+          <div class="summary"><p>Closes all connections of the DB entry point <em>name</em> and remove the <em>name</em> DB entry point.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#destroy:Tuple(Int32,Int32)-class-method" class="signature"><strong>.destroy</strong> : Tuple(Int32, Int32)</a>
+        
+          <div class="summary"><p>Destroy all DB entry points and and their connections.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#open(name:String,uri:String,strict=false):DB::Database-class-method" class="signature"><strong>.open</strong>(name : String, uri : String, strict = <span class="n">false</span>) : DB::Database</a>
+        
+          <div class="summary"><p>Ensures only once DB entry point by <em>name</em> is open.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pool_open_connections(name:String):Int32-class-method" class="signature"><strong>.pool_open_connections</strong>(name : String) : Int32</a>
+        
+          <div class="summary"><p>Gets the number of the connections opened in the pool of <em>name</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pool_stats(name:String):DB::Pool::Stats?-class-method" class="signature"><strong>.pool_stats</strong>(name : String) : DB::Pool::Stats?</a>
+        
+          <div class="summary"><p>Pool stats https://crystal-lang.github.io/crystal-db/api/latest/DB/Pool.html</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+
+
+<div class="methods-inherited">
+  
+</div>
+
+
+
+
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="db(name:String,uri:String,strict=false):DB::Database-class-method">
+      <div class="signature">
+        
+        def self.<strong>db</strong>(name : String, uri : String, strict = <span class="n">false</span>) : DB::Database
+
+        <a class="method-permalink" href="#db(name:String,uri:String,strict=false):DB::Database-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="DBX.html#open(name:String,uri:String,strict=false):DB::Database-class-method">.open</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="db(name:String):DB::Database-class-method">
+      <div class="signature">
+        
+        def self.<strong>db</strong>(name : String) : DB::Database
+
+        <a class="method-permalink" href="#db(name:String):DB::Database-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Uses a given DB entry point.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="db?(name:String):Bool-class-method">
+      <div class="signature">
+        
+        def self.<strong>db?</strong>(name : String) : Bool
+
+        <a class="method-permalink" href="#db?(name:String):Bool-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Checks that a DB entry point exists.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dbs:DBHashType-class-method">
+      <div class="signature">
+        
+        def self.<strong>dbs</strong> : <a href="DBX/DBHashType.html">DBHashType</a>
+
+        <a class="method-permalink" href="#dbs:DBHashType-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns all <code>DB::Database</code> instances.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="destroy(name:String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>destroy</strong>(name : String)
+
+        <a class="method-permalink" href="#destroy(name:String)-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Closes all connections of the DB entry point <em>name</em>
+and remove the <em>name</em> DB entry point.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="destroy:Tuple(Int32,Int32)-class-method">
+      <div class="signature">
+        
+        def self.<strong>destroy</strong> : Tuple(Int32, Int32)
+
+        <a class="method-permalink" href="#destroy:Tuple(Int32,Int32)-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Destroy all DB entry points and and their connections.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="open(name:String,uri:String,strict=false):DB::Database-class-method">
+      <div class="signature">
+        
+        def self.<strong>open</strong>(name : String, uri : String, strict = <span class="n">false</span>) : DB::Database
+
+        <a class="method-permalink" href="#open(name:String,uri:String,strict=false):DB::Database-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Ensures only once DB entry point by <em>name</em> is open.
+If the DB entry point <em>name</em> is already initialized, it is returned.
+Raises an error if <em>strict</em> is <em>true</em> and the DB entry point <em>name</em> is
+already opened.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pool_open_connections(name:String):Int32-class-method">
+      <div class="signature">
+        
+        def self.<strong>pool_open_connections</strong>(name : String) : Int32
+
+        <a class="method-permalink" href="#pool_open_connections(name:String):Int32-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Gets the number of the connections opened in the pool of <em>name</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pool_stats(name:String):DB::Pool::Stats?-class-method">
+      <div class="signature">
+        
+        def self.<strong>pool_stats</strong>(name : String) : DB::Pool::Stats?
+
+        <a class="method-permalink" href="#pool_stats(name:String):DB::Pool::Stats?-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pool stats
+https://crystal-lang.github.io/crystal-db/api/latest/DB/Pool.html</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
