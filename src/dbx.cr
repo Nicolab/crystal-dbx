@@ -28,7 +28,7 @@ require "db"
 # end
 #
 # # Closes all connections of this DB entry point and remove this DB entry point.
-# db.destroy("app")
+# DBX.destroy("app")
 # ```
 #
 # Model:

@@ -56,7 +56,7 @@ db.query "select id, created_at, email from users" do |rs|
 end
 
 # Closes all connections of this DB entry point and remove it.
-db.destroy("app")
+DBX.destroy("app")
 ```
 
 Model example:
@@ -93,7 +93,7 @@ pp user
 
 ### Development
 
-1. You only need Git, Docker and Docker-composer installed on your machine.
+1. You only need Git, Docker and Docker-compose installed on your machine.
 2. Clone this repo and run `./scripts/prepare`.
 3. Run first `docker-compose up`, then `./scripts/just dev-spec`).
 4. Check the project before committing or pushing: `./scripts/check`

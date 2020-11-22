@@ -79,6 +79,8 @@
   </svg>
 </a>DBX</h1>
 
+<p><a href="https://github.com/Nicolab/crystal-dbx/actions" target="_blank"><img src="https://github.com/Nicolab/crystal-dbx/workflows/CI/badge.svg?branch=master" alt="CI Status"/></a> <a href="https://github.com/Nicolab/crystal-dbx/releases" target="_blank"><img src="https://img.shields.io/github/release/Nicolab/crystal-dbx.svg" alt="GitHub release"/></a> <a href="https://nicolab.github.io/crystal-dbx/" target="_blank"><img src="https://img.shields.io/badge/docs-available-brightgreen.svg" alt="Docs"/></a></p>
+
 <p><code><a href="DBX.html">DBX</a></code> is a very small module (no overhead) for <a href="https://crystal-lang.org" target="_blank">Crystal lang</a>. <code><a href="DBX.html">DBX</a></code> adds multi-connection support to the database and useful helpers.</p>
 
 <p><code><a href="DBX.html">DBX</a></code> uses the common <a href="https://github.com/crystal-lang/crystal-db" target="_blank">crystal-db</a> API for Crystal. You will need to have a specific driver to access a database.</p>
@@ -138,7 +140,7 @@ db.query "select id, created_at, email from users" do |rs|
 end
 
 # Closes all connections of this DB entry point and remove it.
-db.destroy("app")</code></pre>
+DBX.destroy("app")</code></pre>
 
 <p>Model example:</p>
 
@@ -175,7 +177,7 @@ pp user</code></pre>
   </svg>
 </a>Development</h3>
 
-<ol><li>You only need Git, Docker and Docker-composer installed on your machine.</li><li>Clone this repo and run <code>./scripts/prepare</code>.</li><li>Run first <code>docker-compose up</code>, then <code>./scripts/just dev-spec</code>).</li><li>Check the project before committing or pushing: <code>./scripts/check</code></li></ol>
+<ol><li>You only need Git, Docker and Docker-compose installed on your machine.</li><li>Clone this repo and run <code>./scripts/prepare</code>.</li><li>Run first <code>docker-compose up</code>, then <code>./scripts/just dev-spec</code>).</li><li>Check the project before committing or pushing: <code>./scripts/check</code></li></ol>
 
 <p>It's just Docker and docker-compose, you can directly type the commands Docker and docker-compose if you prefer.</p>
 
