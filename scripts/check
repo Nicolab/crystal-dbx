@@ -1,2 +1,4 @@
+#!/bin/bash
+
 # Check code, used for CI
 ./scripts/prepare && ./scripts/just "lint spec"

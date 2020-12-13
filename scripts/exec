@@ -1,1 +1,4 @@
-docker-compose exec app bash -c "$@"
+#!/bin/bash
+
+docker-compose exec test_pg bash -c "$@" \
+# && docker-compose exec test_sqlite bash -c "$@"

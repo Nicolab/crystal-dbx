@@ -13,7 +13,8 @@ ARG uid=1000
 WORKDIR /tmp
 
 # Install deps
-RUN apt-get update -qq && apt-get install -y --no-install-recommends git htop apt-utils libpq-dev curl
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+  git htop apt-utils libpq-dev sqlite3 libsqlite3-dev curl
 
 # Install watchexec & just
 RUN curl -L >watchexec.tar.xz https://github.com/watchexec/watchexec/releases/download/1.14.1/watchexec-1.14.1-i686-unknown-linux-musl.tar.xz \

@@ -1,32 +1,32 @@
 version: "3.7"
 
 x-app_env: &app_env local
-x-db-host: &db-host db
-x-db-port: &db-port 5432
-x-db-user: &db-user app
-x-db-name: &db-name app
-x-db-password: &db-password pass
-x-db-uri: &db-uri postgres://app:pass@db:5432/app
+x-pg-host: &pg-host pg
+x-pg-port: &pg-port 5432
+x-pg-user: &pg-user app
+x-pg-name: &pg-name app
+x-pg-password: &pg-password pass
+x-pg-uri: &pg-uri postgres://app:pass@pg:5432/app
+x-sqlite-uri: &sqlite-uri sqlite3://./.tmp/data.db
 
 networks:
-  backend:
-  db:
+  pg:
     driver: bridge
 
 services:
-  db:
+  pg:
     image: postgres:latest
     # restart: unless-stopped
     networks:
-      - db
+      - pg
     ports:
       - 5432:5432
     # expose:
     #   - 5432
     environment:
-      POSTGRES_USER: *db-user
-      POSTGRES_DB: *db-name
-      POSTGRES_PASSWORD: *db-password
+      POSTGRES_USER: *pg-user
+      POSTGRES_DB: *pg-name
+      POSTGRES_PASSWORD: *pg-password
 
   #--------------------------------------------------------------------------
   # DB admin
@@ -36,39 +36,53 @@ services:
   #   image: adminer
   #   restart: unless-stopped
   #   networks:
-  #     - db
+  #     - pg
   #   ports:
   #     - 8050:8080
   #   depends_on:
-  #     - db
+  #     - pg
 
   # ----------------------------------------------------------------------------
   # App
   # ----------------------------------------------------------------------------
 
-  # App - Backend spec
-  app:
+  # App - test_pg
+  test_pg:
     build:
       context: ./
       # dockerfile: ./Dockerfile
     user: ${CMD_USER:-app}
     volumes:
       - ./:/app/
-    ports:
-      - 8000:8000
     networks:
-      - backend
-      - db
+      - pg
     depends_on:
-      - db
+      - pg
     environment:
       APP_ENV: *app_env
       LOG: trace
-      DB_HOST: *db-host
-      DB_PORT: *db-port
-      DB_NAME: *db-name
-      DB_USERNAME: *db-user
-      DB_PASSWORD: *db-password
-      DB_URI: *db-uri
+      DB_HOST: *pg-host
+      DB_PORT: *pg-port
+      DB_NAME: *pg-name
+      DB_USERNAME: *pg-user
+      DB_PASSWORD: *pg-password
+      DB_URI: *pg-uri
+      DB_TYPE: pg
+    command: bash
+    tty: true
+
+  # App - test_sqlite
+  test_sqlite:
+    build:
+      context: ./
+      # dockerfile: ./Dockerfile
+    user: ${CMD_USER:-app}
+    volumes:
+      - ./:/app/
+    environment:
+      APP_ENV: *app_env
+      LOG: trace
+      DB_URI: *sqlite-uri
+      DB_TYPE: sqlite
     command: bash
     tty: true
