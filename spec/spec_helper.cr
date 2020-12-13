@@ -7,4 +7,18 @@
 
 require "spec"
 require "../src/dbx"
-require "./pg_spec_helper"
+
+# Normalizes string (used for SQL query).
+def norm(str : String) : String
+  str.gsub(/\t|\n|\s\s\s+/, " ").gsub("  ", " ").strip
+end
+
+# Opens a connection to the DB entry point *name*.
+def db_open(name : String = "app", strict : Bool = false)
+  DBX.open(name, ENV["DB_URI"], strict: strict)
+end
+
+# Opens a connection to the DB entry point *name*.
+def db_destroy(name : String = "app")
+  DBX.destroy(name)
+end

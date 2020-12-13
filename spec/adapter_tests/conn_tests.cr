@@ -5,13 +5,32 @@
 # information and documentation: https://github.com/Nicolab/crystal-dbx
 # ------------------------------------------------------------------------------
 
-require "./spec_helper"
+require "../spec_helper"
 
 describe DBX do
+  it "implements utilities classes" do
+    DBX::Error.should be_a DB::Error.class
+    DBX::Error.should be_a Exception.class
+    DBX::NotSupportedError.should be_a NotImplementedError.class
+    DBX::NotSupportedError.should be_a Exception.class
+  end
+
   describe "Connection" do
+    before_all do
+      DBX.destroy
+      DBX.dbs.size.should eq 0
+    end
+
     after_each do
       DBX.destroy
       DBX.dbs.size.should eq 0
+    end
+
+    it "dbs containter" do
+      DBX.dbs.size.should eq 0
+      DBX.dbs.should be_a Hash(String, DB::Database)
+      DBX.open("app", ENV["DB_URI"], strict: true)
+      DBX.dbs.size.should eq 1
     end
 
     it "opens a connection" do

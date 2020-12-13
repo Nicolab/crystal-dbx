@@ -54,10 +54,21 @@ require "db"
 # pp user
 # ```
 #
+# See also `DBX::ORM` for a more advanced model system and query builder.
+#
 # Resources:
 # - https://crystal-lang.github.io/crystal-db/api/index.html
 module DBX
   alias DBHashType = Hash(String, DB::Database)
+
+  # Raised when an error occurred, related with `DB` or `DBX`.
+  class Error < DB::Error; end
+
+  # Raised when a method is not supported.
+  #
+  # This can be used either to stub out method bodies,
+  # or when the method is not supported on the current adapter.
+  class NotSupportedError < NotImplementedError; end
 
   # Registered DB entry points
   @@dbs = DBHashType.new
@@ -127,6 +138,21 @@ module DBX
     pool_stats = self.pool_stats name
     return 0 unless pool_stats
     pool_stats.open_connections
+  end
+
+  # This macro allows injecting code to be run before and after the execution
+  # of the request. It should return the yielded value. It must be called with 1
+  # block argument that will be used to pass the `args : Enumerable`.
+  # This macro should be called at the top level, not from a method.
+  #
+  # > Be careful of the performance penalty that each hook may cause,
+  #   be aware that your code will be executed at each query and exec.
+  macro around_query_or_exec(&block)
+    class ::DB::Statement
+      def_around_query_or_exec do |args|
+        {{block.body}}
+      end
+    end
   end
 
   at_exit {
