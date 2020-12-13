@@ -18,7 +18,7 @@
 </svg>
 
   <meta id="repository-name" content="dbx">
-  <title>DBX::DBHashType - dbx master-dev</title>
+  <title>DBX::Adapter - dbx master-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -56,7 +56,7 @@
       
         <ul>
   
-  <li class="parent " data-id="dbx/DBX/Adapter" data-name="dbx::adapter">
+  <li class="parent open current" data-id="dbx/DBX/Adapter" data-name="dbx::adapter">
       <a href="../DBX/Adapter.html">Adapter</a>
       
         <ul>
@@ -111,7 +111,7 @@
       
     </li>
   
-  <li class=" current" data-id="dbx/DBX/DBHashType" data-name="dbx::dbhashtype">
+  <li class=" " data-id="dbx/DBX/DBHashType" data-name="dbx::dbhashtype">
       <a href="../DBX/DBHashType.html">DBHashType</a>
       
     </li>
@@ -245,7 +245,7 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">alias</span> DBX::DBHashType
+  <span class="kind">module</span> DBX::Adapter
 
 </h1>
 
@@ -253,17 +253,18 @@
 
 
 
-
-
   <h2>
-    <a id="alias-definition" class="anchor" href="#alias-definition">
+    <a id="overview" class="anchor" href="#overview">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Alias Definition
+    Overview
   </h2>
-  <code>Hash(String, DB::Database)</code>
+
+  <p>DB adapter(s) used by <code><a href="../DBX/QueryBuilder.html">DBX::QueryBuilder</a></code> and <code><a href="../DBX/ORM.html">DBX::ORM</a></code>.</p>
+
+
 
 
 
@@ -296,6 +297,32 @@
 
 
 
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#inject_pg-macro" class="signature"><strong>inject_pg</strong></a>
+        
+          <div class="summary"><p>Injects <code>adapter_class</code> method (example, it's used in the models).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inject_sqlite-macro" class="signature"><strong>inject_sqlite</strong></a>
+        
+          <div class="summary"><p>Injects <code>adapter_class</code> method (example, it's used in the models).</p></div>
+        
+      </li>
+    
+  </ul>
+
 
 
 <div class="methods-inherited">
@@ -308,6 +335,54 @@
 
 
 
+
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="inject_pg-macro">
+      <div class="signature">
+        
+        macro <strong>inject_pg</strong>
+
+        <a class="method-permalink" href="#inject_pg-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Injects <code>adapter_class</code> method (example, it's used in the models).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inject_sqlite-macro">
+      <div class="signature">
+        
+        macro <strong>inject_sqlite</strong>
+
+        <a class="method-permalink" href="#inject_sqlite-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Injects <code>adapter_class</code> method (example, it's used in the models).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
 
 
 </div>

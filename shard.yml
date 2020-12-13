@@ -1,5 +1,5 @@
 name: dbx
-version: 0.1.0
+version: 0.2.0
 crystal: 0.35.1
 license: MIT
 
@@ -9,7 +9,6 @@ authors:
 targets:
   dbx:
     main: src/app.cr
-
 
 dependencies:
   db:
@@ -33,7 +32,9 @@ development_dependencies:
   ameba:
     github: crystal-ameba/ameba
     version: ~> 0.13
-
   pg:
     github: will/crystal-pg
     version: ~> 0.22.1
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
+    version: 0.17.0

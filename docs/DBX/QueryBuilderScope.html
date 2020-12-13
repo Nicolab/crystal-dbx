@@ -18,7 +18,7 @@
 </svg>
 
   <meta id="repository-name" content="dbx">
-  <title>DBX::DBHashType - dbx master-dev</title>
+  <title>DBX::QueryBuilderScope - dbx master-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -111,7 +111,7 @@
       
     </li>
   
-  <li class=" current" data-id="dbx/DBX/DBHashType" data-name="dbx::dbhashtype">
+  <li class=" " data-id="dbx/DBX/DBHashType" data-name="dbx::dbhashtype">
       <a href="../DBX/DBHashType.html">DBHashType</a>
       
     </li>
@@ -211,7 +211,7 @@
       
     </li>
   
-  <li class="parent " data-id="dbx/DBX/QueryBuilderScope" data-name="dbx::querybuilderscope">
+  <li class="parent open current" data-id="dbx/DBX/QueryBuilderScope" data-name="dbx::querybuilderscope">
       <a href="../DBX/QueryBuilderScope.html">QueryBuilderScope</a>
       
         <ul>
@@ -245,25 +245,28 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">alias</span> DBX::DBHashType
+  <span class="kind">struct</span> DBX::QueryBuilderScope
 
 </h1>
 
 
-
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../DBX/QueryBuilderScope.html">DBX::QueryBuilderScope</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
 
   <h2>
-    <a id="alias-definition" class="anchor" href="#alias-definition">
+    <a id="overview" class="anchor" href="#overview">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Alias Definition
+    Overview
   </h2>
-  <code>Hash(String, DB::Database)</code>
+
+  <p>Handy <code><a href="../DBX/QueryBuilder.html">QueryBuilder</a></code> scope used into <code>Block</code>.</p>
+
+
 
 
 
@@ -290,9 +293,59 @@
 
 
 
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(builder:QueryBuilder)-class-method" class="signature"><strong>.new</strong>(builder : QueryBuilder)</a>
+        
+      </li>
+    
+  </ul>
 
 
 
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#arg(value):String-instance-method" class="signature"><strong>#arg</strong>(value) : String</a>
+        
+          <div class="summary"><p>Same as <code><a href="../DBX/QueryBuilder.html#add_arg(value):String-instance-method">QueryBuilder#add_arg</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#q(field:FieldType,io:IO::Memory):IO::Memory-instance-method" class="signature"><strong>#q</strong>(field : FieldType, io : IO::Memory) : IO::Memory</a>
+        
+          <div class="summary"><p>Same as <code><a href="../DBX/QueryBuilder.html#quote(field:FieldType):String-instance-method">QueryBuilder#quote</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#q(field:FieldType):String-instance-method" class="signature"><strong>#q</strong>(field : FieldType) : String</a>
+        
+          <div class="summary"><p>Same as <code><a href="../DBX/QueryBuilder.html#quote(field:FieldType):String-instance-method">QueryBuilder#quote</a></code></p></div>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -300,12 +353,133 @@
 
 <div class="methods-inherited">
   
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
 </div>
 
 
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(builder:QueryBuilder)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(builder : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>)
+
+        <a class="method-permalink" href="#new(builder:QueryBuilder)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
 
 
 
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="arg(value):String-instance-method">
+      <div class="signature">
+        
+        def <strong>arg</strong>(value) : String
+
+        <a class="method-permalink" href="#arg(value):String-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="../DBX/QueryBuilder.html#add_arg(value):String-instance-method">QueryBuilder#add_arg</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="q(field:FieldType,io:IO::Memory):IO::Memory-instance-method">
+      <div class="signature">
+        
+        def <strong>q</strong>(field : <a href="../DBX/QueryBuilderScope/FieldType.html">FieldType</a>, io : IO::Memory) : IO::Memory
+
+        <a class="method-permalink" href="#q(field:FieldType,io:IO::Memory):IO::Memory-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="../DBX/QueryBuilder.html#quote(field:FieldType):String-instance-method">QueryBuilder#quote</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="q(field:FieldType):String-instance-method">
+      <div class="signature">
+        
+        def <strong>q</strong>(field : <a href="../DBX/QueryBuilderScope/FieldType.html">FieldType</a>) : String
+
+        <a class="method-permalink" href="#q(field:FieldType):String-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Same as <code><a href="../DBX/QueryBuilder.html#quote(field:FieldType):String-instance-method">QueryBuilder#quote</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
 
 
 
