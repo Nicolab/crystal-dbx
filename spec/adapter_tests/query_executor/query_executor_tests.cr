@@ -189,7 +189,7 @@ describe "DBX::QueryExecutor" do
     if ADAPTER_NAME == :pg
       expected_error_no_table = /does not exist/
     else
-      expected_error_no_table = /no such table/
+      expected_error_no_table = /no such column/
     end
 
     expect_raises(Exception, expected_error_no_table) {
