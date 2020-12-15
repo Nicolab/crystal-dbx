@@ -110,8 +110,13 @@ module DBX
   # Closes all connections of the DB entry point *name*
   # and remove the *name* DB entry point.
   def self.destroy(name : String)
-    if self.db?(name)
-      self.db(name).close
+    if @@dbs.has_key?(name)
+      begin
+        self.db(name).close
+      rescue e : Exception
+        puts "\n\u{1F47B} DBX.destroy: error caught when closing:"
+        pp e
+      end
       @@dbs.delete name
     end
   end
