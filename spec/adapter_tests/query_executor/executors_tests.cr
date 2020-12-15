@@ -22,27 +22,31 @@ describe "DBX::QueryExecutor executors" do
   end
 
   it "exec!" do
-    test = Test.find.to_o!
+    id, name = new_query_executor.find(:tests).select(:id, :name).to_o!({Int64, String})
 
-    er = Test.update(
-      test.id,
+    er = new_query_executor.table(:tests).update(
+      :id,
+      id,
       {name: "test_exec!", about: "DBX query executor", age: 10}
     ).exec!
 
     er.rows_affected.should eq 1
-    test2 = Test.find(test.id).to_o!
-    test.name.should_not eq test2.name
+    name2 = new_query_executor.table(:tests).find(:id, id).select(:name).scalar!.as(String)
+    name.should_not eq name2
 
     expect_raises(DB::NoResultsError) {
-      Test.update(0, {name: "test_exec!"}).exec!
+      new_query_executor.table(:tests).update(:id, 0, {name: "test_exec!"}).exec!
     }
   end
 
   it "exec" do
-    Test.insert({name: "test_exec!", about: "DBX query executor", age: 10}).exec!
+    new_query_executor
+      .table(:tests)
+      .insert({name: "test_exec!", about: "DBX query executor", age: 10})
+      .exec!
       .rows_affected.should eq 1
 
-    Test.update(0, {name: "test_exec"}).exec.should be_nil
+    new_query_executor.table(:tests).update(:id, 0, {name: "test_exec"}).exec.should be_nil
   end
 
   it "query" do

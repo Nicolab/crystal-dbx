@@ -7,6 +7,7 @@
 
 {% begin %}
 {% if env("DB_TYPE") == "sqlite" %}
+  puts "\u{1F9E9} SQLite adapter"
   require "../spec_helper"
 
   def create_table_test(db_entry = "app")
@@ -43,7 +44,7 @@
     res.close
   end
 
-  # Load PG adapter
+  # Load adapter
   require "../../src/adapter/sqlite"
   alias DBAdapter = DBX::Adapter::SQLite
   ADAPTER_NAME = :sqlite
