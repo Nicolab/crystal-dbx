@@ -34,7 +34,7 @@ module DBX::Adapter
     # > To get recorded data, PostgreSQL adapter use `RETURNING` SQL statement.
     #   *pk_name* and *pk_type* are useless and ignored,
     #   thanks PostgreSQL `RETURNING` that makes it simpler and more efficient :)
-    def create(
+    def create!(
       query : DBX::QueryExecutor,
       data,
       as types,
@@ -67,6 +67,18 @@ module DBX::Adapter
     end
 
     private def build_query_insert : String
+      sql = super
+      sql = "#{sql} RETURNING #{returning}" if returning
+      sql
+    end
+
+    private def build_query_update : String
+      sql = super
+      sql = "#{sql} RETURNING #{returning}" if returning
+      sql
+    end
+
+    private def build_query_delete : String
       sql = super
       sql = "#{sql} RETURNING #{returning}" if returning
       sql
