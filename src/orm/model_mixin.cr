@@ -30,11 +30,11 @@ module DBX::ORM
     end
 
     # Creates a new resource and returns.
-    def create(
+    def create!(
       data : Hash | NamedTuple,
       returning : DBX::QueryBuilder::OneOrMoreFieldsType = "*"
     ) : Model::Schema
-      query.create(data, returning: returning)
+      query.create!(data, returning: returning)
     end
 
     # Update one or more resources.

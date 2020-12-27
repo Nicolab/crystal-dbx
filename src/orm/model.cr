@@ -13,12 +13,12 @@ module DBX::ORM
   # ```
   # class User < DBX::ORM::Model
   #   adapter :pg
-
+  #
   #   class Schema
   #     include DB::Serializable
   #     include JSON::Serializable
   #     include JSON::Serializable::Unmapped
-
+  #
   #     property id : Int64?
   #     property name : String
   #     property about : String
@@ -31,7 +31,7 @@ module DBX::ORM
   #
   # ```
   # class User < DBX::ORM::Model
-  # # ...
+  #   # ...
   #
   #   class ModelQuery < DBX::ORM::ModelQuery(User)
   #     # By default `SELECT` value is `*`,

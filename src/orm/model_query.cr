@@ -52,11 +52,11 @@ module DBX::ORM
     # Creates a new record and returns.
     #
     # ```
-    # test = Test.create(data)
+    # test = Test.create!(data)
     # puts test.id
     # ```
-    def create(data, returning : DBX::QueryBuilder::OneOrMoreFieldsType = "*")
-      create(
+    def create!(data, returning : DBX::QueryBuilder::OneOrMoreFieldsType = "*")
+      create!(
         data,
         as: Model::Schema,
         returning: returning,
