@@ -35,8 +35,8 @@ describe "DBX::QueryExecutor" do
       .should eq data
   end
 
-  it "create" do
-    test = new_query_executor.table(:tests).create(
+  it "create!" do
+    test = new_query_executor.table(:tests).create!(
       {name: "created", about: "about", age: 1},
       as: {String, Int32},
       returning: {:name, :age},
@@ -49,7 +49,7 @@ describe "DBX::QueryExecutor" do
     new_query_executor.find(:tests).select(:id).where(:name, "created")
       .scalar!.as(Int64).should be >= 2
 
-    test = new_query_executor.table(:tests).create(
+    test = new_query_executor.table(:tests).create!(
       {name: "created2", about: "about", age: 1},
       as: {name: String, age: Int32},
       returning: {:name, :age}

@@ -110,7 +110,7 @@ describe "DBX::QueryExecutor executors" do
       Test.query.find.select(:name, :age).to_a(as: {name: String, age: Int32})
         .should eq([{name: "Nico", age: 38}, {name: "DBX", age: 1}])
 
-      test = Test.query.create(
+      test = Test.query.create!(
         {name: "created", about: "about", age: 1},
         as: {String, Int32},
         returning: {:name, :age}
@@ -120,7 +120,7 @@ describe "DBX::QueryExecutor executors" do
       test.should eq({"created", 1})
       Test.find.where(:name, "created").to_o!.id.should_not be_nil
 
-      test = Test.query.create(
+      test = Test.query.create!(
         {name: "created2", about: "about", age: 1},
         as: {name: String, age: Int32},
         returning: {:name, :age}
@@ -162,7 +162,7 @@ describe "DBX::QueryExecutor executors" do
 
     it "create" do
       data = {name: "DBX Query builder", about: "Like SQL with super power", age: 0}
-      test = Test.create(data)
+      test = Test.create!(data)
       test.should be_a Test::Schema
       test.id.not_nil!.should be > 1
       test.name.should eq data[:name]
@@ -171,7 +171,7 @@ describe "DBX::QueryExecutor executors" do
 
       Test.find(test.id).to_o!.id.should eq test.id
 
-      test = Test.create(data, {:name, :about, :age})
+      test = Test.create!(data, {:name, :about, :age})
       test.should be_a Test::Schema
       test.id.should be_nil
       test.name.should eq data[:name]
