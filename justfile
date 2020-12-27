@@ -111,6 +111,7 @@ system-info:
 # Check and clean the workspace
 clean: format lint spec
   @rm -f ./app
+  @rm -f ./.tmp
   @echo All done!
 
 # ------------------------------------------------------------------------------

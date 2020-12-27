@@ -8,6 +8,10 @@
 {% begin %}
 {% if env("DB_TYPE") == "sqlite" %}
   puts "\u{1F9E9} SQLite adapter"
+
+  # tmp dir for DB file
+  `mkdir -p "./.tmp"`
+
   require "../spec_helper"
 
   def create_table_test(db_entry = "app")
