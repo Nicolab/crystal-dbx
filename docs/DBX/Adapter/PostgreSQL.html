@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Crystal Docs 0.34.0">
-<meta name="crystal_docs.project_version" content="master-dev">
+<meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="dbx">
 
 
@@ -18,7 +18,7 @@
 </svg>
 
   <meta id="repository-name" content="dbx">
-  <title>DBX::Adapter::PostgreSQL - dbx master-dev</title>
+  <title>DBX::Adapter::PostgreSQL - dbx master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -39,7 +39,7 @@
       </h1>
 
       <span class="project-version">
-        master-dev
+        master
       </span>
     </div>
   </div>
@@ -288,6 +288,13 @@
     Defined in:
   </h2>
   
+    
+      <a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/adapter/pg/pg.cr#L20" target="_blank">
+        adapter/pg/pg.cr
+      </a>
+    
+    <br/>
+  
 
 
 
@@ -334,7 +341,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#create(query:DBX::QueryExecutor,data,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method" class="signature"><strong>#create</strong>(query : DBX::QueryExecutor, data, as types, returning : DBX::QueryBuilder::OneOrMoreFieldsType = <span class="s">&quot;*&quot;</span>, pk_name : DBX::QueryBuilder::FieldType = <span class="n">:id</span>, pk_type = <span class="t">::</span><span class="t">Union</span>(<span class="t">Int64</span>, <span class="t">::</span><span class="t">Nil</span>))</a>
+        <a href="#create!(query:DBX::QueryExecutor,data,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method" class="signature"><strong>#create!</strong>(query : DBX::QueryExecutor, data, as types, returning : DBX::QueryBuilder::OneOrMoreFieldsType = <span class="s">&quot;*&quot;</span>, pk_name : DBX::QueryBuilder::FieldType = <span class="n">:id</span>, pk_type = <span class="t">::</span><span class="t">Union</span>(<span class="t">Int64</span>, <span class="t">::</span><span class="t">Nil</span>))</a>
         
           <div class="summary"><p>:inherit: > To get recorded data, PostgreSQL adapter use <code>RETURNING</code> SQL statement.</p></div>
         
@@ -450,6 +457,8 @@
       <br/>
       <div>
         
+          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/adapter/pg/pg.cr#L29" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -481,15 +490,17 @@
       <br/>
       <div>
         
+          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/adapter/pg/pg.cr#L24" target="_blank">View source</a>]
+        
       </div>
     </div>
   
-    <div class="entry-detail" id="create(query:DBX::QueryExecutor,data,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method">
+    <div class="entry-detail" id="create!(query:DBX::QueryExecutor,data,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method">
       <div class="signature">
         
-        def <strong>create</strong>(query : <a href="../../DBX/QueryExecutor.html">DBX::QueryExecutor</a>, data, as types, returning : <a href="../../DBX/QueryBuilder/OneOrMoreFieldsType.html">DBX::QueryBuilder::OneOrMoreFieldsType</a> = <span class="s">&quot;*&quot;</span>, pk_name : <a href="../../DBX/QueryBuilder/FieldType.html">DBX::QueryBuilder::FieldType</a> = <span class="n">:id</span>, pk_type = <span class="t">::</span><span class="t">Union</span>(<span class="t">Int64</span>, <span class="t">::</span><span class="t">Nil</span>))
+        def <strong>create!</strong>(query : <a href="../../DBX/QueryExecutor.html">DBX::QueryExecutor</a>, data, as types, returning : <a href="../../DBX/QueryBuilder/OneOrMoreFieldsType.html">DBX::QueryBuilder::OneOrMoreFieldsType</a> = <span class="s">&quot;*&quot;</span>, pk_name : <a href="../../DBX/QueryBuilder/FieldType.html">DBX::QueryBuilder::FieldType</a> = <span class="n">:id</span>, pk_type = <span class="t">::</span><span class="t">Union</span>(<span class="t">Int64</span>, <span class="t">::</span><span class="t">Nil</span>))
 
-        <a class="method-permalink" href="#create(query:DBX::QueryExecutor,data,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method">#</a>
+        <a class="method-permalink" href="#create!(query:DBX::QueryExecutor,data,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -503,6 +514,8 @@
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/adapter/pg/pg.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>

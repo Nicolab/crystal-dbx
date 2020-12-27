@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Crystal Docs 0.34.0">
-<meta name="crystal_docs.project_version" content="master-dev">
+<meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="dbx">
 
 
@@ -18,7 +18,7 @@
 </svg>
 
   <meta id="repository-name" content="dbx">
-  <title>dbx master-dev</title>
+  <title>dbx master</title>
   <script type="text/javascript">
   CrystalDocs.base_path = "";
   </script>
@@ -39,7 +39,7 @@
       </h1>
 
       <span class="project-version">
-        master-dev
+        master
       </span>
     </div>
   </div>
@@ -251,136 +251,19 @@
 
 <p><a href="https://github.com/Nicolab/crystal-dbx/actions" target="_blank"><img src="https://github.com/Nicolab/crystal-dbx/workflows/CI/badge.svg?branch=master" alt="CI Status"/></a> <a href="https://github.com/Nicolab/crystal-dbx/releases" target="_blank"><img src="https://img.shields.io/github/release/Nicolab/crystal-dbx.svg" alt="GitHub release"/></a> <a href="https://nicolab.github.io/crystal-dbx/" target="_blank"><img src="https://img.shields.io/badge/docs-available-brightgreen.svg" alt="Docs"/></a></p>
 
-<ul><li><code><a href="DBX.html">DBX</a></code> is a module for <a href="https://crystal-lang.org" target="_blank">Crystal lang</a>. <code><a href="DBX.html">DBX</a></code> adds multi-connection support to the database and useful helpers.</li></ul>
+<ul><li>DB connections manager</li><li>Query builder</li><li>ORM</li></ul>
 
-<ul><li><code><a href="DBX.html">DBX</a></code> is designed in a decoupled way to embed only the necessary functionalities (multi-connection manager, query builder and ORM).</li></ul>
+<p>DBX is a <a href="https://crystal-lang.org" target="_blank">Crystal lang</a> module to query the database, built on top of <a href="https://github.com/crystal-lang/crystal-db" target="_blank">crystal-db</a> (common API for DB drivers).</p>
 
-<ul><li><code><a href="DBX.html">DBX</a></code> uses the common <a href="https://github.com/crystal-lang/crystal-db" target="_blank">crystal-db</a> API for Crystal. You will need to have a specific driver to access a database.</li></ul>
+<p>DBX is designed in a decoupled way to embed only the necessary features (multi-connections manager, query builder, query executor and ORM).</p>
 
-<blockquote>SQLite, PostgreSQL, MySQL, Cassandra, ... See the list of the compatible drivers: https://github.com/crystal-lang/crystal-db
-<em>Concerning the query builder and the ORM, adapters for PostgreSQL and SQLite are supported by DBX.</em></blockquote>
-
-<h2><a id="installation" class="anchor" href="#installation">
+<h2><a id="documentation" class="anchor" href="#documentation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Installation</h2>
+</a>Documentation</h2>
 
-<ol><li>Add the dependency to your <code>shard.yml</code>:</li></ol>
-
-<pre><code class="language-yaml">dependencies:
-  dbx:
-    github: https://github.com/nicolab/crystal-dbx
-
-  # Pick / uncomment your database
-  # pg:
-  #   github: will/crystal-pg
-  #   # Add the last version, example: version: ~> 0.20.0
-
-  # mysql:
-  #   github: crystal-lang/crystal-mysql
-  #   # Add the last version, example: version: 0.10.0
-
-  # sqlite3:
-  #   github: crystal-lang/crystal-sqlite3
-  #   # Add the last version, example: version: 0.15.0</code></pre>
-
-<ol><li>Run <code>shards install</code></li></ol>
-
-<h2><a id="usage" class="anchor" href="#usage">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Usage</h2>
-
-<p>Example with PostgreSQL:</p>
-
-<pre><code class="language-ruby">require "dbx"
-require "pg" # &lt;= Replaces by your database driver
-
-# Connection URI / DSL https://www.postgresql.org/docs/current/libpq-connect.html#h5o-9
-db = DBX.open("app", "postgres://...", true)
-
-pp DBX.db?("app") ? "connected" : "not connected"
-
-db.query "select id, created_at, email from users" do |rs|
-  rs.each do
-    id = rs.read(Int32)
-    created_at = rs.read(Time)
-    email = rs.read(String)
-    puts "##{id}: #{email} #{created_at}"
-  end
-end
-
-# Closes all connections of this DB entry point and remove it.
-DBX.destroy("app")</code></pre>
-
-<p>Model example:</p>
-
-<pre><code class="language-crystal"><span class="k">class</span> <span class="t">User</span>
-  <span class="k">include</span> <span class="t">JSON</span><span class="t">::</span><span class="t">Serializable</span>
-  <span class="k">include</span> <span class="t">DB</span><span class="t">::</span><span class="t">Serializable</span>
-  <span class="k">include</span> <span class="t">DB</span><span class="t">::</span><span class="t">Serializable</span><span class="t">::</span><span class="t">NonStrict</span>
-
-  property lang : <span class="t">String</span>
-
-  @[<span class="t">JSON</span><span class="t">::</span><span class="t">Field</span>(key: <span class="s">&quot;firstName&quot;</span>)]
-  property first_name : <span class="t">String</span>?
-<span class="k">end</span>
-
-db <span class="o">=</span> <span class="t">DBX</span>.db(<span class="s">&quot;app&quot;</span>)
-
-user <span class="o">=</span> <span class="t">User</span>.from_rs(db.query(<span class="s">&quot;SELECT id, lang, first_name FROM users&quot;</span>))
-pp user.to_json
-
-user <span class="o">=</span> <span class="t">User</span>.from_json <span class="s">&quot;{\&quot;lang\&quot;:\&quot;fr\&quot;,\&quot;firstName\&quot;:\&quot;Nico\&quot;}&quot;</span>
-pp user</code></pre>
-
-<p>See also:</p>
-
-<ul><li>:rocket: <code><a href="DBX/ORM.html">DBX::ORM</a></code> for a more advanced model system and query builder.</li><li>📘 <a href="https://nicolab.github.io/crystal-dbx/" target="_blank">API doc</a></li><li>:bookmark_tabs: <a href="https://github.com/Nicolab/crystal-dbx/tree/master/spec" target="_blank">Spec</a></li></ul>
-
-<h2><a id="troubleshooting" class="anchor" href="#troubleshooting">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Troubleshooting</h2>
-
-<h3><a id="pitfalls" class="anchor" href="#pitfalls">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Pitfalls</h3>
-
-<p>The goal of DBX is to bring a practical abstraction to crystal-db.
-As a result, DBX leaves a lot of freedom to implement models and queries.
-This can lead to errors.
-For example at each end of query you have to choose the right executor
-(<code>to_o</code> / <code>to_o!</code> to force the return of a single resource,
-<code>to_a</code> / <code>to_a!</code> to get an array of one or more resources, <code>exec</code> or <code>query</code>, ...).
-This requires some knowledge of <em>SQL</em> and <a href="https://crystal-lang.github.io/crystal-db/api/latest/DB/QueryMethods.html" target="_blank">crystal-db</a>.</p>
-
-<p>Great super power, great responsibility!</p>
-
-<h3><a id="last-insert-id" class="anchor" href="#last-insert-id">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Last insert ID</h3>
-
-<p>When registering with the <code>insert.exec</code> method,
-depending on the SQL drivers (PostgreSQL or SQLite) the behavior
-to get the registration ID is not identical
-(behavior inherited from crystal-db and its SQL drivers).</p>
-
-<ul><li>With SQLite driver <code>last_insert_id</code> (<code>DB::ExecResult</code>) returns the ID of the new record.</li><li>With PostgreSQL driver this does not work. But it is possible to use the PostgreSQL-specific
-<code>RETURNING id</code> statement and execute the query with <code>query</code> or <code>scalar</code>.</li></ul>
-
-<p>To help with this, the DBX query builder has the <code>returning</code> method
-which accepts one or more fields (<code>*</code> (wildcard) for all SQL fields).</p>
-
-<p>Also the <code>create</code> method handles all this for you.
-This method is accessible via <code><a href="DBX/QueryExecutor.html">DBX::QueryExecutor</a></code> and the models.</p>
+<ul><li>🚀 <a href="/guide/README.md" target="_blank">Guide</a></li><li>📘 <a href="https://nicolab.github.io/crystal-dbx/" target="_blank">API doc</a></li><li>:bookmark_tabs: <a href="https://github.com/Nicolab/crystal-dbx/tree/master/spec" target="_blank">Spec tests</a></li></ul>
 
 <h2><a id="contributing" class="anchor" href="#contributing">
   <svg class="octicon-link" aria-hidden="true">
@@ -423,7 +306,7 @@ just --list</code></pre>
 
 <p>Also, quickly:</p>
 
-<ul><li><code>docker-compose run --rm test_pg bash -c "crystal spec"</code></li><li>or <code>docker-compose run --rm test_pg bash -c "just dev-spec"</code></li><li>when you are done: <code>docker-compose down --remove-orphans</code></li></ul>
+<ul><li><code>docker-compose run --rm test_pg crystal spec</code></li><li>or <code>docker-compose run --rm test_pg just dev-spec</code></li><li>when you are done: <code>docker-compose down --remove-orphans</code></li></ul>
 
 <h2><a id="license" class="anchor" href="#license">
   <svg class="octicon-link" aria-hidden="true">
