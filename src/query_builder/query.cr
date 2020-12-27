@@ -182,7 +182,7 @@ module DBX
       sql = "DELETE FROM #{@table}"
       sql = "#{sql} WHERE #{@where}" if !@where.empty?
       sql = "#{sql} ORDER BY #{@order_by}" if !@order_by.empty?
-      sql = "TRUNCATE TABLE #{@table}" if sql == "DELETE FROM #{@table}"
+      sql = "TRUNCATE TABLE #{@table}" if @returning.nil? && sql == "DELETE FROM #{@table}"
       sql
     end
 

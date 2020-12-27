@@ -58,6 +58,7 @@ require "db"
 #
 # Resources:
 # - https://crystal-lang.github.io/crystal-db/api/index.html
+# - https://github.com/Nicolab/crystal-dbx/tree/master/guide
 module DBX
   alias DBHashType = Hash(String, DB::Database)
 
@@ -152,6 +153,36 @@ module DBX
   #
   # > Be careful of the performance penalty that each hook may cause,
   #   be aware that your code will be executed at each query and exec.
+  #
+  # ```
+  # DBX.around_query_or_exec do |args|
+  #   puts "before"
+  #   res = yield
+  #   puts "after"
+  #
+  #   puts res.class
+  #   puts "exec" if res.is_a?(DB::ExecResult)
+  #   puts "query" if res.is_a?(DB::ResultSet)
+  #
+  #   puts "with args:"
+  #   pp args
+  #
+  #   res
+  # end
+  # ```
+  #
+  # Example to measure query execution time:
+  #
+  # ```
+  # DBX.around_query_or_exec do |args|
+  #   start = Time.monotonic
+  #   res = yield
+  #   elapsed_time = Time.monotonic - start
+  #
+  #   puts "Query execution time: #{elapsed_time}"
+  #   res
+  # end
+  # ```
   macro around_query_or_exec(&block)
     class ::DB::Statement
       def_around_query_or_exec do |args|

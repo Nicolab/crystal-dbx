@@ -31,7 +31,7 @@ module DBX::Adapter
     end
 
     # :inherit:
-    def create(
+    def create!(
       query : DBX::QueryExecutor,
       data,
       as types,

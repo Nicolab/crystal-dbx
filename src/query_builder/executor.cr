@@ -181,28 +181,28 @@ module DBX
     # Creates a new record and returns.
     #
     # ```
-    # query.table(:tests).create(
+    # query.table(:tests).create!(
     #   {name: "Baby", about: "I'm a baby", age: 1},
     #   as: {String, Int32},
     #   returning: {:name, :age}
     # )
     # # => {"Baby", 1}
     #
-    # query.table(:tests).create(
+    # query.table(:tests).create!(
     #   {name: "Baby", about: "I'm a baby", age: 1},
     #   as: {name: String, age: Int32},
     #   returning: {:name, :age}
     # )
     # # => {name: "Baby", age: 1}
     # ```
-    def create(
+    def create!(
       data : Hash | NamedTuple,
       as types,
       returning : DBX::QueryBuilder::OneOrMoreFieldsType = "*",
       pk_name : DBX::QueryBuilder::FieldType = :id,
       pk_type = Int64?
     )
-      @adapter.create(self, data, types, returning, pk_name, pk_type)
+      @adapter.create!(self, data, types, returning, pk_name, pk_type)
     end
 
     # Shortcut, same as `query_one!(types)`.
