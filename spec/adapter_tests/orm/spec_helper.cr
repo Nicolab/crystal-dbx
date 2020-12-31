@@ -14,7 +14,7 @@ class Test2 < DBX::ORM::Model
   {% if ADAPTER_NAME == :sqlite %}adapter :sqlite{% end %}
 
   table :tests
-  db_entry "test2"
+  connection "test2"
 
   # DB table schema
   class Schema
