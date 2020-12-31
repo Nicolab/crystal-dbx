@@ -7,7 +7,7 @@ require "dbx"
 require "pg" # <= PostgreSQL driver
 require "sqlite3" # <= SQLite driver
 
-# Create 4 DB entry points (4 connections pool)
+# Create 4 DB connection pool (3 PostgreSQL and 1 SQLite)
 DBX.open("app", "postgres://...", strict: true)
 DBX.open("reader", "postgres://...", strict: true)
 DBX.open("writer", "postgres://...", strict: true)

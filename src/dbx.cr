@@ -27,7 +27,7 @@ require "db"
 #   end
 # end
 #
-# # Closes all connections of this DB entry point and remove this DB entry point.
+# # Closes all connections of this DB connection pool and remove this DB connection pool.
 # DBX.destroy("app")
 # ```
 #
@@ -71,7 +71,7 @@ module DBX
   # or when the method is not supported on the current adapter.
   class NotSupportedError < NotImplementedError; end
 
-  # Registered DB entry points
+  # Registered DB connections
   @@dbs = DBHashType.new
 
   # Returns all `DB::Database` instances.
@@ -79,12 +79,12 @@ module DBX
     @@dbs
   end
 
-  # Checks that a DB entry point exists.
+  # Checks that a DB connection pool exists.
   def self.db?(name : String) : Bool
     @@dbs.has_key?(name)
   end
 
-  # Uses a given DB entry point.
+  # Uses a given DB connection pool.
   def self.db(name : String) : DB::Database
     @@dbs[name]
   end
@@ -94,22 +94,22 @@ module DBX
     self.open(name, uri, strict)
   end
 
-  # Ensures only once DB entry point by *name* is open.
-  # If the DB entry point *name* is already initialized, it is returned.
-  # Raises an error if *strict* is *true* and the DB entry point *name* is
+  # Ensures only once DB connection pool by *name* is open.
+  # If the DB connection pool *name* is already initialized, it is returned.
+  # Raises an error if *strict* is *true* and the DB connection pool *name* is
   # already opened.
   def self.open(name : String, uri : String, strict = false) : DB::Database
     # if already initialized
     if @@dbs.has_key?(name)
       return @@dbs[name] unless strict
-      raise "'#{name}' DB entry point is already opened"
+      raise "'#{name}' DB connection pool is already opened"
     end
 
     @@dbs[name] = DB.open(uri)
   end
 
-  # Closes all connections of the DB entry point *name*
-  # and remove the *name* DB entry point.
+  # Closes all connections of the DB connection pool *name*
+  # and remove the *name* DB connection pool.
   def self.destroy(name : String)
     if @@dbs.has_key?(name)
       begin
@@ -122,7 +122,7 @@ module DBX
     end
   end
 
-  # Destroy all DB entry points and and their connections.
+  # Destroy all DB connection pool and and their connections.
   def self.destroy : Tuple(Int32, Int32)
     size = @@dbs.size
     @@dbs.each_key { |name| self.destroy(name) }

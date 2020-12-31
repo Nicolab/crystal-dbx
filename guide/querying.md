@@ -24,7 +24,7 @@ users = db.query_all(
 
 pp users
 
-# Closes all connections of this DB entry point and remove it.
+# Closes all connections of this DB connection pool and remove it.
 DBX.destroy("app")
 ```
 
@@ -138,7 +138,7 @@ class User < DBX::ORM::Model
   adapter :pg
 
   # table :users # <= automatically resolved from class name
-  # db_entry "server2" # <= default is "app", but you can use another DB entry point.
+  # connection "server2" # <= default is "app", but you can use another DB connection pool.
 
   # DB table schema
   class Schema

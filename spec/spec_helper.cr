@@ -13,12 +13,12 @@ def norm(str : String) : String
   str.gsub(/\t|\n|\s\s\s+/, " ").gsub("  ", " ").strip
 end
 
-# Opens a connection to the DB entry point *name*.
+# Opens a connection to the DB connection pool *name*.
 def db_open(name : String = "app", strict : Bool = false)
   DBX.open(name, ENV["DB_URI"], strict: strict)
 end
 
-# Opens a connection to the DB entry point *name*.
+# Opens a connection to the DB connection pool *name*.
 def db_destroy(name : String = "app")
   DBX.destroy(name)
 end

@@ -26,7 +26,7 @@ describe DBX::ORM::Model do
     Test::Schema.should_not be_nil
     Test::Error.should be_a DBX::Error.class
     Test::Error.should be_a DB::Error.class
-    Test.db_entry.should eq "app"
+    Test.connection.should eq "app"
     Test.table_name.should eq "tests"
     Test.pk_name.should eq "id"
     Test.foreign_key_name.should eq "test_id"
@@ -35,8 +35,8 @@ describe DBX::ORM::Model do
   it "customizes table name" do
     db_open "test2"
 
-    Test.db_entry.should eq "app"
-    Test2.db_entry.should eq "test2"
+    Test.connection.should eq "app"
+    Test2.connection.should eq "test2"
 
     Test.table_name.should eq "tests"
     Test2.table_name.should eq "tests"

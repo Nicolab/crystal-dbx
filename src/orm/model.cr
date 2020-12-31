@@ -52,7 +52,7 @@ module DBX::ORM
   # ```
   abstract class Model
     @@adapter : DBX::Adapter::Base?
-    @@db_entry : String = "app"
+    @@conn_name : String = "app"
 
     # Model error.
     class Error < DBX::Error; end
@@ -123,20 +123,20 @@ module DBX::ORM
       @@table_name = "{{name.id}}"
     end
 
-    # Define a DB entry point with a `Symbol` or a `String`.
+    # Define a DB connection name with a `Symbol` or a `String`.
     # By default is `app`.
     #
     # ```
     # # Symbol
-    # db_entry :entry_name
+    # connection :connection_name
     #
     # # or String
-    # db_entry "entry_name"
+    # connection "connection_name"
     # ```
     #
-    # See `.db` and `.db_entry`.
-    private macro db_entry(name)
-      @@db_entry = "{{name.id}}"
+    # See `.db` and `.connection`.
+    private macro connection(name)
+      @@conn_name = "{{name.id}}"
     end
 
     macro inherited
@@ -188,14 +188,14 @@ module DBX::ORM
 
     # --------------------------------------------------------------------------
 
-    # DB entry point used by this `Model` instance.
-    def self.db_entry : String
-      @@db_entry
+    # DB connection name used by this `Model` instance.
+    def self.connection : String
+      @@conn_name
     end
 
-    # Returns DB entry point used by this `Model` instance.
+    # Returns DB connection name used by this `Model` instance.
     def self.db : DB::Database
-      DBX.db(db_entry)
+      DBX.db(connection)
     end
 
     # Returns array of all non-abstract subclasses of *DBX::ORM::Model.
