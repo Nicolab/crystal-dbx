@@ -166,7 +166,7 @@ module DBX::ORM
         @@foreign_key_name = "#{self.table_name.to_s.rchop('s')}_id"
       end
 
-      # `DBX::QueryExecutor` specific to `Model`.
+      # `DBX::Query` specific to `Model`.
       class ModelQuery < DBX::ORM::ModelQuery({{@type.name.id}})
       end
 

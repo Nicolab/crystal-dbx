@@ -16,7 +16,7 @@ DB_CONN = DBX.open("app", "postgres://...", strict: true)
 DB_ADAPTER = DBX::Adapter::PostgreSQL.new(DB_CONN)
 
 def new_query
-  DBX::QueryExecutor.new(DB_ADAPTER)
+  DBX::Query.new(DB_ADAPTER)
 end
 ```
 
@@ -50,7 +50,7 @@ user = new_query
 pp user
 ```
 
-> Note: [to_o!](https://nicolab.github.io/crystal-dbx/DBX/QueryExecutor.html#to_o!(astypes)-instance-method) is an alias of [query_one!](https://nicolab.github.io/crystal-dbx/DBX/QueryExecutor.html#query_one!(astypes)-instance-method), see [querying](/guide/querying.md) for more details.
+> Note: [to_o!](https://nicolab.github.io/crystal-dbx/DBX/Query.html#to_o!(astypes)-instance-method) is an alias of [query_one!](https://nicolab.github.io/crystal-dbx/DBX/Query.html#query_one!(astypes)-instance-method), see [querying](/guide/querying.md) for more details.
 
 Or `create!` method (helper), insert one, returning the new record:
 
@@ -115,7 +115,7 @@ users = new_query
   .to_a({id: String, username: String, email: String})
 ```
 
-Find and get a [scalar](https://nicolab.github.io/crystal-dbx/DBX/QueryExecutor.html#scalar-instance-method) value:
+Find and get a [scalar](https://nicolab.github.io/crystal-dbx/DBX/Query.html#scalar-instance-method) value:
 
 ```crystal
 id = new_query

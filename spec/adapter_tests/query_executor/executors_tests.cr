@@ -8,7 +8,7 @@
 require "../../spec_helper"
 require "../../../src/query_builder/executor"
 
-describe "DBX::QueryExecutor executors" do
+describe "DBX::Query executors" do
   before_each do
     db_open
     create_table_test
@@ -22,36 +22,36 @@ describe "DBX::QueryExecutor executors" do
   end
 
   it "exec!" do
-    id, name = new_query_executor.find(:tests).select(:id, :name).to_o!({Int64, String})
+    id, name = new_query.find(:tests).select(:id, :name).to_o!({Int64, String})
 
-    er = new_query_executor.table(:tests).update(
+    er = new_query.table(:tests).update(
       :id,
       id,
       {name: "test_exec!", about: "DBX query executor", age: 10}
     ).exec!
 
     er.rows_affected.should eq 1
-    name2 = new_query_executor.table(:tests).find(:id, id).select(:name).scalar!.as(String)
+    name2 = new_query.table(:tests).find(:id, id).select(:name).scalar!.as(String)
     name.should_not eq name2
 
     expect_raises(DB::NoResultsError) {
-      new_query_executor.table(:tests).update(:id, 0, {name: "test_exec!"}).exec!
+      new_query.table(:tests).update(:id, 0, {name: "test_exec!"}).exec!
     }
   end
 
   it "exec" do
-    new_query_executor
+    new_query
       .table(:tests)
       .insert({name: "test_exec!", about: "DBX query executor", age: 10})
       .exec!
       .rows_affected.should eq 1
 
-    new_query_executor.table(:tests).update(:id, 0, {name: "test_exec"}).exec.should be_nil
+    new_query.table(:tests).update(:id, 0, {name: "test_exec"}).exec.should be_nil
   end
 
   it "query" do
     tests = [] of Array(String | Int32)
-    rs = new_query_executor.find(:tests).select(:name, :age).query
+    rs = new_query.find(:tests).select(:name, :age).query
     begin
       while rs.move_next
         name = rs.read(String)
@@ -68,7 +68,7 @@ describe "DBX::QueryExecutor executors" do
     insert_table_test(name: "DBX", age: 1)
 
     tests = [] of Array(String | Int32)
-    rs = new_query_executor.find(:tests).select(:name, :age).query
+    rs = new_query.find(:tests).select(:name, :age).query
     begin
       while rs.move_next
         name = rs.read(String)
@@ -83,7 +83,7 @@ describe "DBX::QueryExecutor executors" do
     tests.should eq [["Nico", 38], ["DBX", 1]]
 
     tests = [] of Array(String | Int32)
-    rs = new_query_executor.find(:tests).select(:name, :age).where(:id, 0).query
+    rs = new_query.find(:tests).select(:name, :age).where(:id, 0).query
     begin
       while rs.move_next
         name = rs.read(String)
@@ -99,7 +99,7 @@ describe "DBX::QueryExecutor executors" do
 
   it "query(&block)" do
     tests = [] of Array(String | Int32)
-    new_query_executor.find(:tests).select(:name, :age).query do |rs|
+    new_query.find(:tests).select(:name, :age).query do |rs|
       rs.each do
         name = rs.read(String)
         age = rs.read(Int32)
@@ -113,7 +113,7 @@ describe "DBX::QueryExecutor executors" do
     insert_table_test(name: "DBX", age: 1)
 
     tests = [] of Array(String | Int32)
-    new_query_executor.find(:tests).select(:name, :age).query do |rs|
+    new_query.find(:tests).select(:name, :age).query do |rs|
       rs.each do
         name = rs.read(String)
         age = rs.read(Int32)
@@ -125,7 +125,7 @@ describe "DBX::QueryExecutor executors" do
     tests.should eq [["Nico", 38], ["DBX", 1]]
 
     tests = [] of Array(String | Int32)
-    new_query_executor.find(:tests).select(:name, :age).where(:id, 0).query do |rs|
+    new_query.find(:tests).select(:name, :age).where(:id, 0).query do |rs|
       rs.each do
         name = rs.read(String)
         age = rs.read(Int32)
@@ -137,46 +137,46 @@ describe "DBX::QueryExecutor executors" do
   end
 
   it "query_all(as types)" do
-    new_query_executor.find(:tests).select(:name, :age)
+    new_query.find(:tests).select(:name, :age)
       .query_all({name: String, age: Int32})
       .should eq([{name: "Nico", age: 38}])
 
     insert_table_test(name: "DBX", age: 1)
 
-    new_query_executor.find(:tests).select(:name, :age)
+    new_query.find(:tests).select(:name, :age)
       .query_all({name: String, age: Int32})
       .should eq([{name: "Nico", age: 38}, {name: "DBX", age: 1}])
 
-    tests = new_query_executor.find(:tests).select(:name, :age).where(:id, 0)
+    tests = new_query.find(:tests).select(:name, :age).where(:id, 0)
       .query_all({name: String, age: Int32})
     tests.should be_a Array({name: String, age: Int32})
     tests.size.should eq 0
   end
 
   it "query_all(&block)" do
-    new_query_executor.find(:tests).select(:name)
+    new_query.find(:tests).select(:name)
       .query_all(&.read(String))
       .should eq(["Nico"])
 
     insert_table_test(name: "DBX", age: 1)
 
-    new_query_executor.find(:tests).select(:name)
+    new_query.find(:tests).select(:name)
       .query_all(&.read(String))
       .should eq(["Nico", "DBX"])
 
-    new_query_executor.find(:tests).select(:name, :age)
+    new_query.find(:tests).select(:name, :age)
       .query_all { |rs|
         [rs.read(String), rs.read(Int32)]
       }
       .should eq([["Nico", 38], ["DBX", 1]])
 
-    new_query_executor.find(:tests).select(:name, :age)
+    new_query.find(:tests).select(:name, :age)
       .query_all { |rs|
         {name: rs.read(String), age: rs.read(Int32)}
       }
       .should eq([{name: "Nico", age: 38}, {name: "DBX", age: 1}])
 
-    tests = new_query_executor.find(:tests).select(:name).where(:id, 0)
+    tests = new_query.find(:tests).select(:name).where(:id, 0)
       .query_all(&.read(String))
     tests.should be_a Array(String)
     tests.size.should eq 0
@@ -184,7 +184,7 @@ describe "DBX::QueryExecutor executors" do
 
   it "query_each(&block)" do
     tests = [] of Array(String | Int32)
-    new_query_executor.find(:tests).select(:name, :age).query_each do |rs|
+    new_query.find(:tests).select(:name, :age).query_each do |rs|
       name = rs.read(String)
       age = rs.read(Int32)
       tests << [name, age]
@@ -196,7 +196,7 @@ describe "DBX::QueryExecutor executors" do
     insert_table_test(name: "DBX", age: 1)
 
     tests = [] of Array(String | Int32)
-    new_query_executor.find(:tests).select(:name, :age).query_each do |rs|
+    new_query.find(:tests).select(:name, :age).query_each do |rs|
       name = rs.read(String)
       age = rs.read(Int32)
       tests << [name, age]
@@ -209,7 +209,7 @@ describe "DBX::QueryExecutor executors" do
     drop_table_test
     create_table_test
     tests = [] of Array(String | Int32)
-    new_query_executor.find(:tests).select(:name, :age).query_each do |rs|
+    new_query.find(:tests).select(:name, :age).query_each do |rs|
       name = rs.read(String)
       age = rs.read(Int32)
       tests << [name, age]
@@ -221,16 +221,16 @@ describe "DBX::QueryExecutor executors" do
   it "query_one!(as types)" do
     insert_table_test
     expect_raises(DB::Error, "more than one row") {
-      new_query_executor.find(:tests).select(:name, :age)
+      new_query.find(:tests).select(:name, :age)
         .query_one!({name: String, age: Int32})
     }
 
     expect_raises(DB::NoResultsError) {
-      new_query_executor.find(:tests).select(:name, :age).where(:id, 0)
+      new_query.find(:tests).select(:name, :age).where(:id, 0)
         .query_one!({name: String, age: Int32})
     }
 
-    new_query_executor.find(:tests).select(:name, :age).limit(1)
+    new_query.find(:tests).select(:name, :age).limit(1)
       .query_one!({name: String, age: Int32})
       .should eq({name: "Nico", age: 38})
   end
@@ -238,21 +238,21 @@ describe "DBX::QueryExecutor executors" do
   it "query_one(as types)" do
     insert_table_test
     expect_raises(DB::Error, "more than one row") {
-      new_query_executor.find(:tests).select(:name, :age)
+      new_query.find(:tests).select(:name, :age)
         .query_one({name: String, age: Int32})
     }
 
-    new_query_executor.find(:tests).select(:name, :age).where(:id, 0)
+    new_query.find(:tests).select(:name, :age).where(:id, 0)
       .query_one({name: String, age: Int32})
       .should be_nil
 
-    new_query_executor.find(:tests).select(:name, :age).limit(1)
+    new_query.find(:tests).select(:name, :age).limit(1)
       .query_one({name: String, age: Int32})
       .should eq({name: "Nico", age: 38})
   end
 
   it "query_one!(&block)" do
-    new_query_executor
+    new_query
       .find(:tests)
       .select(:name)
       .where(:name, "Nico")
@@ -260,7 +260,7 @@ describe "DBX::QueryExecutor executors" do
       .should eq("Nico")
 
     expect_raises(DB::NoResultsError) {
-      new_query_executor
+      new_query
         .find(:tests)
         .select(:name)
         .where(:name, "Terminator")
@@ -269,7 +269,7 @@ describe "DBX::QueryExecutor executors" do
 
     insert_table_test
     expect_raises(DB::Error, "more than one row") {
-      new_query_executor
+      new_query
         .find(:tests)
         .select(:name)
         .where(:name, "Nico")
@@ -278,14 +278,14 @@ describe "DBX::QueryExecutor executors" do
   end
 
   it "query_one(&block)" do
-    new_query_executor
+    new_query
       .find(:tests)
       .select(:name)
       .where(:name, "Nico")
       .query_one(&.read(String))
       .should eq("Nico")
 
-    new_query_executor
+    new_query
       .find(:tests)
       .select(:name)
       .where(:name, "Terminator")
@@ -294,7 +294,7 @@ describe "DBX::QueryExecutor executors" do
 
     insert_table_test
     expect_raises(DB::Error, "more than one row") {
-      new_query_executor
+      new_query
         .find(:tests)
         .select(:name)
         .where(:name, "Nico")
@@ -303,28 +303,28 @@ describe "DBX::QueryExecutor executors" do
   end
 
   it "scalar!" do
-    new_query_executor
+    new_query
       .find(:tests)
       .select(:name)
       .where(:name, "Nico")
       .scalar!.as(String)
       .should eq("Nico")
 
-    new_query_executor
+    new_query
       .find(:tests)
       .count(:name)
       .scalar!.as(Int64)
       .should eq(1)
 
     expect_raises(DB::NoResultsError) {
-      new_query_executor
+      new_query
         .find(:tests)
         .select(:name)
         .where(:name, "Terminator")
         .scalar!.as(String)
     }
 
-    new_query_executor
+    new_query
       .find(:tests)
       .count(:name)
       .where(:name, "Terminator")
@@ -333,27 +333,27 @@ describe "DBX::QueryExecutor executors" do
   end
 
   it "scalar" do
-    new_query_executor
+    new_query
       .find(:tests)
       .select(:name)
       .where(:name, "Nico")
       .scalar.as(String)
       .should eq("Nico")
 
-    new_query_executor
+    new_query
       .find(:tests)
       .count(:name)
       .scalar.as(Int64)
       .should eq(1)
 
-    new_query_executor
+    new_query
       .find(:tests)
       .select(:name)
       .where(:name, "Terminator")
       .scalar.as(String?)
       .should be_nil
 
-    new_query_executor
+    new_query
       .find(:tests)
       .count(:name)
       .where(:name, "Terminator")
@@ -367,14 +367,14 @@ describe "DBX::QueryExecutor executors" do
     create_table_test
 
     expect_raises(DB::NoResultsError) do
-      new_query_executor.raw_query {
+      new_query.raw_query {
         %(SELECT name, age FROM tests WHERE name = #{arg("Nico")})
       }.to_o!({name: String, age: Int32})
     end
 
     insert_table_test
 
-    new_query_executor.raw_query {
+    new_query.raw_query {
       %(SELECT name, age FROM tests WHERE name = #{arg("Nico")})
     }
       .to_o!({name: String, age: Int32})
@@ -388,7 +388,7 @@ describe "DBX::QueryExecutor executors" do
       expected_sql = %(SELECT * FROM "tests" WHERE "id" = ? LIMIT ?)
     end
 
-    sql, args = new_query_executor.table(:tests).find(:id, 2).limit(1).build
+    sql, args = new_query.table(:tests).find(:id, 2).limit(1).build
     norm(sql).should eq expected_sql
     args.should eq [2, 1]
   end
@@ -397,16 +397,16 @@ describe "DBX::QueryExecutor executors" do
     it "to_o!(as types)" do
       insert_table_test
       expect_raises(DB::Error, "more than one row") {
-        new_query_executor.find(:tests).select(:name, :age)
+        new_query.find(:tests).select(:name, :age)
           .to_o!({name: String, age: Int32})
       }
 
       expect_raises(DB::NoResultsError) {
-        new_query_executor.find(:tests).select(:name, :age).where(:id, 0)
+        new_query.find(:tests).select(:name, :age).where(:id, 0)
           .to_o!({name: String, age: Int32})
       }
 
-      new_query_executor.find(:tests).select(:name, :age).limit(1)
+      new_query.find(:tests).select(:name, :age).limit(1)
         .to_o!({name: String, age: Int32})
         .should eq({name: "Nico", age: 38})
     end
@@ -414,21 +414,21 @@ describe "DBX::QueryExecutor executors" do
     it "to_o(as types)" do
       insert_table_test
       expect_raises(DB::Error, "more than one row") {
-        new_query_executor.find(:tests).select(:name, :age)
+        new_query.find(:tests).select(:name, :age)
           .to_o({name: String, age: Int32})
       }
 
-      new_query_executor.find(:tests).select(:name, :age).where(:id, 0)
+      new_query.find(:tests).select(:name, :age).where(:id, 0)
         .to_o({name: String, age: Int32})
         .should be_nil
 
-      new_query_executor.find(:tests).select(:name, :age).limit(1)
+      new_query.find(:tests).select(:name, :age).limit(1)
         .to_o({name: String, age: Int32})
         .should eq({name: "Nico", age: 38})
     end
 
     it "to_o!(&block)" do
-      new_query_executor
+      new_query
         .find(:tests)
         .select(:name)
         .where(:name, "Nico")
@@ -436,7 +436,7 @@ describe "DBX::QueryExecutor executors" do
         .should eq("Nico")
 
       expect_raises(DB::NoResultsError) {
-        new_query_executor
+        new_query
           .find(:tests)
           .select(:name)
           .where(:name, "Terminator")
@@ -445,7 +445,7 @@ describe "DBX::QueryExecutor executors" do
 
       insert_table_test
       expect_raises(DB::Error, "more than one row") {
-        new_query_executor
+        new_query
           .find(:tests)
           .select(:name)
           .where(:name, "Nico")
@@ -454,14 +454,14 @@ describe "DBX::QueryExecutor executors" do
     end
 
     it "to_o(&block)" do
-      new_query_executor
+      new_query
         .find(:tests)
         .select(:name)
         .where(:name, "Nico")
         .to_o(&.read(String))
         .should eq("Nico")
 
-      new_query_executor
+      new_query
         .find(:tests)
         .select(:name)
         .where(:name, "Terminator")
@@ -470,7 +470,7 @@ describe "DBX::QueryExecutor executors" do
 
       insert_table_test
       expect_raises(DB::Error, "more than one row") {
-        new_query_executor
+        new_query
           .find(:tests)
           .select(:name)
           .where(:name, "Nico")
@@ -479,46 +479,46 @@ describe "DBX::QueryExecutor executors" do
     end
 
     it "to_a(as types)" do
-      new_query_executor.find(:tests).select(:name, :age)
+      new_query.find(:tests).select(:name, :age)
         .to_a({name: String, age: Int32})
         .should eq([{name: "Nico", age: 38}])
 
       insert_table_test(name: "DBX", age: 1)
 
-      new_query_executor.find(:tests).select(:name, :age)
+      new_query.find(:tests).select(:name, :age)
         .to_a({name: String, age: Int32})
         .should eq([{name: "Nico", age: 38}, {name: "DBX", age: 1}])
 
-      tests = new_query_executor.find(:tests).select(:name, :age).where(:id, 0)
+      tests = new_query.find(:tests).select(:name, :age).where(:id, 0)
         .to_a({name: String, age: Int32})
       tests.should be_a Array({name: String, age: Int32})
       tests.size.should eq 0
     end
 
     it "to_a(&block)" do
-      new_query_executor.find(:tests).select(:name)
+      new_query.find(:tests).select(:name)
         .to_a(&.read(String))
         .should eq(["Nico"])
 
       insert_table_test(name: "DBX", age: 1)
 
-      new_query_executor.find(:tests).select(:name)
+      new_query.find(:tests).select(:name)
         .to_a(&.read(String))
         .should eq(["Nico", "DBX"])
 
-      new_query_executor.find(:tests).select(:name, :age)
+      new_query.find(:tests).select(:name, :age)
         .to_a { |rs|
           [rs.read(String), rs.read(Int32)]
         }
         .should eq([["Nico", 38], ["DBX", 1]])
 
-      new_query_executor.find(:tests).select(:name, :age)
+      new_query.find(:tests).select(:name, :age)
         .to_a { |rs|
           {name: rs.read(String), age: rs.read(Int32)}
         }
         .should eq([{name: "Nico", age: 38}, {name: "DBX", age: 1}])
 
-      tests = new_query_executor.find(:tests).select(:name).where(:id, 0)
+      tests = new_query.find(:tests).select(:name).where(:id, 0)
         .to_a(&.read(String))
       tests.should be_a Array(String)
       tests.size.should eq 0

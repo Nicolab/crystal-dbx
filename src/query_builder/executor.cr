@@ -8,7 +8,7 @@
 module DBX
   # Query executor.
   # See also: https://crystal-lang.github.io/crystal-db/api/latest/DB/QueryMethods.html
-  class QueryExecutor
+  class Query
     @builder : DBX::QueryBuilder
     @db : DB::Database
     @tx : DB::Transaction?
@@ -158,7 +158,7 @@ module DBX
     end
 
     # See `DBX::QueryBuilder#query`
-    def raw_query(&block) : QueryExecutor
+    def raw_query(&block) : Query
       @builder.query {
         with QueryBuilderScope.new(@builder) yield
       }
@@ -171,7 +171,7 @@ module DBX
       @builder.build
     end
 
-    # Returns `DBX::QueryBuilder` instance used in current `QueryExecutor` instance.
+    # Returns `DBX::QueryBuilder` instance used in current `Query` instance.
     def builder : DBX::QueryBuilder
       @builder
     end
@@ -238,7 +238,7 @@ module DBX
     macro method_missing(call)
       {% begin %}
         # See `DBX::QueryBuilder#{{call.name}}` method.
-        def {{call.name.id}}({{call.args.splat}}) : DBX::QueryExecutor
+        def {{call.name.id}}({{call.args.splat}}) : DBX::Query
           @builder.{{call.name.id}}({{call.args.splat}})
           self
         end
