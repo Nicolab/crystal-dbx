@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Crystal Docs 0.34.0">
-<meta name="crystal_docs.project_version" content="master">
+<meta name="crystal_docs.project_version" content="master-dev">
 <meta name="crystal_docs.project_name" content="dbx">
 
 
@@ -18,7 +18,7 @@
 </svg>
 
   <meta id="repository-name" content="dbx">
-  <title>DBX::ORM::ModelQuery(Model) - dbx master</title>
+  <title>DBX::ORM::ModelQuery(Model) - dbx master-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -39,7 +39,7 @@
       </h1>
 
       <span class="project-version">
-        master
+        master-dev
       </span>
     </div>
   </div>
@@ -166,6 +166,11 @@
       
     </li>
   
+  <li class=" " data-id="dbx/DBX/Query" data-name="dbx::query">
+      <a href="../../DBX/Query.html">Query</a>
+      
+    </li>
+  
   <li class="parent " data-id="dbx/DBX/QueryBuilder" data-name="dbx::querybuilder">
       <a href="../../DBX/QueryBuilder.html">QueryBuilder</a>
       
@@ -226,11 +231,6 @@
       
     </li>
   
-  <li class=" " data-id="dbx/DBX/QueryExecutor" data-name="dbx::queryexecutor">
-      <a href="../../DBX/QueryExecutor.html">QueryExecutor</a>
-      
-    </li>
-  
 </ul>
 
       
@@ -250,7 +250,7 @@
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../DBX/ORM/ModelQuery.html">DBX::ORM::ModelQuery(Model)</a></li><li class="superclass"><a href="../../DBX/QueryExecutor.html">DBX::QueryExecutor</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../DBX/ORM/ModelQuery.html">DBX::ORM::ModelQuery(Model)</a></li><li class="superclass"><a href="../../DBX/Query.html">DBX::Query</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -310,13 +310,6 @@ users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a<
 </a>
     Defined in:
   </h2>
-  
-    
-      <a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model_query.cr#L36" target="_blank">
-        orm/model_query.cr
-      </a>
-    
-    <br/>
   
 
 
@@ -434,85 +427,85 @@ users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a<
   
     
 
-  <h3>Instance methods inherited from class <code><a href="../../DBX/QueryExecutor.html">DBX::QueryExecutor</a></code></h3>
+  <h3>Instance methods inherited from class <code><a href="../../DBX/Query.html">DBX::Query</a></code></h3>
   
   
-    <a href="../../DBX/QueryExecutor.html#build:Tuple-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#build:Tuple-instance-method" class="tooltip">
       <span>build : Tuple</span>
     build</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#builder:DBX::QueryBuilder-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#builder:DBX::QueryBuilder-instance-method" class="tooltip">
       <span>builder : DBX::QueryBuilder</span>
     builder</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#create!(data:Hash%7CNamedTuple,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#create!(data:Hash%7CNamedTuple,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method" class="tooltip">
       <span>create!(data : Hash | NamedTuple, as types, returning : DBX::QueryBuilder::OneOrMoreFieldsType = <span class="s">&quot;*&quot;</span>, pk_name : DBX::QueryBuilder::FieldType = <span class="n">:id</span>, pk_type = <span class="t">::</span><span class="t">Union</span>(<span class="t">Int64</span>, <span class="t">::</span><span class="t">Nil</span>))</span>
     create!</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#exec-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#exec-instance-method" class="tooltip">
       <span>exec</span>
     exec</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#exec!-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#exec!-instance-method" class="tooltip">
       <span>exec!</span>
     exec!</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#query-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#query-instance-method" class="tooltip">
       <span>query<br/>query(&)</span>
     query</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#query_all(astypes)-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#query_all(astypes)-instance-method" class="tooltip">
       <span>query_all(as types)<br/>query_all(&)</span>
     query_all</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#query_each(&)-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#query_each(&)-instance-method" class="tooltip">
       <span>query_each(&)</span>
     query_each</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#query_one(astypes)-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#query_one(astypes)-instance-method" class="tooltip">
       <span>query_one(as types)<br/>query_one(&)</span>
     query_one</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#query_one!(astypes)-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#query_one!(astypes)-instance-method" class="tooltip">
       <span>query_one!(as types)<br/>query_one!(&)</span>
     query_one!</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#raw_query(&):QueryExecutor-instance-method" class="tooltip">
-      <span>raw_query(&) : QueryExecutor</span>
+    <a href="../../DBX/Query.html#raw_query(&):Query-instance-method" class="tooltip">
+      <span>raw_query(&) : Query</span>
     raw_query</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#scalar-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#scalar-instance-method" class="tooltip">
       <span>scalar</span>
     scalar</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#scalar!-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#scalar!-instance-method" class="tooltip">
       <span>scalar!</span>
     scalar!</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#to_a(astypes)-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#to_a(astypes)-instance-method" class="tooltip">
       <span>to_a(as types)<br/>to_a(&)</span>
     to_a</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#to_o(astypes)-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#to_o(astypes)-instance-method" class="tooltip">
       <span>to_o(as types)<br/>to_o(&)</span>
     to_o</a>, 
     
   
-    <a href="../../DBX/QueryExecutor.html#to_o!(astypes)-instance-method" class="tooltip">
+    <a href="../../DBX/Query.html#to_o!(astypes)-instance-method" class="tooltip">
       <span>to_o!(as types)<br/>to_o!(&)</span>
     to_o!</a>
     
@@ -521,10 +514,10 @@ users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a<
 
     
 
-  <h3>Constructor methods inherited from class <code><a href="../../DBX/QueryExecutor.html">DBX::QueryExecutor</a></code></h3>
+  <h3>Constructor methods inherited from class <code><a href="../../DBX/Query.html">DBX::Query</a></code></h3>
   
   
-    <a href="../../DBX/QueryExecutor.html#new(adapter:DBX::Adapter::Base)-class-method" class="tooltip">
+    <a href="../../DBX/Query.html#new(adapter:DBX::Adapter::Base)-class-method" class="tooltip">
       <span>new(adapter : DBX::Adapter::Base)</span>
     new</a>
     
@@ -578,8 +571,6 @@ users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a<
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/executor.cr#L16" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -616,8 +607,6 @@ puts test.id</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model_query.cr#L58" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -636,8 +625,6 @@ puts test.id</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model_query.cr#L48" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -658,8 +645,6 @@ puts test.id</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model_query.cr#L38" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -678,8 +663,6 @@ puts test.id</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model_query.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -700,8 +683,6 @@ puts test.id</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model_query.cr#L94" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -720,8 +701,6 @@ puts test.id</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model_query.cr#L89" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -742,8 +721,6 @@ puts test.id</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model_query.cr#L84" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -762,8 +739,6 @@ puts test.id</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model_query.cr#L74" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -784,8 +759,6 @@ puts test.id</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model_query.cr#L79" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -804,8 +777,6 @@ puts test.id</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model_query.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>

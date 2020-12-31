@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Crystal Docs 0.34.0">
-<meta name="crystal_docs.project_version" content="master">
+<meta name="crystal_docs.project_version" content="master-dev">
 <meta name="crystal_docs.project_name" content="dbx">
 
 
@@ -18,7 +18,7 @@
 </svg>
 
   <meta id="repository-name" content="dbx">
-  <title>DBX::QueryBuilder - dbx master</title>
+  <title>DBX::QueryBuilder - dbx master-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -39,7 +39,7 @@
       </h1>
 
       <span class="project-version">
-        master
+        master-dev
       </span>
     </div>
   </div>
@@ -166,6 +166,11 @@
       
     </li>
   
+  <li class=" " data-id="dbx/DBX/Query" data-name="dbx::query">
+      <a href="../DBX/Query.html">Query</a>
+      
+    </li>
+  
   <li class="parent open current" data-id="dbx/DBX/QueryBuilder" data-name="dbx::querybuilder">
       <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
       
@@ -223,11 +228,6 @@
   
 </ul>
 
-      
-    </li>
-  
-  <li class=" " data-id="dbx/DBX/QueryExecutor" data-name="dbx::queryexecutor">
-      <a href="../DBX/QueryExecutor.html">QueryExecutor</a>
       
     </li>
   
@@ -303,27 +303,6 @@
 </a>
     Defined in:
   </h2>
-  
-    
-      <a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L9" target="_blank">
-        query_builder/query.cr
-      </a>
-    
-    <br/>
-  
-    
-      <a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L15" target="_blank">
-        query_builder/query_builder.cr
-      </a>
-    
-    <br/>
-  
-    
-      <a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/support.cr#L9" target="_blank">
-        query_builder/support.cr
-      </a>
-    
-    <br/>
   
 
 
@@ -425,14 +404,14 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#analyze:QueryBuilder-instance-method" class="signature"><strong>#analyze</strong> : QueryBuilder</a>
+        <a href="#analyze(table:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#analyze</strong>(table : OneOrMoreFieldsType) : QueryBuilder</a>
         
           <div class="summary"><p>Builds the <code>ANALYZE</code> query</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#analyze(table:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#analyze</strong>(table : OneOrMoreFieldsType) : QueryBuilder</a>
+        <a href="#analyze:QueryBuilder-instance-method" class="signature"><strong>#analyze</strong> : QueryBuilder</a>
         
           <div class="summary"><p>Builds the <code>ANALYZE</code> query</p></div>
         
@@ -458,14 +437,14 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#check(table:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#check</strong>(table : OneOrMoreFieldsType) : QueryBuilder</a>
+        <a href="#check:QueryBuilder-instance-method" class="signature"><strong>#check</strong> : QueryBuilder</a>
         
           <div class="summary"><p>Builds the <code>CHECK</code> query</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#check:QueryBuilder-instance-method" class="signature"><strong>#check</strong> : QueryBuilder</a>
+        <a href="#check(table:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#check</strong>(table : OneOrMoreFieldsType) : QueryBuilder</a>
         
           <div class="summary"><p>Builds the <code>CHECK</code> query</p></div>
         
@@ -493,7 +472,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#delete(pk_name,pk_value):QueryBuilder-instance-method" class="signature"><strong>#delete</strong>(pk_name, pk_value) : QueryBuilder</a>
+        <a href="#delete:QueryBuilder-instance-method" class="signature"><strong>#delete</strong> : QueryBuilder</a>
         
       </li>
     
@@ -503,12 +482,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#delete:QueryBuilder-instance-method" class="signature"><strong>#delete</strong> : QueryBuilder</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#drop(check_exists=true):QueryBuilder-instance-method" class="signature"><strong>#drop</strong>(check_exists = <span class="n">true</span>) : QueryBuilder</a>
+        <a href="#delete(pk_name,pk_value):QueryBuilder-instance-method" class="signature"><strong>#delete</strong>(pk_name, pk_value) : QueryBuilder</a>
         
       </li>
     
@@ -518,12 +492,19 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#find:QueryBuilder-instance-method" class="signature"><strong>#find</strong> : QueryBuilder</a>
+        <a href="#drop(check_exists=true):QueryBuilder-instance-method" class="signature"><strong>#drop</strong>(check_exists = <span class="n">true</span>) : QueryBuilder</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#find(table_name:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#find</strong>(table_name : OneOrMoreFieldsType) : QueryBuilder</a>
+        <a href="#find(pk_name,pk_value):QueryBuilder-instance-method" class="signature"><strong>#find</strong>(pk_name, pk_value) : QueryBuilder</a>
+        
+          <div class="summary"><p>Finds one resource by its primary key.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#find:QueryBuilder-instance-method" class="signature"><strong>#find</strong> : QueryBuilder</a>
         
       </li>
     
@@ -535,9 +516,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#find(pk_name,pk_value):QueryBuilder-instance-method" class="signature"><strong>#find</strong>(pk_name, pk_value) : QueryBuilder</a>
-        
-          <div class="summary"><p>Finds one resource by its primary key.</p></div>
+        <a href="#find(table_name:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#find</strong>(table_name : OneOrMoreFieldsType) : QueryBuilder</a>
         
       </li>
     
@@ -595,21 +574,21 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#join:String-instance-method" class="signature"><strong>#join</strong> : String</a>
-        
-          <div class="summary"><p>Returns jointure.</p></div>
+        <a href="#join(table:FieldType,field1:FieldType,field2:FieldType?=nil,type=&quot;&quot;):QueryBuilder-instance-method" class="signature"><strong>#join</strong>(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>, type = <span class="s">&quot;&quot;</span>) : QueryBuilder</a>
         
       </li>
     
       <li class="entry-summary">
         <a href="#join(&):QueryBuilder-instance-method" class="signature"><strong>#join</strong>(&) : QueryBuilder</a>
         
-          <div class="summary"><p>Adds a raw <code><a href="../DBX/QueryBuilder.html#join:String-instance-method">#join</a></code> to current query.</p></div>
+          <div class="summary"><p>Adds a raw <code><a href="../DBX/QueryBuilder.html#join(&):QueryBuilder-instance-method">#join</a></code> to current query.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#join(table:FieldType,field1:FieldType,field2:FieldType?=nil,type=&quot;&quot;):QueryBuilder-instance-method" class="signature"><strong>#join</strong>(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>, type = <span class="s">&quot;&quot;</span>) : QueryBuilder</a>
+        <a href="#join:String-instance-method" class="signature"><strong>#join</strong> : String</a>
+        
+          <div class="summary"><p>Returns jointure.</p></div>
         
       </li>
     
@@ -827,7 +806,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#returning(fields:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#returning</strong>(fields : OneOrMoreFieldsType) : QueryBuilder</a>
+        <a href="#returning(*name:FieldType):QueryBuilder-instance-method" class="signature"><strong>#returning</strong>(*name : FieldType) : QueryBuilder</a>
         
           <div class="summary"><p>SQL field(s) to be returned after an <code><a href="../DBX/QueryBuilder.html#insert(data:Hash%7CNamedTuple):QueryBuilder-instance-method">#insert</a></code> statement.</p></div>
         
@@ -841,7 +820,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#returning(*name:FieldType):QueryBuilder-instance-method" class="signature"><strong>#returning</strong>(*name : FieldType) : QueryBuilder</a>
+        <a href="#returning(fields:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#returning</strong>(fields : OneOrMoreFieldsType) : QueryBuilder</a>
         
           <div class="summary"><p>SQL field(s) to be returned after an <code><a href="../DBX/QueryBuilder.html#insert(data:Hash%7CNamedTuple):QueryBuilder-instance-method">#insert</a></code> statement.</p></div>
         
@@ -862,6 +841,13 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#select(fields:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#select</strong>(fields : OneOrMoreFieldsType) : QueryBuilder</a>
+        
+          <div class="summary"><p>Selects one or more fields.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#select:String-instance-method" class="signature"><strong>#select</strong> : String</a>
         
           <div class="summary"><p>Returns selected field(s).</p></div>
@@ -876,13 +862,6 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#select(fields:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#select</strong>(fields : OneOrMoreFieldsType) : QueryBuilder</a>
-        
-          <div class="summary"><p>Selects one or more fields.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#sum(field:FieldType,name=nil):QueryBuilder-instance-method" class="signature"><strong>#sum</strong>(field : FieldType, name = <span class="n">nil</span>) : QueryBuilder</a>
         
           <div class="summary"><p>Adds <code>SUM</code> to the current query.</p></div>
@@ -890,16 +869,9 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#table(name:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#table</strong>(name : OneOrMoreFieldsType) : QueryBuilder</a>
+        <a href="#table(&):QueryBuilder-instance-method" class="signature"><strong>#table</strong>(&) : QueryBuilder</a>
         
-          <div class="summary"><p>Targets one or more tables.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#table:String-instance-method" class="signature"><strong>#table</strong> : String</a>
-        
-          <div class="summary"><p>Returns table name(s).</p></div>
+          <div class="summary"><p>Defines in raw form the SQL statement of the table(s).</p></div>
         
       </li>
     
@@ -911,9 +883,16 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#table(&):QueryBuilder-instance-method" class="signature"><strong>#table</strong>(&) : QueryBuilder</a>
+        <a href="#table:String-instance-method" class="signature"><strong>#table</strong> : String</a>
         
-          <div class="summary"><p>Defines in raw form the SQL statement of the table(s).</p></div>
+          <div class="summary"><p>Returns table name(s).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#table(name:OneOrMoreFieldsType):QueryBuilder-instance-method" class="signature"><strong>#table</strong>(name : OneOrMoreFieldsType) : QueryBuilder</a>
+        
+          <div class="summary"><p>Targets one or more tables.</p></div>
         
       </li>
     
@@ -1009,8 +988,6 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L35" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1044,8 +1021,6 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/support.cr#L49" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1066,8 +1041,6 @@ Example: <code>field1, field2, field3</code></p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/support.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1090,8 +1063,6 @@ Example: <code>field1, field2, field3</code></p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/support.cr#L63" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1113,8 +1084,6 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/support.cr#L70" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1129,8 +1098,6 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L212" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1144,29 +1111,6 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L206" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="analyze:QueryBuilder-instance-method">
-      <div class="signature">
-        
-        def <strong>analyze</strong> : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#analyze:QueryBuilder-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Builds the <code>ANALYZE</code> query</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L240" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1187,7 +1131,24 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L240" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="analyze:QueryBuilder-instance-method">
+      <div class="signature">
+        
+        def <strong>analyze</strong> : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+
+        <a class="method-permalink" href="#analyze:QueryBuilder-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Builds the <code>ANALYZE</code> query</p>
+        </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
@@ -1208,8 +1169,6 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L176" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1223,8 +1182,6 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L321" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1247,7 +1204,24 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L34" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="check:QueryBuilder-instance-method">
+      <div class="signature">
+        
+        def <strong>check</strong> : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+
+        <a class="method-permalink" href="#check:QueryBuilder-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Builds the <code>CHECK</code> query</p>
+        </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
@@ -1268,29 +1242,6 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L240" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="check:QueryBuilder-instance-method">
-      <div class="signature">
-        
-        def <strong>check</strong> : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#check:QueryBuilder-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Builds the <code>CHECK</code> query</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L240" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1309,8 +1260,6 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L240" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1331,8 +1280,6 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L240" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1352,23 +1299,19 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L176" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-    <div class="entry-detail" id="delete(pk_name,pk_value):QueryBuilder-instance-method">
+    <div class="entry-detail" id="delete:QueryBuilder-instance-method">
       <div class="signature">
         
-        def <strong>delete</strong>(pk_name, pk_value) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+        def <strong>delete</strong> : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
 
-        <a class="method-permalink" href="#delete(pk_name,pk_value):QueryBuilder-instance-method">#</a>
+        <a class="method-permalink" href="#delete:QueryBuilder-instance-method">#</a>
       </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L175" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1384,39 +1327,19 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L170" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-    <div class="entry-detail" id="delete:QueryBuilder-instance-method">
+    <div class="entry-detail" id="delete(pk_name,pk_value):QueryBuilder-instance-method">
       <div class="signature">
         
-        def <strong>delete</strong> : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+        def <strong>delete</strong>(pk_name, pk_value) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
 
-        <a class="method-permalink" href="#delete:QueryBuilder-instance-method">#</a>
+        <a class="method-permalink" href="#delete(pk_name,pk_value):QueryBuilder-instance-method">#</a>
       </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L165" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="drop(check_exists=true):QueryBuilder-instance-method">
-      <div class="signature">
-        
-        def <strong>drop</strong>(check_exists = <span class="n">true</span>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#drop(check_exists=true):QueryBuilder-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L189" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1432,7 +1355,42 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L195" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="drop(check_exists=true):QueryBuilder-instance-method">
+      <div class="signature">
+        
+        def <strong>drop</strong>(check_exists = <span class="n">true</span>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+
+        <a class="method-permalink" href="#drop(check_exists=true):QueryBuilder-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="find(pk_name,pk_value):QueryBuilder-instance-method">
+      <div class="signature">
+        
+        def <strong>find</strong>(pk_name, pk_value) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+
+        <a class="method-permalink" href="#find(pk_name,pk_value):QueryBuilder-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Finds one resource by its primary key.</p>
+
+<p>Same as:</p>
+
+<pre><code>builder.find.where(pk_name, pk_value)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
@@ -1447,24 +1405,6 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L63" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="find(table_name:OneOrMoreFieldsType):QueryBuilder-instance-method">
-      <div class="signature">
-        
-        def <strong>find</strong>(table_name : <a href="../DBX/QueryBuilder/OneOrMoreFieldsType.html">OneOrMoreFieldsType</a>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#find(table_name:OneOrMoreFieldsType):QueryBuilder-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L68" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1496,32 +1436,19 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L88" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-    <div class="entry-detail" id="find(pk_name,pk_value):QueryBuilder-instance-method">
+    <div class="entry-detail" id="find(table_name:OneOrMoreFieldsType):QueryBuilder-instance-method">
       <div class="signature">
         
-        def <strong>find</strong>(pk_name, pk_value) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+        def <strong>find</strong>(table_name : <a href="../DBX/QueryBuilder/OneOrMoreFieldsType.html">OneOrMoreFieldsType</a>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
 
-        <a class="method-permalink" href="#find(pk_name,pk_value):QueryBuilder-instance-method">#</a>
+        <a class="method-permalink" href="#find(table_name:OneOrMoreFieldsType):QueryBuilder-instance-method">#</a>
       </div>
-      
-        <div class="doc">
-          
-          <p>Finds one resource by its primary key.</p>
-
-<p>Same as:</p>
-
-<pre><code>builder.find.where(pk_name, pk_value)</code></pre>
-        </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L101" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1542,8 +1469,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L218" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1563,8 +1488,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L218" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1578,8 +1501,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L416" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1610,8 +1531,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L448" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1626,8 +1545,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L425" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1641,8 +1558,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L295" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1663,8 +1578,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L218" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1678,8 +1591,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L119" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1695,7 +1606,49 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L125" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="join(table:FieldType,field1:FieldType,field2:FieldType?=nil,type=&quot;&quot;):QueryBuilder-instance-method">
+      <div class="signature">
+        
+        def <strong>join</strong>(table : <a href="../DBX/QueryBuilder/FieldType.html">FieldType</a>, field1 : <a href="../DBX/QueryBuilder/FieldType.html">FieldType</a>, field2 : <a href="../DBX/QueryBuilder/FieldType.html">FieldType</a>? = <span class="n">nil</span>, type = <span class="s">&quot;&quot;</span>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+
+        <a class="method-permalink" href="#join(table:FieldType,field1:FieldType,field2:FieldType?=nil,type=&quot;&quot;):QueryBuilder-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="join(&):QueryBuilder-instance-method">
+      <div class="signature">
+        
+        def <strong>join</strong>(&) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+
+        <a class="method-permalink" href="#join(&):QueryBuilder-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Adds a raw <code><a href="../DBX/QueryBuilder.html#join(&):QueryBuilder-instance-method">#join</a></code> to current query.</p>
+
+<blockquote>Be careful, you have to manage arguments (<code>arg</code>) and quotes (<code>q</code>).</blockquote>
+
+<p>Example:</p>
+
+<pre><code>builder.find(<span class="s">&quot;tests&quot;</span>).join { <span class="s">&quot;
+  INNER JOIN T2 ON T1.a = T2.a
+  AND T1.b = T2.b
+  OR T1.b = </span><span class="i">#{</span>q(some_value_to_quote)<span class="i">}</span><span class="s">
+&quot;</span> }
+  .join { <span class="s">&quot;LEFT JOIN payments p USING (product_id)&quot;</span> }</code></pre>
+        </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
@@ -1718,56 +1671,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L235" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="join(&):QueryBuilder-instance-method">
-      <div class="signature">
-        
-        def <strong>join</strong>(&) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#join(&):QueryBuilder-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Adds a raw <code><a href="../DBX/QueryBuilder.html#join:String-instance-method">#join</a></code> to current query.</p>
-
-<blockquote>Be careful, you have to manage arguments (<code>arg</code>) and quotes (<code>q</code>).</blockquote>
-
-<p>Example:</p>
-
-<pre><code>builder.find(<span class="s">&quot;tests&quot;</span>).join { <span class="s">&quot;
-  INNER JOIN T2 ON T1.a = T2.a
-  AND T1.b = T2.b
-  OR T1.b = </span><span class="i">#{</span>q(some_value_to_quote)<span class="i">}</span><span class="s">
-&quot;</span> }
-  .join { <span class="s">&quot;LEFT JOIN payments p USING (product_id)&quot;</span> }</code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L213" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="join(table:FieldType,field1:FieldType,field2:FieldType?=nil,type=&quot;&quot;):QueryBuilder-instance-method">
-      <div class="signature">
-        
-        def <strong>join</strong>(table : <a href="../DBX/QueryBuilder/FieldType.html">FieldType</a>, field1 : <a href="../DBX/QueryBuilder/FieldType.html">FieldType</a>, field2 : <a href="../DBX/QueryBuilder/FieldType.html">FieldType</a>? = <span class="n">nil</span>, type = <span class="s">&quot;&quot;</span>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#join(table:FieldType,field1:FieldType,field2:FieldType?=nil,type=&quot;&quot;):QueryBuilder-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L186" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1786,8 +1689,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L295" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1808,8 +1709,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L300" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1828,8 +1727,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L218" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1850,8 +1747,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L218" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1865,8 +1760,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L342" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1889,8 +1782,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L379" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1904,8 +1795,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L363" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1926,8 +1815,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L176" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1947,8 +1834,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L176" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1962,8 +1847,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L334" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1979,8 +1862,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L311" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1994,8 +1875,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L355" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2011,8 +1890,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L287" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2026,8 +1903,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L383" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2050,8 +1925,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L393" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2070,8 +1943,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L240" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2092,8 +1963,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L240" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2107,8 +1976,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L330" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2124,8 +1991,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L306" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2139,8 +2004,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L351" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2156,8 +2019,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L338" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2171,8 +2032,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L316" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2188,8 +2047,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L359" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2203,8 +2060,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L291" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2220,8 +2075,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L283" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2235,8 +2088,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L404" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2257,8 +2108,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L398" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2277,8 +2126,6 @@ and defines in raw form the SQL statement of the table(s).</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/support.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2321,8 +2168,6 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L284" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2341,8 +2186,6 @@ LIMIT 1</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L310" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2363,8 +2206,6 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L305" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2383,8 +2224,6 @@ LIMIT 1</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/support.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2405,8 +2244,6 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L240" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2426,8 +2263,6 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L240" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2446,54 +2281,6 @@ LIMIT 1</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L35" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="returning(fields:OneOrMoreFieldsType):QueryBuilder-instance-method">
-      <div class="signature">
-        
-        def <strong>returning</strong>(fields : <a href="../DBX/QueryBuilder/OneOrMoreFieldsType.html">OneOrMoreFieldsType</a>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#returning(fields:OneOrMoreFieldsType):QueryBuilder-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>SQL field(s) to be returned after an <code><a href="../DBX/QueryBuilder.html#insert(data:Hash%7CNamedTuple):QueryBuilder-instance-method">#insert</a></code> statement.</p>
-
-<blockquote><code>*</code> (wildcard) means all fields.</blockquote>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L455" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="returning:String?-instance-method">
-      <div class="signature">
-        
-        def <strong>returning</strong> : String?
-
-        <a class="method-permalink" href="#returning:String?-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Returns the SQL field(s) to be returned after an <code><a href="../DBX/QueryBuilder.html#insert(data:Hash%7CNamedTuple):QueryBuilder-instance-method">#insert</a></code> statement.</p>
-
-<blockquote><code>*</code> (wildcard) means all fields.</blockquote>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L479" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2516,7 +2303,47 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L473" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="returning:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>returning</strong> : String?
+
+        <a class="method-permalink" href="#returning:String?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the SQL field(s) to be returned after an <code><a href="../DBX/QueryBuilder.html#insert(data:Hash%7CNamedTuple):QueryBuilder-instance-method">#insert</a></code> statement.</p>
+
+<blockquote><code>*</code> (wildcard) means all fields.</blockquote>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="returning(fields:OneOrMoreFieldsType):QueryBuilder-instance-method">
+      <div class="signature">
+        
+        def <strong>returning</strong>(fields : <a href="../DBX/QueryBuilder/OneOrMoreFieldsType.html">OneOrMoreFieldsType</a>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+
+        <a class="method-permalink" href="#returning(fields:OneOrMoreFieldsType):QueryBuilder-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>SQL field(s) to be returned after an <code><a href="../DBX/QueryBuilder.html#insert(data:Hash%7CNamedTuple):QueryBuilder-instance-method">#insert</a></code> statement.</p>
+
+<blockquote><code>*</code> (wildcard) means all fields.</blockquote>
+        </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
@@ -2537,8 +2364,6 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L218" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2558,7 +2383,24 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L218" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select(fields:OneOrMoreFieldsType):QueryBuilder-instance-method">
+      <div class="signature">
+        
+        def <strong>select</strong>(fields : <a href="../DBX/QueryBuilder/OneOrMoreFieldsType.html">OneOrMoreFieldsType</a>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+
+        <a class="method-permalink" href="#select(fields:OneOrMoreFieldsType):QueryBuilder-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Selects one or more fields.</p>
+        </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
@@ -2581,8 +2423,6 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L172" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2602,29 +2442,6 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L163" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="select(fields:OneOrMoreFieldsType):QueryBuilder-instance-method">
-      <div class="signature">
-        
-        def <strong>select</strong>(fields : <a href="../DBX/QueryBuilder/OneOrMoreFieldsType.html">OneOrMoreFieldsType</a>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#select(fields:OneOrMoreFieldsType):QueryBuilder-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Selects one or more fields.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L156" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2643,75 +2460,6 @@ LIMIT 1</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L176" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="table(name:OneOrMoreFieldsType):QueryBuilder-instance-method">
-      <div class="signature">
-        
-        def <strong>table</strong>(name : <a href="../DBX/QueryBuilder/OneOrMoreFieldsType.html">OneOrMoreFieldsType</a>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#table(name:OneOrMoreFieldsType):QueryBuilder-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Targets one or more tables.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L73" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="table:String-instance-method">
-      <div class="signature">
-        
-        def <strong>table</strong> : String
-
-        <a class="method-permalink" href="#table:String-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Returns table name(s). Returns empty string if no table has been defined.</p>
-
-<pre><code>puts builder.table <span class="k">unless</span> builder.table.blank? <span class="c"># or .empty?</span></code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L115" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="table(*name:FieldType):QueryBuilder-instance-method">
-      <div class="signature">
-        
-        def <strong>table</strong>(*name : <a href="../DBX/QueryBuilder/FieldType.html">FieldType</a>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#table(*name:FieldType):QueryBuilder-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Targets tables defined by variadic arguments.</p>
-
-<pre><code>builder.table(<span class="n">:table1</span>, <span class="n">:table2</span>)</code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2742,7 +2490,66 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L105" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="table(*name:FieldType):QueryBuilder-instance-method">
+      <div class="signature">
+        
+        def <strong>table</strong>(*name : <a href="../DBX/QueryBuilder/FieldType.html">FieldType</a>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+
+        <a class="method-permalink" href="#table(*name:FieldType):QueryBuilder-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Targets tables defined by variadic arguments.</p>
+
+<pre><code>builder.table(<span class="n">:table1</span>, <span class="n">:table2</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="table:String-instance-method">
+      <div class="signature">
+        
+        def <strong>table</strong> : String
+
+        <a class="method-permalink" href="#table:String-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns table name(s). Returns empty string if no table has been defined.</p>
+
+<pre><code>puts builder.table <span class="k">unless</span> builder.table.blank? <span class="c"># or .empty?</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="table(name:OneOrMoreFieldsType):QueryBuilder-instance-method">
+      <div class="signature">
+        
+        def <strong>table</strong>(name : <a href="../DBX/QueryBuilder/OneOrMoreFieldsType.html">OneOrMoreFieldsType</a>) : <a href="../DBX/QueryBuilder.html">QueryBuilder</a>
+
+        <a class="method-permalink" href="#table(name:OneOrMoreFieldsType):QueryBuilder-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Targets one or more tables.</p>
+        </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
@@ -2763,8 +2570,6 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L23" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2778,8 +2583,6 @@ LIMIT 1</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L137" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2795,8 +2598,6 @@ LIMIT 1</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L144" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -2810,8 +2611,6 @@ LIMIT 1</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query.cr#L149" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2831,8 +2630,6 @@ LIMIT 1</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L244" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2871,8 +2668,6 @@ AND ("date" &lt;= $2 OR role = $3)</code></pre>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/query_builder/query_builder.cr#L278" target="_blank">View source</a>]
         
       </div>
     </div>

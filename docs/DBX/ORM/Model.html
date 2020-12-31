@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Crystal Docs 0.34.0">
-<meta name="crystal_docs.project_version" content="master">
+<meta name="crystal_docs.project_version" content="master-dev">
 <meta name="crystal_docs.project_name" content="dbx">
 
 
@@ -18,7 +18,7 @@
 </svg>
 
   <meta id="repository-name" content="dbx">
-  <title>DBX::ORM::Model - dbx master</title>
+  <title>DBX::ORM::Model - dbx master-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -39,7 +39,7 @@
       </h1>
 
       <span class="project-version">
-        master
+        master-dev
       </span>
     </div>
   </div>
@@ -166,6 +166,11 @@
       
     </li>
   
+  <li class=" " data-id="dbx/DBX/Query" data-name="dbx::query">
+      <a href="../../DBX/Query.html">Query</a>
+      
+    </li>
+  
   <li class="parent " data-id="dbx/DBX/QueryBuilder" data-name="dbx::querybuilder">
       <a href="../../DBX/QueryBuilder.html">QueryBuilder</a>
       
@@ -223,11 +228,6 @@
   
 </ul>
 
-      
-    </li>
-  
-  <li class=" " data-id="dbx/DBX/QueryExecutor" data-name="dbx::queryexecutor">
-      <a href="../../DBX/QueryExecutor.html">QueryExecutor</a>
       
     </li>
   
@@ -325,13 +325,6 @@ users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a<
     Defined in:
   </h2>
   
-    
-      <a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model.cr#L53" target="_blank">
-        orm/model.cr
-      </a>
-    
-    <br/>
-  
 
 
 
@@ -350,16 +343,16 @@ users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a<
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#db:DB::Database-class-method" class="signature"><strong>.db</strong> : DB::Database</a>
+        <a href="#connection:String-class-method" class="signature"><strong>.connection</strong> : String</a>
         
-          <div class="summary"><p>Returns DB entry point used by this <code><a href="../../DBX/ORM/Model.html">Model</a></code> instance.</p></div>
+          <div class="summary"><p>DB connection name used by this <code><a href="../../DBX/ORM/Model.html">Model</a></code> instance.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#db_entry:String-class-method" class="signature"><strong>.db_entry</strong> : String</a>
+        <a href="#db:DB::Database-class-method" class="signature"><strong>.db</strong> : DB::Database</a>
         
-          <div class="summary"><p>DB entry point used by this <code><a href="../../DBX/ORM/Model.html">Model</a></code> instance.</p></div>
+          <div class="summary"><p>Returns DB connection name used by this <code><a href="../../DBX/ORM/Model.html">Model</a></code> instance.</p></div>
         
       </li>
     
@@ -414,6 +407,25 @@ users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a<
     Class Method Detail
   </h2>
   
+    <div class="entry-detail" id="connection:String-class-method">
+      <div class="signature">
+        
+        def self.<strong>connection</strong> : String
+
+        <a class="method-permalink" href="#connection:String-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>DB connection name used by this <code><a href="../../DBX/ORM/Model.html">Model</a></code> instance.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="db:DB::Database-class-method">
       <div class="signature">
         
@@ -424,34 +436,11 @@ users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a<
       
         <div class="doc">
           
-          <p>Returns DB entry point used by this <code><a href="../../DBX/ORM/Model.html">Model</a></code> instance.</p>
+          <p>Returns DB connection name used by this <code><a href="../../DBX/ORM/Model.html">Model</a></code> instance.</p>
         </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model.cr#L197" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="db_entry:String-class-method">
-      <div class="signature">
-        
-        def self.<strong>db_entry</strong> : String
-
-        <a class="method-permalink" href="#db_entry:String-class-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>DB entry point used by this <code><a href="../../DBX/ORM/Model.html">Model</a></code> instance.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model.cr#L192" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -473,8 +462,6 @@ users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a<
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/orm/model.cr#L206" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Crystal Docs 0.34.0">
-<meta name="crystal_docs.project_version" content="master">
+<meta name="crystal_docs.project_version" content="master-dev">
 <meta name="crystal_docs.project_name" content="dbx">
 
 
@@ -18,7 +18,7 @@
 </svg>
 
   <meta id="repository-name" content="dbx">
-  <title>DBX::Adapter::SQLiteQueryBuilder - dbx master</title>
+  <title>DBX::Adapter::SQLiteQueryBuilder - dbx master-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -39,7 +39,7 @@
       </h1>
 
       <span class="project-version">
-        master
+        master-dev
       </span>
     </div>
   </div>
@@ -166,6 +166,11 @@
       
     </li>
   
+  <li class=" " data-id="dbx/DBX/Query" data-name="dbx::query">
+      <a href="../../DBX/Query.html">Query</a>
+      
+    </li>
+  
   <li class="parent " data-id="dbx/DBX/QueryBuilder" data-name="dbx::querybuilder">
       <a href="../../DBX/QueryBuilder.html">QueryBuilder</a>
       
@@ -223,11 +228,6 @@
   
 </ul>
 
-      
-    </li>
-  
-  <li class=" " data-id="dbx/DBX/QueryExecutor" data-name="dbx::queryexecutor">
-      <a href="../../DBX/QueryExecutor.html">QueryExecutor</a>
       
     </li>
   
@@ -289,13 +289,6 @@
     Defined in:
   </h2>
   
-    
-      <a href="https://github.com/Nicolab/crystal-dbx/blob/e4da0413e042bc6d1a3f8e3738c7bd4fe97d84aa/src/adapter/sqlite/sqlite.cr#L69" target="_blank">
-        adapter/sqlite/sqlite.cr
-      </a>
-    
-    <br/>
-  
 
 
 
@@ -336,8 +329,8 @@
     alter</a>, 
     
   
-    <a href="../../DBX/QueryBuilder.html#analyze:QueryBuilder-instance-method" class="tooltip">
-      <span>analyze : QueryBuilder<br/>analyze(table : OneOrMoreFieldsType) : QueryBuilder</span>
+    <a href="../../DBX/QueryBuilder.html#analyze(table:OneOrMoreFieldsType):QueryBuilder-instance-method" class="tooltip">
+      <span>analyze(table : OneOrMoreFieldsType) : QueryBuilder<br/>analyze : QueryBuilder</span>
     analyze</a>, 
     
   
@@ -356,8 +349,8 @@
     build</a>, 
     
   
-    <a href="../../DBX/QueryBuilder.html#check(table:OneOrMoreFieldsType):QueryBuilder-instance-method" class="tooltip">
-      <span>check(table : OneOrMoreFieldsType) : QueryBuilder<br/>check : QueryBuilder</span>
+    <a href="../../DBX/QueryBuilder.html#check:QueryBuilder-instance-method" class="tooltip">
+      <span>check : QueryBuilder<br/>check(table : OneOrMoreFieldsType) : QueryBuilder</span>
     check</a>, 
     
   
@@ -371,18 +364,18 @@
     count</a>, 
     
   
-    <a href="../../DBX/QueryBuilder.html#delete(pk_name,pk_value):QueryBuilder-instance-method" class="tooltip">
-      <span>delete(pk_name, pk_value) : QueryBuilder<br/>delete(table : OneOrMoreFieldsType) : QueryBuilder<br/>delete : QueryBuilder</span>
+    <a href="../../DBX/QueryBuilder.html#delete:QueryBuilder-instance-method" class="tooltip">
+      <span>delete : QueryBuilder<br/>delete(table : OneOrMoreFieldsType) : QueryBuilder<br/>delete(pk_name, pk_value) : QueryBuilder</span>
     delete</a>, 
     
   
-    <a href="../../DBX/QueryBuilder.html#drop(check_exists=true):QueryBuilder-instance-method" class="tooltip">
-      <span>drop(check_exists = <span class="n">true</span>) : QueryBuilder<br/>drop(table : OneOrMoreFieldsType, check_exists = <span class="n">true</span>) : QueryBuilder</span>
+    <a href="../../DBX/QueryBuilder.html#drop(table:OneOrMoreFieldsType,check_exists=true):QueryBuilder-instance-method" class="tooltip">
+      <span>drop(table : OneOrMoreFieldsType, check_exists = <span class="n">true</span>) : QueryBuilder<br/>drop(check_exists = <span class="n">true</span>) : QueryBuilder</span>
     drop</a>, 
     
   
-    <a href="../../DBX/QueryBuilder.html#find:QueryBuilder-instance-method" class="tooltip">
-      <span>find : QueryBuilder<br/>find(table_name : OneOrMoreFieldsType) : QueryBuilder<br/>find(&) : QueryBuilder<br/>find(pk_name, pk_value) : QueryBuilder</span>
+    <a href="../../DBX/QueryBuilder.html#find(pk_name,pk_value):QueryBuilder-instance-method" class="tooltip">
+      <span>find(pk_name, pk_value) : QueryBuilder<br/>find : QueryBuilder<br/>find(&) : QueryBuilder<br/>find(table_name : OneOrMoreFieldsType) : QueryBuilder</span>
     find</a>, 
     
   
@@ -421,8 +414,8 @@
     insert</a>, 
     
   
-    <a href="../../DBX/QueryBuilder.html#join:String-instance-method" class="tooltip">
-      <span>join : String<br/>join(&) : QueryBuilder<br/>join(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>, type = <span class="s">&quot;&quot;</span>) : QueryBuilder</span>
+    <a href="../../DBX/QueryBuilder.html#join(table:FieldType,field1:FieldType,field2:FieldType?=nil,type=&quot;&quot;):QueryBuilder-instance-method" class="tooltip">
+      <span>join(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>, type = <span class="s">&quot;&quot;</span>) : QueryBuilder<br/>join(&) : QueryBuilder<br/>join : String</span>
     join</a>, 
     
   
@@ -581,8 +574,8 @@
     reset_query</a>, 
     
   
-    <a href="../../DBX/QueryBuilder.html#returning(fields:OneOrMoreFieldsType):QueryBuilder-instance-method" class="tooltip">
-      <span>returning(fields : OneOrMoreFieldsType) : QueryBuilder<br/>returning : String?<br/>returning(*name : FieldType) : QueryBuilder</span>
+    <a href="../../DBX/QueryBuilder.html#returning(*name:FieldType):QueryBuilder-instance-method" class="tooltip">
+      <span>returning(*name : FieldType) : QueryBuilder<br/>returning : String?<br/>returning(fields : OneOrMoreFieldsType) : QueryBuilder</span>
     returning</a>, 
     
   
@@ -596,8 +589,8 @@
     right_outer_join</a>, 
     
   
-    <a href="../../DBX/QueryBuilder.html#select:String-instance-method" class="tooltip">
-      <span>select : String<br/>select(*name : FieldType) : QueryBuilder<br/>select(fields : OneOrMoreFieldsType) : QueryBuilder</span>
+    <a href="../../DBX/QueryBuilder.html#select(fields:OneOrMoreFieldsType):QueryBuilder-instance-method" class="tooltip">
+      <span>select(fields : OneOrMoreFieldsType) : QueryBuilder<br/>select : String<br/>select(*name : FieldType) : QueryBuilder</span>
     select</a>, 
     
   
@@ -606,8 +599,8 @@
     sum</a>, 
     
   
-    <a href="../../DBX/QueryBuilder.html#table(name:OneOrMoreFieldsType):QueryBuilder-instance-method" class="tooltip">
-      <span>table(name : OneOrMoreFieldsType) : QueryBuilder<br/>table : String<br/>table(*name : FieldType) : QueryBuilder<br/>table(&) : QueryBuilder</span>
+    <a href="../../DBX/QueryBuilder.html#table(&):QueryBuilder-instance-method" class="tooltip">
+      <span>table(&) : QueryBuilder<br/>table(*name : FieldType) : QueryBuilder<br/>table : String<br/>table(name : OneOrMoreFieldsType) : QueryBuilder</span>
     table</a>, 
     
   
