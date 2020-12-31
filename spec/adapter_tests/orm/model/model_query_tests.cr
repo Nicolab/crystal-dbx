@@ -7,7 +7,7 @@
 
 require "../spec_helper"
 
-describe "DBX::QueryExecutor executors" do
+describe "DBX::Query executors" do
   before_each do
     db_open
     create_table_test
@@ -96,10 +96,10 @@ describe "DBX::QueryExecutor executors" do
   end
 
   describe "ModelMixin" do
-    it "query : DBX::QueryExecutor" do
+    it "query : DBX::Query" do
       insert_table_test(name: "DBX", age: 1)
 
-      Test.query.should be_a DBX::QueryExecutor
+      Test.query.should be_a DBX::Query
 
       # Should be a new instance
       Test.query.should_not eq Test.query

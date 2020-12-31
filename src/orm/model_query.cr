@@ -33,7 +33,7 @@ module DBX::ORM
   # user = User.find(id).select_all.to_o
   # users = User.find.select_all.to_a
   # ```
-  class ModelQuery(Model) < DBX::QueryExecutor
+  class ModelQuery(Model) < DBX::Query
     # Executes current query using current `Model::Schema`.
     def query_one
       query_one(as: Model::Schema)

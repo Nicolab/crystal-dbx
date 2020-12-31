@@ -35,7 +35,7 @@ module DBX::Adapter
     #   *pk_name* and *pk_type* are useless and ignored,
     #   thanks PostgreSQL `RETURNING` that makes it simpler and more efficient :)
     def create!(
-      query : DBX::QueryExecutor,
+      query : DBX::Query,
       data,
       as types,
       returning : DBX::QueryBuilder::OneOrMoreFieldsType = "*",

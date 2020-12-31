@@ -22,7 +22,7 @@ describe DBX::ORM::Model do
 
   it "model instance" do
     Test.new
-    Test::ModelQuery.should be_a DBX::QueryExecutor.class
+    Test::ModelQuery.should be_a DBX::Query.class
     Test::Schema.should_not be_nil
     Test::Error.should be_a DBX::Error.class
     Test::Error.should be_a DB::Error.class

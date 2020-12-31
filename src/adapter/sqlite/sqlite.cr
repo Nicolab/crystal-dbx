@@ -32,7 +32,7 @@ module DBX::Adapter
 
     # :inherit:
     def create!(
-      query : DBX::QueryExecutor,
+      query : DBX::Query,
       data,
       as types,
       returning : DBX::QueryBuilder::OneOrMoreFieldsType = "*",

@@ -8,7 +8,7 @@
 require "../../spec_helper"
 require "../../../src/query_builder/executor"
 
-describe "DBX::QueryExecutor" do
+describe "DBX::Query" do
   before_each do
     db_open
     create_table_test
@@ -23,7 +23,7 @@ describe "DBX::QueryExecutor" do
 
   it "insert" do
     data = {name: "test_insert", about: "Crystal is awesome!", age: 10}
-    query = new_query_executor
+    query = new_query
 
     query.insert(:tests, data).exec!.rows_affected.should eq 1
 
@@ -36,7 +36,7 @@ describe "DBX::QueryExecutor" do
   end
 
   it "create!" do
-    test = new_query_executor.table(:tests).create!(
+    test = new_query.table(:tests).create!(
       {name: "created", about: "about", age: 1},
       as: {String, Int32},
       returning: {:name, :age},
@@ -46,10 +46,10 @@ describe "DBX::QueryExecutor" do
 
     test.should be_a({String, Int32})
     test.should eq({"created", 1})
-    new_query_executor.find(:tests).select(:id).where(:name, "created")
+    new_query.find(:tests).select(:id).where(:name, "created")
       .scalar!.as(Int64).should be >= 2
 
-    test = new_query_executor.table(:tests).create!(
+    test = new_query.table(:tests).create!(
       {name: "created2", about: "about", age: 1},
       as: {name: String, age: Int32},
       returning: {:name, :age}
@@ -57,12 +57,12 @@ describe "DBX::QueryExecutor" do
 
     test.should be_a({name: String, age: Int32})
     test.should eq({name: "created2", age: 1})
-    new_query_executor.find(:tests).select(:id).where(:name, "created2")
+    new_query.find(:tests).select(:id).where(:name, "created2")
       .scalar!.as(Int64).should be >= 3
   end
 
   it "find, select, where" do
-    new_query_executor
+    new_query
       .find(:tests)
       .select(:id)
       .where(:name, "Nico")
@@ -72,13 +72,13 @@ describe "DBX::QueryExecutor" do
   end
 
   it "update, where" do
-    new_query_executor
+    new_query
       .update(:tests, {name: "updated!"})
       .where(:name, "Nico")
       .exec!
       .rows_affected.should eq 1
 
-    id = new_query_executor
+    id = new_query
       .find(:tests)
       .select(:id)
       .where(:name, "updated!")
@@ -88,19 +88,19 @@ describe "DBX::QueryExecutor" do
     id.should_not be_nil
 
     expect_raises(DB::NoResultsError) {
-      new_query_executor
+      new_query
         .table(:tests)
         .update(:id, 0, {name: "updated2!"})
         .exec!
     }
 
-    new_query_executor
+    new_query
       .table(:tests)
       .update(:id, id, {"name" => "updated2!"})
       .exec!
       .rows_affected.should eq 1
 
-    new_query_executor
+    new_query
       .find(:tests)
       .select(:id)
       .where(:name, "updated2!")
@@ -110,7 +110,7 @@ describe "DBX::QueryExecutor" do
   end
 
   it "delete, where" do
-    id = new_query_executor
+    id = new_query
       .find(:tests)
       .select(:id)
       .where(:name, "Nico")
@@ -120,7 +120,7 @@ describe "DBX::QueryExecutor" do
 
     id.should_not be_nil
 
-    new_query_executor
+    new_query
       .find(:tests)
       .count(:id)
       .where(:name, "Nico")
@@ -128,13 +128,13 @@ describe "DBX::QueryExecutor" do
       .as(Int64)
       .should eq 1
 
-    new_query_executor
+    new_query
       .delete(:tests)
       .where(:name, "Nico")
       .exec!
       .rows_affected.should eq 1
 
-    new_query_executor
+    new_query
       .find(:tests)
       .count(:id)
       .where(:name, "Nico")
@@ -143,7 +143,7 @@ describe "DBX::QueryExecutor" do
       .should eq 0
 
     expect_raises(DB::NoResultsError) {
-      new_query_executor
+      new_query
         .table(:tests)
         .delete(:id, id)
         .exec!
@@ -151,7 +151,7 @@ describe "DBX::QueryExecutor" do
 
     insert_table_test
 
-    id = new_query_executor
+    id = new_query
       .find(:tests)
       .select(:id)
       .where(:name, "Nico")
@@ -161,7 +161,7 @@ describe "DBX::QueryExecutor" do
 
     id.should_not be_nil
 
-    new_query_executor
+    new_query
       .table(:tests)
       .delete(:id, id)
       .exec!
@@ -175,14 +175,14 @@ describe "DBX::QueryExecutor" do
       expected_error_no_table = /no such table/
     end
 
-    new_query_executor.drop(:tests, false).exec!.should be_a DB::ExecResult
+    new_query.drop(:tests, false).exec!.should be_a DB::ExecResult
 
     expect_raises(Exception, expected_error_no_table) {
-      new_query_executor.drop(:tests, false).exec
+      new_query.drop(:tests, false).exec
     }
 
-    new_query_executor.drop(:tests, true).exec.should be_a DB::ExecResult
-    new_query_executor.drop(:tests, true).exec!.should be_a DB::ExecResult
+    new_query.drop(:tests, true).exec.should be_a DB::ExecResult
+    new_query.drop(:tests, true).exec!.should be_a DB::ExecResult
   end
 
   it "alter" do
@@ -193,10 +193,10 @@ describe "DBX::QueryExecutor" do
     end
 
     expect_raises(Exception, expected_error_no_table) {
-      new_query_executor.update(:tests, {test_column: "yeah!"}).exec
+      new_query.update(:tests, {test_column: "yeah!"}).exec
     }
 
-    new_query_executor.table(:tests).alter("add", "test_column", "varchar(255)").exec!
-    new_query_executor.update(:tests, {test_column: "yeah!"}).exec
+    new_query.table(:tests).alter("add", "test_column", "varchar(255)").exec!
+    new_query.update(:tests, {test_column: "yeah!"}).exec
   end
 end

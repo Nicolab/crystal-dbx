@@ -38,9 +38,9 @@ module DBX::Adapter
     end
 
     # Creates a new record and returns.
-    # See `DBX::QueryExecutor#create` for more details.
+    # See `DBX::Query#create` for more details.
     abstract def create(
-      query : DBX::QueryExecutor,
+      query : DBX::Query,
       data : Hash | NamedTuple,
       as types,
       returning : DBX::QueryBuilder::OneOrMoreFieldsType = "*",

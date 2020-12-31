@@ -53,8 +53,8 @@
   alias DBAdapter = DBX::Adapter::SQLite
   ADAPTER_NAME = :sqlite
 
-  def new_query_executor
-    DBX::QueryExecutor.new(DBAdapter.new(db_open))
+  def new_query
+    DBX::Query.new(DBAdapter.new(db_open))
   end
 
   # Include all common DB (adapter) tests

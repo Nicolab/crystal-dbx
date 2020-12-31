@@ -5,7 +5,7 @@
 The goal of DBX is to bring a practical abstraction to crystal-db and its drivers.
 As a result, DBX leaves a lot of freedom to implement models and queries.
 This can lead to errors.
-For example at each end of query you have to choose the right executor
+For example at each end of query you have to choose the right return of execution
 (`to_o` / `to_o!` to force the return of a single resource,
 `to_a` to get an array of one or more resources).
 This requires some knowledge of _SQL_ and [crystal-db](https://crystal-lang.github.io/crystal-db/api/latest/DB/QueryMethods.html).
@@ -27,4 +27,4 @@ To help with this, the DBX query builder has the `returning` method
 which accepts one or more fields (`*` (wildcard) for all SQL fields).
 
 Also the `create!` method handles all this for you.
-This method is accessible via `DBX::QueryExecutor` and the models.
+This method is accessible via `DBX::Query` and the models.
