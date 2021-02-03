@@ -6,8 +6,8 @@
 # ------------------------------------------------------------------------------
 
 require "sqlite3"
-require "../../adapter"
-require "../../query_builder"
+require "../adapter"
+require "../query_builder"
 
 module DBX::Adapter
   # Injects `adapter_class` method (example, it's used in the models).
