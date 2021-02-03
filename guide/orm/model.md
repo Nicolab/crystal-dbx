@@ -37,7 +37,7 @@ class User < DBX::ORM::Model
 
     def with_posts
       self.join do
-        "LEFT JOIN #{Post.table_name} AS p ON p.#{User.foreign_key_name} = #{User.pk_name}"
+        "LEFT JOIN #{Post.table_name} AS p ON p.#{User.fk_name} = #{User.pk_name}"
       end
     end
   end

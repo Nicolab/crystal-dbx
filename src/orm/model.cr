@@ -153,17 +153,17 @@ module DBX::ORM
       #
       # ```
       # class User < DBX::ORM::ModelQuery
-      #   foreign_key_name :client_id
+      #   fk_name :client_id
       # end
       # ```
-      def self.foreign_key_name(value : String | Symbol)
-        @@foreign_key_name = value.to_s
+      def self.fk_name(value : String | Symbol)
+        @@fk_name = value.to_s
       end
 
       # Returns model foreign key name.
-      def self.foreign_key_name
-        return @@foreign_key_name unless @@foreign_key_name.nil?
-        @@foreign_key_name = "#{self.table_name.to_s.rchop('s')}_id"
+      def self.fk_name
+        return @@fk_name unless @@fk_name.nil?
+        @@fk_name = "#{self.table_name.to_s.rchop('s')}_id"
       end
 
       # `DBX::Query` specific to `Model`.

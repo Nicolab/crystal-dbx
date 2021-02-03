@@ -25,7 +25,7 @@ class Post < DBX::ORM::Model
   class ModelQuery < DBX::ORM::ModelQuery(Test)
     def with_comments
       self.join do
-        "LEFT JOIN #{Comment.table_name} AS c ON c.#{Post.foreign_key_name} = #{Post.pk_name}"
+        "LEFT JOIN #{Comment.table_name} AS c ON c.#{Post.fk_name} = #{Post.pk_name}"
       end
 
       # or self.left_join(Comment.table_name, ...)
