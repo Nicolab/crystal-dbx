@@ -29,7 +29,7 @@ describe DBX::ORM::Model do
     Test.connection.should eq "app"
     Test.table_name.should eq "tests"
     Test.pk_name.should eq "id"
-    Test.foreign_key_name.should eq "test_id"
+    Test.fk_name.should eq "test_id"
   end
 
   it "customizes table name" do
@@ -44,8 +44,8 @@ describe DBX::ORM::Model do
     Test.pk_name.should eq "id"
     Test2.pk_name.should eq "id"
 
-    Test.foreign_key_name.should eq "test_id"
-    Test2.foreign_key_name.should eq "test_id"
+    Test.fk_name.should eq "test_id"
+    Test2.fk_name.should eq "test_id"
 
     Test.find.to_o!.name.should eq "Nico"
     Test2.find.to_o!.name.should eq "Nico"
