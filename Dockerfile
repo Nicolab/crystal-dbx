@@ -5,7 +5,7 @@
 # information and documentation: https://github.com/craft-framework/craft
 # ------------------------------------------------------------------------------
 
-FROM crystallang/crystal:0.35.1
+FROM crystallang/crystal:0.36.0
 
 ARG user=app
 ARG uid=1000

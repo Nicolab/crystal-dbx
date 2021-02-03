@@ -37,7 +37,7 @@ module DBX
 
     # Wraps *field* with quotes (`QUOTE`).
     def quote(field : FieldType) : String
-      "#{QUOTE}#{field.to_s}#{QUOTE}"
+      "#{QUOTE}#{field}#{QUOTE}"
     end
 
     # Adds placeholder for a SQL argument.

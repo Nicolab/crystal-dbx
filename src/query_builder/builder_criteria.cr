@@ -12,7 +12,7 @@ module DBX
     alias FieldType = String | Symbol
 
     # The type for several fields contained in an `Enumerable` (e.g: `Array` or `Tuple`).
-    alias FieldsType = Enumerable(FieldType)
+    alias FieldsType = Enumerable(FieldType) | Enumerable(Symbol) | Enumerable(String)
 
     # The type for one or more fields.
     alias OneOrMoreFieldsType = FieldType | FieldsType

@@ -36,7 +36,7 @@ module DBX::Adapter
     #   thanks PostgreSQL `RETURNING` that makes it simpler and more efficient :)
     def create!(
       query : DBX::Query,
-      data,
+      data : Hash | NamedTuple,
       as types,
       returning : DBX::QueryBuilder::OneOrMoreFieldsType = "*",
       pk_name : DBX::QueryBuilder::FieldType = :id,
