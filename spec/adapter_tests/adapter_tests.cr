@@ -33,7 +33,7 @@ describe DBX::Adapter do
     DBAdapter.new(db_open).db.should be_a DB::Database
   end
 
-  it "create" do
-    {{ DBAdapter.has_method?(:create) }}.should be_true
+  it "create!" do
+    {{ DBAdapter.has_method?(:create!) }}.should be_true
   end
 end

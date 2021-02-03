@@ -1,6 +1,6 @@
 name: dbx
 version: 0.3.0
-crystal: 0.35.1
+crystal: ">= 0.35.0, < 2.0.0"
 license: MIT
 
 authors:
@@ -18,15 +18,11 @@ dependencies:
   # Pick / Uncomment your database(s)
   # pg:
   #   github: will/crystal-pg
-  #  # Add the last version, example: version: ~> 0.20.0
-
-  # mysql:
-  #   github: crystal-lang/crystal-mysql
-  #   # Add the last version, example: version: 0.10.0
+  #  # Add the last version, example: version: ~> 0.23.1
 
   # sqlite3:
   #   github: crystal-lang/crystal-sqlite3
-  #   # Add the last version, example: version: 0.15.0
+  #   # Add the last version, example: version: 0.18.0
 
 development_dependencies:
   ameba:
@@ -34,7 +30,7 @@ development_dependencies:
     version: ~> 0.13
   pg:
     github: will/crystal-pg
-    version: ~> 0.22.1
+    version: ~> 0.23.1
   sqlite3:
     github: crystal-lang/crystal-sqlite3
-    version: 0.17.0
+    version: ~> 0.18.0

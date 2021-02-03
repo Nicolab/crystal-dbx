@@ -33,7 +33,7 @@ module DBX::Adapter
     # :inherit:
     def create!(
       query : DBX::Query,
-      data,
+      data : Hash | NamedTuple,
       as types,
       returning : DBX::QueryBuilder::OneOrMoreFieldsType = "*",
       pk_name : DBX::QueryBuilder::FieldType = :id,

@@ -38,8 +38,8 @@ module DBX::Adapter
     end
 
     # Creates a new record and returns.
-    # See `DBX::Query#create` for more details.
-    abstract def create(
+    # See `DBX::Query#create!` for more details.
+    abstract def create!(
       query : DBX::Query,
       data : Hash | NamedTuple,
       as types,
