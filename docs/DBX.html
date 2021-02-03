@@ -3,21 +3,16 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.34.0">
+<meta name="generator" content="Crystal Docs 0.35.1">
 <meta name="crystal_docs.project_version" content="master-dev">
 <meta name="crystal_docs.project_name" content="dbx">
+
 
 
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/doc.js"></script>
 
-<svg class="hidden">
-  <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-  </symbol>
-</svg>
-
-  <meta id="repository-name" content="dbx">
+  <meta name="repository-name" content="dbx">
   <title>DBX - dbx master-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "";
@@ -25,6 +20,11 @@
 </head>
 <body>
 
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <div class="search-results" class="hidden">
+  <div class="search-results hidden">
     <ul class="search-list"></ul>
   </div>
 
@@ -267,7 +267,7 @@ with the common <code>crystal-db</code> module.</p>
 
 <p>Example with PostgreSQL:</p>
 
-<pre><code><span class="c"># Connection URI / DSL https://www.postgresql.org/docs/current/libpq-connect.html#h5o-9</span>
+<pre><code class="language-crystal"><span class="c"># Connection URI / DSL https://www.postgresql.org/docs/current/libpq-connect.html#h5o-9</span>
 db <span class="o">=</span> <span class="t">DBX</span>.open(<span class="s">&quot;app&quot;</span>, <span class="s">&quot;postgres://...&quot;</span>, <span class="n">true</span>)
 
 pp <span class="t">DBX</span>.db?(<span class="s">&quot;app&quot;</span>) ? <span class="s">&quot;defined&quot;</span> : <span class="s">&quot;not defined&quot;</span>
@@ -286,7 +286,7 @@ db.query <span class="s">&quot;select id, created_at, email from users&quot;</sp
 
 <p>Model:</p>
 
-<pre><code><span class="k">class</span> <span class="t">User</span>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">User</span>
   <span class="k">include</span> <span class="t">JSON</span><span class="t">::</span><span class="t">Serializable</span>
   <span class="k">include</span> <span class="t">DB</span><span class="t">::</span><span class="t">Serializable</span>
   <span class="k">include</span> <span class="t">DB</span><span class="t">::</span><span class="t">Serializable</span><span class="t">::</span><span class="t">NonStrict</span>
@@ -664,7 +664,7 @@ This macro should be called at the top level, not from a method.</p>
 <blockquote>Be careful of the performance penalty that each hook may cause,
   be aware that your code will be executed at each query and exec.</blockquote>
 
-<pre><code><span class="t">DBX</span>.around_query_or_exec <span class="k">do</span> <span class="o">|</span>args<span class="o">|</span>
+<pre><code class="language-crystal"><span class="t">DBX</span>.around_query_or_exec <span class="k">do</span> <span class="o">|</span>args<span class="o">|</span>
   puts <span class="s">&quot;before&quot;</span>
   res <span class="o">=</span> <span class="k">yield</span>
   puts <span class="s">&quot;after&quot;</span>
@@ -681,7 +681,7 @@ This macro should be called at the top level, not from a method.</p>
 
 <p>Example to measure query execution time:</p>
 
-<pre><code><span class="t">DBX</span>.around_query_or_exec <span class="k">do</span> <span class="o">|</span>args<span class="o">|</span>
+<pre><code class="language-crystal"><span class="t">DBX</span>.around_query_or_exec <span class="k">do</span> <span class="o">|</span>args<span class="o">|</span>
   start <span class="o">=</span> <span class="t">Time</span>.monotonic
   res <span class="o">=</span> <span class="k">yield</span>
   elapsed_time <span class="o">=</span> <span class="t">Time</span>.monotonic <span class="o">-</span> start

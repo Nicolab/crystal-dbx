@@ -3,21 +3,16 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.34.0">
+<meta name="generator" content="Crystal Docs 0.35.1">
 <meta name="crystal_docs.project_version" content="master-dev">
 <meta name="crystal_docs.project_name" content="dbx">
+
 
 
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/doc.js"></script>
 
-<svg class="hidden">
-  <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-  </symbol>
-</svg>
-
-  <meta id="repository-name" content="dbx">
+  <meta name="repository-name" content="dbx">
   <title>DBX::QueryBuilder - dbx master-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
@@ -25,6 +20,11 @@
 </head>
 <body>
 
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <div class="search-results" class="hidden">
+  <div class="search-results hidden">
     <ul class="search-list"></ul>
   </div>
 
@@ -1198,7 +1198,7 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
           
           <p>Builds the current query and returns SQL (string) and arguments (array).</p>
 
-<pre><code>sql, args <span class="o">=</span> builder.build</code></pre>
+<pre><code class="language-crystal">sql, args <span class="o">=</span> builder.build</code></pre>
         </div>
       
       <br/>
@@ -1386,7 +1386,7 @@ Example: <code>field1 = $1, field2 = $2, field3 = $3</code></p>
 
 <p>Same as:</p>
 
-<pre><code>builder.find.where(pk_name, pk_value)</code></pre>
+<pre><code class="language-crystal">builder.find.where(pk_name, pk_value)</code></pre>
         </div>
       
       <br/>
@@ -1426,11 +1426,11 @@ and defines in raw form the SQL statement of the table(s).</p>
 
 <p>Example:</p>
 
-<pre><code>builder.find { <span class="s">&quot;</span><span class="i">#{</span>q(<span class="s">&quot;posts&quot;</span>) <span class="t">AS</span> p, articles a<span class="s">&quot; }&quot;</span><span class="i">}</span><span class="s"></span></code></pre>
+<pre><code class="language-crystal">builder.find { "#{q("posts") AS p, articles a" }"</code></pre>
 
 <p>Generates:</p>
 
-<pre><code><span class="t">SELECT</span> <span class="o">*</span> <span class="t">FROM</span> <span class="s">&quot;posts&quot;</span> <span class="t">AS</span> p, articles a</code></pre>
+<pre><code class="language-crystal"><span class="t">SELECT</span> <span class="o">*</span> <span class="t">FROM</span> <span class="s">&quot;posts&quot;</span> <span class="t">AS</span> p, articles a</code></pre>
         </div>
       
       <br/>
@@ -1521,11 +1521,11 @@ and defines in raw form the SQL statement of the table(s).</p>
 
 <p>Example:</p>
 
-<pre><code>builder.find(<span class="n">:tests</span>).group_by(<span class="n">:payment</span>).having { <span class="s">&quot;SUM(price) &gt; 40&quot;</span> }</code></pre>
+<pre><code class="language-crystal">builder.find(<span class="n">:tests</span>).group_by(<span class="n">:payment</span>).having { <span class="s">&quot;SUM(price) &gt; 40&quot;</span> }</code></pre>
 
 <p>Generates:</p>
 
-<pre><code><span class="t">SELECT</span> <span class="o">*</span> <span class="t">FROM</span> <span class="s">&quot;tests&quot;</span> <span class="t">GROUP_BY</span> <span class="s">&quot;payment&quot;</span> <span class="t">HAVING</span> <span class="t">SUM</span>(person) <span class="o">&gt;</span> <span class="n">40</span></code></pre>
+<pre><code class="language-crystal"><span class="t">SELECT</span> <span class="o">*</span> <span class="t">FROM</span> <span class="s">&quot;tests&quot;</span> <span class="t">GROUP_BY</span> <span class="s">&quot;payment&quot;</span> <span class="t">HAVING</span> <span class="t">SUM</span>(person) <span class="o">&gt;</span> <span class="n">40</span></code></pre>
         </div>
       
       <br/>
@@ -1639,7 +1639,7 @@ and defines in raw form the SQL statement of the table(s).</p>
 
 <p>Example:</p>
 
-<pre><code>builder.find(<span class="s">&quot;tests&quot;</span>).join { <span class="s">&quot;
+<pre><code class="language-crystal">builder.find(<span class="s">&quot;tests&quot;</span>).join { <span class="s">&quot;
   INNER JOIN T2 ON T1.a = T2.a
   AND T1.b = T2.b
   OR T1.b = </span><span class="i">#{</span>q(some_value_to_quote)<span class="i">}</span><span class="s">
@@ -1665,7 +1665,7 @@ and defines in raw form the SQL statement of the table(s).</p>
           
           <p>Returns jointure. Returns empty string if no jointure has been defined.</p>
 
-<pre><code>puts builder.join <span class="k">unless</span> builder.join.blank? <span class="c"># or .empty?</span></code></pre>
+<pre><code class="language-crystal">puts builder.join <span class="k">unless</span> builder.join.blank? <span class="c"># or .empty?</span></code></pre>
         </div>
       
       <br/>
@@ -1776,7 +1776,7 @@ and defines in raw form the SQL statement of the table(s).</p>
           
           <p>Returns <code><a href="../DBX/QueryBuilder.html#limit:String-instance-method">#limit</a></code> value. Returns empty string if no limit has been defined.</p>
 
-<pre><code>puts builder.limit <span class="k">unless</span> builder.limit.blank? <span class="c"># or .empty?</span></code></pre>
+<pre><code class="language-crystal">puts builder.limit <span class="k">unless</span> builder.limit.blank? <span class="c"># or .empty?</span></code></pre>
         </div>
       
       <br/>
@@ -1919,7 +1919,7 @@ and defines in raw form the SQL statement of the table(s).</p>
           
           <p>Returns <code><a href="../DBX/QueryBuilder.html#offset:String-instance-method">#offset</a></code> value. Returns empty string if no offset has been defined.</p>
 
-<pre><code>puts builder.offset <span class="k">unless</span> builder.offset.blank? <span class="c"># or .empty?</span></code></pre>
+<pre><code class="language-crystal">puts builder.offset <span class="k">unless</span> builder.offset.blank? <span class="c"># or .empty?</span></code></pre>
         </div>
       
       <br/>
@@ -2146,7 +2146,7 @@ and defines in raw form the SQL statement of the table(s).</p>
 
 <p>Example:</p>
 
-<pre><code>puts builder.query { <span class="s">&quot;
+<pre><code class="language-crystal">puts builder.query { <span class="s">&quot;
   SELECT * FROM </span><span class="i">#{</span>q(tests)<span class="i">}</span><span class="s">
   status = </span><span class="i">#{</span>arg(<span class="n">true</span>)<span class="i">}</span><span class="s">
   AND (
@@ -2417,7 +2417,7 @@ LIMIT 1</code></pre>
           
           <p>Returns selected field(s). Default is <code>*</code>.</p>
 
-<pre><code>puts builder.<span class="k">select</span></code></pre>
+<pre><code class="language-crystal">puts builder.<span class="k">select</span></code></pre>
         </div>
       
       <br/>
@@ -2480,11 +2480,11 @@ LIMIT 1</code></pre>
 
 <p>Example:</p>
 
-<pre><code>builder.find { <span class="s">&quot;</span><span class="i">#{</span>q(<span class="s">&quot;posts&quot;</span>) <span class="t">AS</span> p, articles a<span class="s">&quot; }&quot;</span><span class="i">}</span><span class="s"></span></code></pre>
+<pre><code class="language-crystal">builder.find { "#{q("posts") AS p, articles a" }"</code></pre>
 
 <p>Generates:</p>
 
-<pre><code><span class="t">SELECT</span> <span class="o">*</span> <span class="t">FROM</span> <span class="s">&quot;posts&quot;</span> <span class="t">AS</span> p, articles a</code></pre>
+<pre><code class="language-crystal"><span class="t">SELECT</span> <span class="o">*</span> <span class="t">FROM</span> <span class="s">&quot;posts&quot;</span> <span class="t">AS</span> p, articles a</code></pre>
         </div>
       
       <br/>
@@ -2505,7 +2505,7 @@ LIMIT 1</code></pre>
           
           <p>Targets tables defined by variadic arguments.</p>
 
-<pre><code>builder.table(<span class="n">:table1</span>, <span class="n">:table2</span>)</code></pre>
+<pre><code class="language-crystal">builder.table(<span class="n">:table1</span>, <span class="n">:table2</span>)</code></pre>
         </div>
       
       <br/>
@@ -2526,7 +2526,7 @@ LIMIT 1</code></pre>
           
           <p>Returns table name(s). Returns empty string if no table has been defined.</p>
 
-<pre><code>puts builder.table <span class="k">unless</span> builder.table.blank? <span class="c"># or .empty?</span></code></pre>
+<pre><code class="language-crystal">puts builder.table <span class="k">unless</span> builder.table.blank? <span class="c"># or .empty?</span></code></pre>
         </div>
       
       <br/>
@@ -2650,7 +2650,7 @@ LIMIT 1</code></pre>
 
 <p>Example:</p>
 
-<pre><code>builder.find(<span class="s">&quot;tests&quot;</span>).where { <span class="s">&quot;
+<pre><code class="language-crystal">builder.find(<span class="s">&quot;tests&quot;</span>).where { <span class="s">&quot;
   status = </span><span class="i">#{</span>arg(<span class="n">true</span>)<span class="i">}</span><span class="s">
   AND (
     </span><span class="i">#{</span>q(<span class="n">:date</span>)<span class="i">}</span><span class="s"> &lt;= </span><span class="i">#{</span>arg(<span class="t">Time</span>.utc <span class="o">-</span> <span class="n">1</span>.day)<span class="i">}</span><span class="s">
