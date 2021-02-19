@@ -54,3 +54,33 @@ class Test < DBX::ORM::Model
     end
   end
 end
+
+class TestPK < DBX::ORM::Model
+  # For generic tests adapters
+  {% if ADAPTER_NAME == :pg %}adapter :pg{% end %}
+  {% if ADAPTER_NAME == :sqlite %}adapter :sqlite{% end %}
+
+  table :tests
+
+  class_getter pk_name : String = "uid"
+  class_getter pk_type = String
+  class_getter fk_name = "test_uid"
+
+  # DB table schema
+  class Schema
+    include DB::Serializable
+    include JSON::Serializable
+    include JSON::Serializable::Unmapped
+
+    @[DB::Field(ignore: true)]
+    @[JSON::Field(ignore: true)]
+    def pk
+      self.uid
+    end
+
+    property uid : String
+    property name : String
+    property about : String
+    property age : Int32
+  end
+end

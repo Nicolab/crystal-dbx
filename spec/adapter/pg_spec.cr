@@ -15,6 +15,11 @@
     db.exec "create table tests (id BIGSERIAL PRIMARY KEY, name varchar(255), about varchar(50), age int4)"
   end
 
+  def create_table_test_with_custom_pk(connection = "app")
+    db = DBX.db(connection)
+    db.exec "create table tests (uid varchar(255) PRIMARY KEY, name varchar(255), about varchar(50), age int4)"
+  end
+
   def drop_table_test(connection = "app")
     db = DBX.db(connection)
     db.exec "drop table if exists tests"
@@ -25,6 +30,16 @@
     db.exec(
       "insert into tests (name, about, age) values ($1, $2, $3)  RETURNING *",
       name, about, age
+    )
+  end
+
+  def insert_table_test_with_custom_pk(
+    uid : String, name : String = "Nico", about : String = "Lives in Biarritz", age : Int32 = 38
+  )
+    db = DBX.db("app")
+    db.exec(
+      "insert into tests (uid, name, about, age) values ($1, $2, $3, $4)  RETURNING *",
+      uid, name, about, age
     )
   end
 
