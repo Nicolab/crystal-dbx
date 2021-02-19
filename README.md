@@ -30,8 +30,8 @@ DBX is designed in a decoupled way to embed only the necessary features (multi-c
 1. You only need Git, Docker and Docker-compose installed on your machine.
 2. Clone this repo and run `./scripts/prepare`.
 3. Run first `docker-compose up`,
-  3.1. then enter to container `docker-compose exec test_pg bash` (or `test_sqlite` service),
-  3.2. into the container `just dev-spec`.
+    1. then enter to container `docker-compose exec test_pg bash` (or `test_sqlite` service),
+    2. into the container `just dev-spec`.
 4. Check the project before committing or pushing, from the host: `./scripts/check`
 
 It's just Docker and docker-compose, you can directly type all the commands Docker and docker-compose.
