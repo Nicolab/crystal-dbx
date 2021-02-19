@@ -50,4 +50,32 @@ describe DBX::ORM::Model do
     Test.find.to_o!.name.should eq "Nico"
     Test2.find.to_o!.name.should eq "Nico"
   end
+
+  it "customizes primary key and foreign key" do
+    db_open "test"
+    drop_table_test
+    create_table_test_with_custom_pk
+    insert_table_test_with_custom_pk("abc")
+
+    Test.connection.should eq "app"
+    TestPK.connection.should eq "app"
+
+    Test.table_name.should eq "tests"
+    TestPK.table_name.should eq "tests"
+
+    Test.pk_name.should eq "id"
+    TestPK.pk_name.should eq "uid"
+
+    Test.fk_name.should eq "test_id"
+    Test.pk_type.should eq Int64
+    TestPK.fk_name.should eq "test_uid"
+    TestPK.pk_type.should eq String
+
+    test = TestPK.find.to_o!
+    test.name.should eq "Nico"
+
+    test2 = TestPK.find("abc").to_o!
+    test2.uid.should eq "abc"
+    test2.uid.should eq test.uid
+  end
 end
