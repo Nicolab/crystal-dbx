@@ -1,6 +1,6 @@
 name: dbx
-version: 0.4.1
-crystal: ">= 0.35.0, < 2.0.0"
+version: 1.0.0
+crystal: ">= 0.36.1"
 license: MIT
 
 authors:
@@ -13,7 +13,7 @@ targets:
 dependencies:
   db:
     github: crystal-lang/crystal-db
-    version: ~> 0.10.0
+    version: ~> 0.10.1
 
   # Pick / Uncomment your database(s)
   # pg:
@@ -27,7 +27,7 @@ dependencies:
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba
-    version: ~> 0.13
+    version: ~> 0.14.1
   pg:
     github: will/crystal-pg
     version: ~> 0.23.1
