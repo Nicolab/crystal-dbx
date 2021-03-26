@@ -60,6 +60,7 @@ require "db"
 # - https://crystal-lang.github.io/crystal-db/api/index.html
 # - https://github.com/Nicolab/crystal-dbx/tree/master/guide
 module DBX
+  VERSION = {{ `shards version "#{__DIR__}"`.chomp.stringify.downcase }}
   alias DBHashType = Hash(String, DB::Database)
 
   # Raised when an error occurred, related with `DB` or `DBX`.

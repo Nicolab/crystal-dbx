@@ -67,7 +67,7 @@ module DBX
     # Targets one or more tables.
     def table(name : OneOrMoreFieldsType) : QueryBuilder
       @table = if name.is_a?(FieldsType)
-                 name.map { |_name| quote(_name) }.join(", ")
+                 name.join(", ") { |_name| quote(_name) }
                else
                  quote(name.to_s)
                end
@@ -410,7 +410,7 @@ module DBX
 
     def group_by(field : OneOrMoreFieldsType) : QueryBuilder
       @group_by = if field.is_a?(FieldsType)
-                    field.map { |name| quote(name) }.join(", ")
+                    field.join(", ") { |name| quote(name) }
                   else
                     quote(field)
                   end

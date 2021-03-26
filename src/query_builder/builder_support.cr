@@ -56,21 +56,21 @@ module DBX
     # and returns SQL part for a listing statement.
     # Example: `field1, field2, field3`
     def add_args_and_fields_from_data(data : NamedTuple | Hash, sep = ", ") : String
-      data.map { |_, value| add_arg(value) }.join(sep)
+      data.join(sep) { |_, value| add_arg(value) }
     end
 
     # :ditto:
     def add_args_and_fields_from_data(data : Array, sep = ", ") : String
-      data.map { |value| add_arg(value) }.join(sep)
+      data.join(sep) { |value| add_arg(value) }
     end
 
     # Extracts arguments and fields from data, populates `args`
     # and returns SQL part for a combined statement.
     # Example: `field1 = $1, field2 = $2, field3 = $3`
     def add_args_and_kv_from_data(data : NamedTuple | Hash, sep = ", ") : String
-      data.map do |field, value|
+      data.join(sep) do |field, value|
         "#{quote(field)} = #{add_arg(value)}"
-      end.join(sep)
+      end
     end
   end
 end

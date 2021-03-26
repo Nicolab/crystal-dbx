@@ -130,7 +130,7 @@ module DBX
     private def build_query_insert : String
       raise Error.new "No data to insert" unless data = @data
 
-      "INSERT INTO #{@table} (#{data.map { |field, _| quote(field) }.join(", ")})" \
+      "INSERT INTO #{@table} (#{data.join(", ") { |field, _| quote(field) }})" \
       " VALUES (#{add_args_and_fields_from_data(data)})"
     end
 
