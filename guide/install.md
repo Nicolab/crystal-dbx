@@ -22,7 +22,7 @@ dependencies:
   # Pick / uncomment your database
   # pg:
   #   github: will/crystal-pg
-  #   # Add the last version, example: version: ~> 0.20.0
+  #   # Add the last version, example: version: ~> 0.23.1
 
   # mysql:
   #   github: crystal-lang/crystal-mysql
@@ -30,7 +30,7 @@ dependencies:
 
   # sqlite3:
   #   github: crystal-lang/crystal-sqlite3
-  #   # Add the last version, example: version: 0.15.0
+  #   # Add the last version, example: version: 0.18.0
 ```
 
 2. Run `shards install`
