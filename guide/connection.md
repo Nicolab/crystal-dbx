@@ -8,10 +8,10 @@ require "pg" # <= PostgreSQL driver
 require "sqlite3" # <= SQLite driver
 
 # Create 4 DB connection pool (3 PostgreSQL and 1 SQLite)
-DBX.open("app", "postgres://...", strict: true)
-DBX.open("reader", "postgres://...", strict: true)
-DBX.open("writer", "postgres://...", strict: true)
-DBX.open("local", "sqlite3://./data.db", strict: true)
+DBX.open("app", "postgres://...")
+DBX.open("reader", "postgres://...")
+DBX.open("writer", "postgres://...")
+DBX.open("local", "sqlite3://./data.db")
 
 # Connection: app (using PostgreSQL)
 DBX.db("app")

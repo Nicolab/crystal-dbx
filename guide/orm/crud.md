@@ -10,8 +10,7 @@ require "dbx"
 require "dbx/adapter/pg" # or require "dbx/adapter/sqlite"
 require "dbx/orm"
 
-DB_CONN = DBX.open("app", "postgres://...", strict: true)
-DB_ADAPTER = DBX::Adapter::PostgreSQL.new(DB_CONN)
+DBX.open("app", "postgres://...")
 
 class User < DBX::ORM::Model
   adapter :pg

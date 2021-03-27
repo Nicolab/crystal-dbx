@@ -13,7 +13,7 @@ require "dbx"
 require "pg" # <= Replaces by your database driver
 
 # Connection URI / DSL https://www.postgresql.org/docs/current/libpq-connect.html#h5o-9
-db = DBX.open("app", "postgres://...", true)
+db = DBX.open("app", "postgres://...")
 
 pp DBX.db?("app") ? "connected" : "not connected"
 
@@ -96,7 +96,7 @@ require "dbx"
 require "dbx/adapter/pg" # or require "dbx/adapter/sqlite"
 require "dbx/query_builder"
 
-DB_CONN = DBX.open("app", "postgres://...", strict: true)
+DB_CONN = DBX.open("app", "postgres://...")
 DB_ADAPTER = DBX::Adapter::PostgreSQL.new(DB_CONN)
 
 def new_query
@@ -132,7 +132,7 @@ require "dbx"
 require "dbx/adapter/pg" # or require "dbx/adapter/sqlite"
 require "dbx/orm"
 
-DBX.open("app", "postgres://...", strict: true)
+DBX.open("server2", "postgres://...")
 
 class User < DBX::ORM::Model
   adapter :pg
