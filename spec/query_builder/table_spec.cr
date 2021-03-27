@@ -14,10 +14,10 @@ describe "DBX::QueryBuilder#table" do
 
   it "supports Symbol (single table)" do
     query = builder.table(:test).find
-    query.table.should eq %("test")
+    query.table.should eq "test"
     sql, args = query.build
     count_query
-    norm(sql).should eq %(SELECT * FROM "test")
+    norm(sql).should eq %(SELECT * FROM test)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 0
@@ -25,10 +25,10 @@ describe "DBX::QueryBuilder#table" do
 
   it "supports String (single table)" do
     query = builder.table("test").find
-    query.table.should eq %("test")
+    query.table.should eq "test"
     sql, args = query.build
     count_query
-    norm(sql).should eq %(SELECT * FROM "test")
+    norm(sql).should eq %(SELECT * FROM test)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 0
@@ -36,10 +36,10 @@ describe "DBX::QueryBuilder#table" do
 
   it "supports Array of Symbol (multi tables)" do
     query = builder.table([:test1, :test2]).find
-    query.table.should eq %("test1", "test2")
+    query.table.should eq "test1, test2"
     sql, args = query.build
     count_query
-    norm(sql).should eq %(SELECT * FROM "test1", "test2")
+    norm(sql).should eq %(SELECT * FROM test1, test2)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 0
@@ -47,10 +47,10 @@ describe "DBX::QueryBuilder#table" do
 
   it "supports Tuple of Symbol (multi tables)" do
     query = builder.table({:test1, :test2}).find
-    query.table.should eq %("test1", "test2")
+    query.table.should eq "test1, test2"
     sql, args = query.build
     count_query
-    norm(sql).should eq %(SELECT * FROM "test1", "test2")
+    norm(sql).should eq %(SELECT * FROM test1, test2)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 0
@@ -58,10 +58,10 @@ describe "DBX::QueryBuilder#table" do
 
   it "supports variadic Symbol (multi tables)" do
     query = builder.table(:test1, :test2).find
-    query.table.should eq %("test1", "test2")
+    query.table.should eq "test1, test2"
     sql, args = query.build
     count_query
-    norm(sql).should eq %(SELECT * FROM "test1", "test2")
+    norm(sql).should eq %(SELECT * FROM test1, test2)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 0
@@ -69,10 +69,10 @@ describe "DBX::QueryBuilder#table" do
 
   it "supports variadic String (multi tables)" do
     query = builder.table("test1", "test2").find
-    query.table.should eq %("test1", "test2")
+    query.table.should eq "test1, test2"
     sql, args = query.build
     count_query
-    norm(sql).should eq %(SELECT * FROM "test1", "test2")
+    norm(sql).should eq %(SELECT * FROM test1, test2)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 0

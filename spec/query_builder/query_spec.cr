@@ -12,7 +12,7 @@ macro def_insert_tests(data)
     count_query
 
     norm(sql).should eq norm(%(
-      INSERT INTO "test" ("title", "slug", "content", "tags", "time", "status", "null")
+      INSERT INTO test (title, slug, content, tags, time, status, null)
       VALUES ($1, $2, $3, $4, $5, $6, $7))
     )
 
@@ -23,7 +23,7 @@ macro def_insert_tests(data)
     count_query
 
     norm(sql).should eq norm(%(
-      INSERT INTO "test" ("title", "slug", "content", "tags", "time", "status", "null")
+      INSERT INTO test (title, slug, content, tags, time, status, null)
       VALUES ($1, $2, $3, $4, $5, $6, $7))
     )
 
@@ -34,16 +34,16 @@ macro def_update_tests(data)
   sql, args = builder.table("test").update(data).where("id", 42).build
     count_query
 
-    norm(sql).should eq norm(%(UPDATE "test"
+    norm(sql).should eq norm(%(UPDATE test
       SET
-        "title" = $1,
-        "slug" = $2,
-        "content" = $3,
-        "tags" = $4,
-        "time" = $5,
-        "status" = $6,
-        "null" = $7
-      WHERE "id" = $8)
+        title = $1,
+        slug = $2,
+        content = $3,
+        tags = $4,
+        time = $5,
+        status = $6,
+        null = $7
+      WHERE id = $8)
     )
 
     args.should eq data.values.to_a.push(42)
@@ -52,16 +52,16 @@ macro def_update_tests(data)
     sql, args = builder.update(:test, data).where("id", 42).build
     count_query
 
-    norm(sql).should eq norm(%(UPDATE "test"
+    norm(sql).should eq norm(%(UPDATE test
       SET
-        "title" = $1,
-        "slug" = $2,
-        "content" = $3,
-        "tags" = $4,
-        "time" = $5,
-        "status" = $6,
-        "null" = $7
-      WHERE "id" = $8)
+        title = $1,
+        slug = $2,
+        content = $3,
+        tags = $4,
+        time = $5,
+        status = $6,
+        null = $7
+      WHERE id = $8)
     )
 
     args.should eq data.values.to_a.push(42)
@@ -70,16 +70,16 @@ macro def_update_tests(data)
     sql, args = builder.table(:test).update(:id, 42, data).build
     count_query
 
-    norm(sql).should eq norm(%(UPDATE "test"
+    norm(sql).should eq norm(%(UPDATE test
       SET
-        "title" = $1,
-        "slug" = $2,
-        "content" = $3,
-        "tags" = $4,
-        "time" = $5,
-        "status" = $6,
-        "null" = $7
-      WHERE "id" = $8)
+        title = $1,
+        slug = $2,
+        content = $3,
+        tags = $4,
+        time = $5,
+        status = $6,
+        null = $7
+      WHERE id = $8)
     )
 
     args.should eq data.values.to_a.push(42)
@@ -92,18 +92,18 @@ describe DBX::QueryBuilder do
     it "find(table_name : OneOrMoreFieldsType)" do
       # One
       query = builder.find(:test1)
-      query.table.should eq %("test1")
+      query.table.should eq "test1"
       sql, args = query.build
       count_query
-      norm(sql).should eq %(SELECT * FROM "test1")
+      norm(sql).should eq %(SELECT * FROM test1)
       args.size.should eq 0
 
       # More
       query = builder.find({:test1, :test2})
-      query.table.should eq %("test1", "test2")
+      query.table.should eq "test1, test2"
       sql, args = query.build
       count_query
-      norm(sql).should eq %(SELECT * FROM "test1", "test2")
+      norm(sql).should eq %(SELECT * FROM test1, test2)
       args.should be_a(DBX::QueryBuilder::ArgsType)
       args.should be_a(Array(DBX::QueryBuilder::DBValue))
       args.size.should eq 0
@@ -124,20 +124,20 @@ describe DBX::QueryBuilder do
   it "delete" do
     sql, args = builder.delete(:test).where(:id, 17).build
     count_query
-    norm(sql).should eq %(DELETE FROM "test" WHERE "id" = $1)
+    norm(sql).should eq %(DELETE FROM test WHERE id = $1)
     args.should eq [17]
 
     # With pk
     sql, args = builder.table(:test).delete(:id, 17).build
     count_query
-    norm(sql).should eq %(DELETE FROM "test" WHERE "id" = $1)
+    norm(sql).should eq %(DELETE FROM test WHERE id = $1)
     args.should eq [17]
   end
 
   it "delete truncate" do
     sql, args = builder.delete(:test).build
     count_query
-    sql.should eq %(TRUNCATE TABLE "test")
+    sql.should eq %(TRUNCATE TABLE test)
     args.size.should eq 0
   end
 

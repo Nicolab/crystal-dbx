@@ -69,7 +69,7 @@ module DBX
     # Example: `field1 = $1, field2 = $2, field3 = $3`
     def add_args_and_kv_from_data(data : NamedTuple | Hash, sep = ", ") : String
       data.join(sep) do |field, value|
-        "#{quote(field)} = #{add_arg(value)}"
+        "#{field} = #{add_arg(value)}"
       end
     end
   end

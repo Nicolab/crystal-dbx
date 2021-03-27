@@ -10,11 +10,11 @@ require "./spec_helper"
 macro def_maintenance_tests(command_sql)
   {% begin %}
     query = builder.table("test").{{command_sql.id}}
-    query.table.should eq %("test")
+    query.table.should eq "test"
     sql, args = query.build
     count_query
     sql.should be_a(String)
-    norm(sql).should eq %({{command_sql.upcase.id}} TABLE "test")
+    norm(sql).should eq %({{command_sql.upcase.id}} TABLE test)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 0
@@ -22,10 +22,10 @@ macro def_maintenance_tests(command_sql)
     # Multi tables
     query = builder.table(["foo", "bar", "baz"]).{{command_sql.id}}
     count_query
-    query.table.should eq %("foo", "bar", "baz")
+    query.table.should eq "foo, bar, baz"
     sql, args = query.build
     sql.should be_a(String)
-    norm(sql).should eq %({{command_sql.upcase.id}} TABLE "foo", "bar", "baz")
+    norm(sql).should eq %({{command_sql.upcase.id}} TABLE foo, bar, baz)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 0

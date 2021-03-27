@@ -130,7 +130,7 @@ module DBX
     private def build_query_insert : String
       raise Error.new "No data to insert" unless data = @data
 
-      "INSERT INTO #{@table} (#{data.join(", ") { |field, _| quote(field) }})" \
+      "INSERT INTO #{@table} (#{data.join(", ") { |field, _| field }})" \
       " VALUES (#{add_args_and_fields_from_data(data)})"
     end
 
@@ -262,7 +262,7 @@ module DBX
     #
     # ```
     # puts builder.query { "
-    #   SELECT * FROM #{q(tests)}
+    #   SELECT * FROM tests
     #   status = #{arg(true)}
     #   AND (
     #     #{q(:date)} <= #{arg(Time.utc - 1.day)}
@@ -276,7 +276,7 @@ module DBX
     #
     # ```text
     # SELECT *
-    # FROM "tests"
+    # FROM tests
     # WHERE status = $1
     # AND ("date" <= $2 OR role = $3)
     # LIMIT 1

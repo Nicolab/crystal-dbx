@@ -25,10 +25,11 @@ describe DBX::QueryBuilder do
     args.should be_a(DBX::QueryBuilder::ArgsType)
 
     norm(sql).should eq norm(
-      %(SELECT "id" AS "UUID", "title" AS "name", "status"
-      FROM "test"
-      WHERE "online" = ? AND "status" = ?
-      ORDER BY "id" DESC LIMIT ? OFFSET ?)
+      %(SELECT id AS UUID, title AS name, status
+      FROM test
+      WHERE online = ? AND status = ?
+      ORDER BY id DESC
+      LIMIT ? OFFSET ?)
     )
   end
 

@@ -61,9 +61,9 @@ describe "DBX::Query executors" do
 
   it "build" do
     if ADAPTER_NAME == :pg
-      expected_sql = %(SELECT * FROM "tests" WHERE "id" = $1 LIMIT $2)
+      expected_sql = %(SELECT * FROM tests WHERE id = $1 LIMIT $2)
     else
-      expected_sql = %(SELECT * FROM "tests" WHERE "id" = ? LIMIT ?)
+      expected_sql = %(SELECT * FROM tests WHERE id = ? LIMIT ?)
     end
 
     sql, args = Test.find(2).limit(1).build

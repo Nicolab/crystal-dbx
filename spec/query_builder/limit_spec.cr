@@ -15,7 +15,7 @@ describe "DBX::QueryBuilder" do
     count_query
     query.limit.should eq "$2"
     sql, args = query.build
-    norm(sql).should eq %(SELECT * FROM "test" WHERE "status" = $1 LIMIT $2 OFFSET $3)
+    norm(sql).should eq %(SELECT * FROM test WHERE status = $1 LIMIT $2 OFFSET $3)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 3
@@ -29,7 +29,7 @@ describe "DBX::QueryBuilder" do
     query.limit.should eq "$2"
     query.offset.should eq ""
     sql, args = query.build
-    norm(sql).should eq %(SELECT * FROM "test" WHERE "status" = $1 LIMIT $2)
+    norm(sql).should eq %(SELECT * FROM test WHERE status = $1 LIMIT $2)
     args.size.should eq 2
     args[0].should eq 1
     args[1].should eq 5
@@ -41,7 +41,7 @@ describe "DBX::QueryBuilder" do
     query.limit.should eq "$2"
     query.offset.should eq "$3"
     sql, args = query.build
-    norm(sql).should eq %(SELECT * FROM "test" WHERE "status" = $1 LIMIT $2 OFFSET $3)
+    norm(sql).should eq %(SELECT * FROM test WHERE status = $1 LIMIT $2 OFFSET $3)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 3
@@ -55,7 +55,7 @@ describe "DBX::QueryBuilder" do
     count_query
     query.offset.should eq "$3"
     sql, args = query.build
-    norm(sql).should eq %(SELECT * FROM "test" WHERE "status" = $1 LIMIT $2 OFFSET $3)
+    norm(sql).should eq %(SELECT * FROM test WHERE status = $1 LIMIT $2 OFFSET $3)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 3
@@ -69,7 +69,7 @@ describe "DBX::QueryBuilder" do
     query.offset.should eq "$2"
     query.limit.should eq ""
     sql, args = query.build
-    norm(sql).should eq %(SELECT * FROM "test" WHERE "status" = $1 OFFSET $2)
+    norm(sql).should eq %(SELECT * FROM test WHERE status = $1 OFFSET $2)
     args.size.should eq 2
     args[0].should eq 1
     args[1].should eq 5
@@ -81,7 +81,7 @@ describe "DBX::QueryBuilder" do
     query.limit.should eq "$2"
     query.offset.should eq "$3"
     sql, args = query.build
-    norm(sql).should eq %(SELECT * FROM "test" WHERE "status" = $1 LIMIT $2 OFFSET $3)
+    norm(sql).should eq %(SELECT * FROM test WHERE status = $1 LIMIT $2 OFFSET $3)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 3
@@ -95,7 +95,7 @@ describe "DBX::QueryBuilder" do
     query.offset.should eq "$2"
     query.limit.should eq "$3"
     sql, args = query.build
-    norm(sql).should eq %(SELECT * FROM "test" WHERE "status" = $1 LIMIT $3 OFFSET $2)
+    norm(sql).should eq %(SELECT * FROM test WHERE status = $1 LIMIT $3 OFFSET $2)
     args.size.should eq 3
     args[0].should eq 1
     args[1].should eq 10
@@ -109,7 +109,7 @@ describe "DBX::QueryBuilder" do
     query.limit.should eq "$1"
     query.offset.should eq "$2"
     sql, args = query.build
-    norm(sql).should eq %(SELECT * FROM "test" LIMIT $1 OFFSET $2)
+    norm(sql).should eq %(SELECT * FROM test LIMIT $1 OFFSET $2)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 2
@@ -122,7 +122,7 @@ describe "DBX::QueryBuilder" do
     query.limit.should eq "$1"
     query.offset.should eq "$2"
     sql, args = query.build
-    norm(sql).should eq %(SELECT * FROM "test" LIMIT $1 OFFSET $2)
+    norm(sql).should eq %(SELECT * FROM test LIMIT $1 OFFSET $2)
     args.should be_a(DBX::QueryBuilder::ArgsType)
     args.should be_a(Array(DBX::QueryBuilder::DBValue))
     args.size.should eq 2

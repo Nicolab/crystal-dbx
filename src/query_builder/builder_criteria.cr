@@ -66,11 +66,8 @@ module DBX
 
     # Targets one or more tables.
     def table(name : OneOrMoreFieldsType) : QueryBuilder
-      @table = if name.is_a?(FieldsType)
-                 name.join(", ") { |_name| quote(_name) }
-               else
-                 quote(name.to_s)
-               end
+      @table = name.is_a?(FieldsType) ? name.join(", ") : name.to_s
+
       self
     end
 
@@ -111,33 +108,21 @@ module DBX
       @table
     end
 
-    private macro _build_selected_field(field)
-      if field.includes?(" AS ")
-        left, right = field.split(" AS ", 2)
-        _fields = "#{_fields} #{quote(left)} AS #{quote(right)}, "
-        next
-      end
-
-      _fields = "#{_fields}#{field == "*" ? field : quote(field)}, "
-    end
-
     # Used by `select` and by `returning`.
     private def _build_selected_fields(fields : OneOrMoreFieldsType) : String
       _fields = ""
 
       if fields.is_a?(String)
         fields.split(",").each { |field|
-          field = field.strip
-          _build_selected_field(field)
+          _fields = "#{_fields}#{field.strip}, "
         }
       elsif fields.is_a?(FieldsType)
         _fields = ""
         fields.each { |field|
-          field = field.to_s
-          _build_selected_field(field)
+          _fields = "#{_fields}#{field}, "
         }
       else
-        _fields = quote(fields.to_s)
+        _fields = fields.to_s
       end
 
       if without_last_comma = _fields.rchop?(", ")
@@ -172,7 +157,7 @@ module DBX
       # Adds `{{method.upcase.id}}` to the current query.
       def {{method.id}}(field : FieldType, name = nil) : QueryBuilder
         {{method.id}} = "{{method.upcase.id}}(#{field})"
-        {{method.id}} += " AS #{quote(name)}" if !name.nil?
+        {{method.id}} += " AS #{name}" unless name.nil?
         @select = @select.compare("*") == 0 ? {{method.id}} : "#{@select}, #{{{method.id}}}"
         self
       end
@@ -185,9 +170,9 @@ module DBX
       type = ""
     ) : QueryBuilder
       @join += if field2.nil?
-                 " #{type} JOIN #{quote(table)} ON #{quote(field1)}"
+                 " #{type} JOIN #{table} ON #{field1}"
                else
-                 " #{type} JOIN #{quote(table)} ON #{quote(field1)} = #{quote(field2)}"
+                 " #{type} JOIN #{table} ON #{field1} = #{field2}"
                end
       self
     end
@@ -238,9 +223,9 @@ module DBX
     # Where clause.
     def where(field : FieldType, op_or_val, value = nil, type = "", and_or = "AND") : QueryBuilder
       where = if @operators.includes?(op_or_val.to_s)
-                " #{type}#{quote(field)} #{op_or_val} #{add_arg(value)}"
+                " #{type}#{field} #{op_or_val} #{add_arg(value)}"
               else
-                " #{type}#{quote(field)} = #{add_arg(op_or_val)}"
+                " #{type}#{field} = #{add_arg(op_or_val)}"
               end
 
       @where += @where.empty? ? where : " #{and_or}#{where}"
@@ -266,7 +251,7 @@ module DBX
     #
     # ```text
     # SELECT *
-    # FROM "tests"
+    # FROM tests
     # WHERE status = $1
     # AND ("date" <= $2 OR role = $3)
     # ```
@@ -291,9 +276,9 @@ module DBX
       keys = [] of String
       values.each { |val| keys << add_arg(val) }
       @where += if @where.empty?
-                  "#{quote(field)} #{type}IN (#{keys.join(", ")})"
+                  "#{field} #{type}IN (#{keys.join(", ")})"
                 else
-                  " #{and_or} #{quote(field)} #{type}IN (#{keys.join(", ")})"
+                  " #{and_or} #{field} #{type}IN (#{keys.join(", ")})"
                 end
       self
     end
@@ -315,9 +300,9 @@ module DBX
 
     def between(field : FieldType, value1, value2, type = "", and_or = "AND") : QueryBuilder
       @where += if @where.empty?
-                  "#{quote(field)} #{type}BETWEEN #{add_arg(value1)} AND #{add_arg(value2)}"
+                  "#{field} #{type}BETWEEN #{add_arg(value1)} AND #{add_arg(value2)}"
                 else
-                  " #{and_or} #{quote(field)} #{type}BETWEEN #{add_arg(value1)} AND #{add_arg(value2)}"
+                  " #{and_or} #{field} #{type}BETWEEN #{add_arg(value1)} AND #{add_arg(value2)}"
                 end
       self
     end
@@ -336,9 +321,9 @@ module DBX
 
     def like(field : FieldType, value, type = "", and_or = "AND") : QueryBuilder
       @where += if @where.empty?
-                  "#{quote(field)} #{type}LIKE #{add_arg(value)}"
+                  "#{field} #{type}LIKE #{add_arg(value)}"
                 else
-                  " #{and_or} #{quote(field)} #{type}LIKE #{add_arg(value)}"
+                  " #{and_or} #{field} #{type}LIKE #{add_arg(value)}"
                 end
       self
     end
@@ -399,9 +384,9 @@ module DBX
     def order_by(field : FieldType, dir = nil) : QueryBuilder
       field = field.to_s
       order_by = if dir.nil?
-                   (field.includes?(" ") || field == "rand()") ? field : "#{quote(field)} ASC"
+                   (field.includes?(" ") || field == "rand()") ? field : "#{field} ASC"
                  else
-                   "#{quote(field)} #{dir.to_s.upcase}"
+                   "#{field} #{dir.to_s.upcase}"
                  end
 
       @order_by += @order_by.empty? ? order_by : ", #{order_by}"
@@ -409,11 +394,8 @@ module DBX
     end
 
     def group_by(field : OneOrMoreFieldsType) : QueryBuilder
-      @group_by = if field.is_a?(FieldsType)
-                    field.join(", ") { |name| quote(name) }
-                  else
-                    quote(field)
-                  end
+      @group_by = field.is_a?(FieldsType) ? field.join(", ") : field.to_s
+
       self
     end
 
@@ -438,7 +420,7 @@ module DBX
     # Generates:
     #
     # ```
-    # SELECT * FROM "tests" GROUP_BY "payment" HAVING SUM(person) > 40
+    # SELECT * FROM "tests" GROUP_BY payment HAVING SUM(person) > 40
     # ```
     def having(&block) : QueryBuilder
       @having = with QueryBuilderScope.new(self) yield
