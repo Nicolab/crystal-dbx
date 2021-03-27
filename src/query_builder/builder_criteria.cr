@@ -420,7 +420,7 @@ module DBX
     # Generates:
     #
     # ```
-    # SELECT * FROM "tests" GROUP_BY payment HAVING SUM(person) > 40
+    # SELECT * FROM tests GROUP_BY payment HAVING SUM(person) > 40
     # ```
     def having(&block) : QueryBuilder
       @having = with QueryBuilderScope.new(self) yield

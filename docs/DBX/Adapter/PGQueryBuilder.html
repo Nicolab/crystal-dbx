@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="master-dev">
+<meta name="crystal_docs.project_name" content="dbx">
+
+
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="dbx">
+  <title>DBX::Adapter::PGQueryBuilder - dbx master-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../../index.html">
+          dbx
+        </a>
+      </h1>
+
+      <span class="project-version">
+        master-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="dbx/DBX" data-name="dbx">
+      <a href="../../DBX.html">DBX</a>
+      
+        <ul>
+  
+  <li class="parent open current" data-id="dbx/DBX/Adapter" data-name="dbx::adapter">
+      <a href="../../DBX/Adapter.html">Adapter</a>
+      
+        <ul>
+  
+  <li class=" " data-id="dbx/DBX/Adapter/Base" data-name="dbx::adapter::base">
+      <a href="../../DBX/Adapter/Base.html">Base</a>
+      
+    </li>
+  
+  <li class=" current" data-id="dbx/DBX/Adapter/PGQueryBuilder" data-name="dbx::adapter::pgquerybuilder">
+      <a href="../../DBX/Adapter/PGQueryBuilder.html">PGQueryBuilder</a>
+      
+    </li>
+  
+  <li class="parent " data-id="dbx/DBX/Adapter/PostgreSQL" data-name="dbx::adapter::postgresql">
+      <a href="../../DBX/Adapter/PostgreSQL.html">PostgreSQL</a>
+      
+        <ul>
+  
+  <li class=" " data-id="dbx/DBX/Adapter/PostgreSQL/QueryBuilder" data-name="dbx::adapter::postgresql::querybuilder">
+      <a href="../../DBX/Adapter/PostgreSQL/QueryBuilder.html">QueryBuilder</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="dbx/DBX/Adapter/SQLite" data-name="dbx::adapter::sqlite">
+      <a href="../../DBX/Adapter/SQLite.html">SQLite</a>
+      
+        <ul>
+  
+  <li class=" " data-id="dbx/DBX/Adapter/SQLite/QueryBuilder" data-name="dbx::adapter::sqlite::querybuilder">
+      <a href="../../DBX/Adapter/SQLite/QueryBuilder.html">QueryBuilder</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/Adapter/SQLiteQueryBuilder" data-name="dbx::adapter::sqlitequerybuilder">
+      <a href="../../DBX/Adapter/SQLiteQueryBuilder.html">SQLiteQueryBuilder</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/DBHashType" data-name="dbx::dbhashtype">
+      <a href="../../DBX/DBHashType.html">DBHashType</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/Error" data-name="dbx::error">
+      <a href="../../DBX/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/NotSupportedError" data-name="dbx::notsupportederror">
+      <a href="../../DBX/NotSupportedError.html">NotSupportedError</a>
+      
+    </li>
+  
+  <li class="parent " data-id="dbx/DBX/ORM" data-name="dbx::orm">
+      <a href="../../DBX/ORM.html">ORM</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="dbx/DBX/ORM/Model" data-name="dbx::orm::model">
+      <a href="../../DBX/ORM/Model.html">Model</a>
+      
+        <ul>
+  
+  <li class=" " data-id="dbx/DBX/ORM/Model/Error" data-name="dbx::orm::model::error">
+      <a href="../../DBX/ORM/Model/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/Model/Schema" data-name="dbx::orm::model::schema">
+      <a href="../../DBX/ORM/Model/Schema.html">Schema</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/ModelMixin" data-name="dbx::orm::modelmixin(model, modelquery)">
+      <a href="../../DBX/ORM/ModelMixin.html">ModelMixin</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/ModelQuery" data-name="dbx::orm::modelquery(model)">
+      <a href="../../DBX/ORM/ModelQuery.html">ModelQuery</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/Query" data-name="dbx::query">
+      <a href="../../DBX/Query.html">Query</a>
+      
+    </li>
+  
+  <li class="parent " data-id="dbx/DBX/QueryBuilder" data-name="dbx::querybuilder">
+      <a href="../../DBX/QueryBuilder.html">QueryBuilder</a>
+      
+        <ul>
+  
+  <li class=" " data-id="dbx/DBX/QueryBuilder/ArgsType" data-name="dbx::querybuilder::argstype">
+      <a href="../../DBX/QueryBuilder/ArgsType.html">ArgsType</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/QueryBuilder/DataHashType" data-name="dbx::querybuilder::datahashtype">
+      <a href="../../DBX/QueryBuilder/DataHashType.html">DataHashType</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/QueryBuilder/DBValue" data-name="dbx::querybuilder::dbvalue">
+      <a href="../../DBX/QueryBuilder/DBValue.html">DBValue</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/QueryBuilder/FieldsType" data-name="dbx::querybuilder::fieldstype">
+      <a href="../../DBX/QueryBuilder/FieldsType.html">FieldsType</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/QueryBuilder/FieldType" data-name="dbx::querybuilder::fieldtype">
+      <a href="../../DBX/QueryBuilder/FieldType.html">FieldType</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/QueryBuilder/OneOrMoreFieldsType" data-name="dbx::querybuilder::oneormorefieldstype">
+      <a href="../../DBX/QueryBuilder/OneOrMoreFieldsType.html">OneOrMoreFieldsType</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/QueryBuilder/SQLandArgsType" data-name="dbx::querybuilder::sqlandargstype">
+      <a href="../../DBX/QueryBuilder/SQLandArgsType.html">SQLandArgsType</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="dbx/DBX/QueryBuilderScope" data-name="dbx::querybuilderscope">
+      <a href="../../DBX/QueryBuilderScope.html">QueryBuilderScope</a>
+      
+        <ul>
+  
+  <li class=" " data-id="dbx/DBX/QueryBuilderScope/FieldType" data-name="dbx::querybuilderscope::fieldtype">
+      <a href="../../DBX/QueryBuilderScope/FieldType.html">FieldType</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> DBX::Adapter::PGQueryBuilder
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../DBX/Adapter/PGQueryBuilder.html">DBX::Adapter::PGQueryBuilder</a></li><li class="superclass"><a href="../../DBX/QueryBuilder.html">DBX::QueryBuilder</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p><code><a href="../../DBX/QueryBuilder.html">QueryBuilder</a></code> for PostgreSQL.
+:inherit:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      adapter/pg.cr
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="QUOTE">
+        <strong>QUOTE</strong> = <code><span class="s">&#39;&quot;&#39;</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#ph(position:Int)-instance-method" class="signature"><strong>#ph</strong>(position : Int)</a>
+        
+          <div class="summary"><p>Adds placeholder specific to PostgreSQL.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from class <code><a href="../../DBX/QueryBuilder.html">DBX::QueryBuilder</a></code></h3>
+  
+  
+    <a href="../../DBX/QueryBuilder.html#add_arg(value):String-instance-method" class="tooltip">
+      <span>add_arg(value) : String</span>
+    add_arg</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#add_args_and_fields_from_data(data:NamedTuple%7CHash,sep=&quot;,&quot;):String-instance-method" class="tooltip">
+      <span>add_args_and_fields_from_data(data : NamedTuple | Hash, sep = <span class="s">&quot;, &quot;</span>) : String<br/>add_args_and_fields_from_data(data : Array, sep = <span class="s">&quot;, &quot;</span>) : String</span>
+    add_args_and_fields_from_data</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#add_args_and_kv_from_data(data:NamedTuple%7CHash,sep=&quot;,&quot;):String-instance-method" class="tooltip">
+      <span>add_args_and_kv_from_data(data : NamedTuple | Hash, sep = <span class="s">&quot;, &quot;</span>) : String</span>
+    add_args_and_kv_from_data</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#alter(table:OneOrMoreFieldsType,command:String,field:String,data_type=&quot;&quot;):QueryBuilder-instance-method" class="tooltip">
+      <span>alter(table : OneOrMoreFieldsType, command : String, field : String, data_type = <span class="s">&quot;&quot;</span>) : QueryBuilder<br/>alter(command : String, field : String, data_type = <span class="s">&quot;&quot;</span>) : QueryBuilder</span>
+    alter</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#analyze(table:OneOrMoreFieldsType):QueryBuilder-instance-method" class="tooltip">
+      <span>analyze(table : OneOrMoreFieldsType) : QueryBuilder<br/>analyze : QueryBuilder</span>
+    analyze</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#avg(field:FieldType,name=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>avg(field : FieldType, name = <span class="n">nil</span>) : QueryBuilder</span>
+    avg</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#between(field:FieldType,value1,value2,type=&quot;&quot;,and_or=&quot;AND&quot;):QueryBuilder-instance-method" class="tooltip">
+      <span>between(field : FieldType, value1, value2, type = <span class="s">&quot;&quot;</span>, and_or = <span class="s">&quot;AND&quot;</span>) : QueryBuilder</span>
+    between</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#build:SQLandArgsType-instance-method" class="tooltip">
+      <span>build : SQLandArgsType</span>
+    build</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#check:QueryBuilder-instance-method" class="tooltip">
+      <span>check : QueryBuilder<br/>check(table : OneOrMoreFieldsType) : QueryBuilder</span>
+    check</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#checksum:QueryBuilder-instance-method" class="tooltip">
+      <span>checksum : QueryBuilder<br/>checksum(table : OneOrMoreFieldsType) : QueryBuilder</span>
+    checksum</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#count(field:FieldType,name=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>count(field : FieldType, name = <span class="n">nil</span>) : QueryBuilder</span>
+    count</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#delete:QueryBuilder-instance-method" class="tooltip">
+      <span>delete : QueryBuilder<br/>delete(table : OneOrMoreFieldsType) : QueryBuilder<br/>delete(pk_name, pk_value) : QueryBuilder</span>
+    delete</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#drop(table:OneOrMoreFieldsType,check_exists=true):QueryBuilder-instance-method" class="tooltip">
+      <span>drop(table : OneOrMoreFieldsType, check_exists = <span class="n">true</span>) : QueryBuilder<br/>drop(check_exists = <span class="n">true</span>) : QueryBuilder</span>
+    drop</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#find(pk_name,pk_value):QueryBuilder-instance-method" class="tooltip">
+      <span>find(pk_name, pk_value) : QueryBuilder<br/>find : QueryBuilder<br/>find(&) : QueryBuilder<br/>find(table_name : OneOrMoreFieldsType) : QueryBuilder</span>
+    find</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#full_join(table:FieldType,field1:FieldType,field2:FieldType?=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>full_join(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>) : QueryBuilder</span>
+    full_join</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#full_outer_join(table:FieldType,field1:FieldType,field2:FieldType?=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>full_outer_join(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>) : QueryBuilder</span>
+    full_outer_join</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#group_by(field:OneOrMoreFieldsType):QueryBuilder-instance-method" class="tooltip">
+      <span>group_by(field : OneOrMoreFieldsType) : QueryBuilder</span>
+    group_by</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#having(&):QueryBuilder-instance-method" class="tooltip">
+      <span>having(&) : QueryBuilder<br/>having(field : FieldType, op_or_val, value = <span class="n">nil</span>) : QueryBuilder</span>
+    having</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#in(field:FieldType,values:Array%7CTuple,type=&quot;&quot;,and_or=&quot;AND&quot;):QueryBuilder-instance-method" class="tooltip">
+      <span>in(field : FieldType, values : Array | Tuple, type = <span class="s">&quot;&quot;</span>, and_or = <span class="s">&quot;AND&quot;</span>) : QueryBuilder</span>
+    in</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#inner_join(table:FieldType,field1:FieldType,field2:FieldType?=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>inner_join(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>) : QueryBuilder</span>
+    inner_join</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#insert(data:Hash%7CNamedTuple):QueryBuilder-instance-method" class="tooltip">
+      <span>insert(data : Hash | NamedTuple) : QueryBuilder<br/>insert(table : OneOrMoreFieldsType, data : Hash | NamedTuple) : QueryBuilder</span>
+    insert</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#join(table:FieldType,field1:FieldType,field2:FieldType?=nil,type=&quot;&quot;):QueryBuilder-instance-method" class="tooltip">
+      <span>join(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>, type = <span class="s">&quot;&quot;</span>) : QueryBuilder<br/>join(&) : QueryBuilder<br/>join : String</span>
+    join</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#last_query:String-instance-method" class="tooltip">
+      <span>last_query : String</span>
+    last_query</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#last_query_method:Symbol?-instance-method" class="tooltip">
+      <span>last_query_method : Symbol?</span>
+    last_query_method</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#left_join(table:FieldType,field1:FieldType,field2:FieldType?=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>left_join(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>) : QueryBuilder</span>
+    left_join</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#left_outer_join(table:FieldType,field1:FieldType,field2:FieldType?=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>left_outer_join(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>) : QueryBuilder</span>
+    left_outer_join</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#like(field:FieldType,value,type=&quot;&quot;,and_or=&quot;AND&quot;):QueryBuilder-instance-method" class="tooltip">
+      <span>like(field : FieldType, value, type = <span class="s">&quot;&quot;</span>, and_or = <span class="s">&quot;AND&quot;</span>) : QueryBuilder</span>
+    like</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#limit:String-instance-method" class="tooltip">
+      <span>limit : String<br/>limit(limit, limit_end = <span class="n">nil</span>) : QueryBuilder</span>
+    limit</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#max(field:FieldType,name=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>max(field : FieldType, name = <span class="n">nil</span>) : QueryBuilder</span>
+    max</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#min(field:FieldType,name=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>min(field : FieldType, name = <span class="n">nil</span>) : QueryBuilder</span>
+    min</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#not_between(field:FieldType,value1,value2):QueryBuilder-instance-method" class="tooltip">
+      <span>not_between(field : FieldType, value1, value2) : QueryBuilder</span>
+    not_between</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#not_in(field:FieldType,values:Array%7CTuple):QueryBuilder-instance-method" class="tooltip">
+      <span>not_in(field : FieldType, values : Array | Tuple) : QueryBuilder</span>
+    not_in</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#not_like(field:FieldType,value):QueryBuilder-instance-method" class="tooltip">
+      <span>not_like(field : FieldType, value) : QueryBuilder</span>
+    not_like</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#not_where(field:FieldType,op_or_val,value=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>not_where(field : FieldType, op_or_val, value = <span class="n">nil</span>) : QueryBuilder</span>
+    not_where</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#offset(offset):QueryBuilder-instance-method" class="tooltip">
+      <span>offset(offset) : QueryBuilder<br/>offset : String</span>
+    offset</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#optimize(table:OneOrMoreFieldsType):QueryBuilder-instance-method" class="tooltip">
+      <span>optimize(table : OneOrMoreFieldsType) : QueryBuilder<br/>optimize : QueryBuilder</span>
+    optimize</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#or_between(field:FieldType,value1,value2):QueryBuilder-instance-method" class="tooltip">
+      <span>or_between(field : FieldType, value1, value2) : QueryBuilder</span>
+    or_between</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#or_in(field:FieldType,values:Array%7CTuple):QueryBuilder-instance-method" class="tooltip">
+      <span>or_in(field : FieldType, values : Array | Tuple) : QueryBuilder</span>
+    or_in</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#or_like(field:FieldType,value):QueryBuilder-instance-method" class="tooltip">
+      <span>or_like(field : FieldType, value) : QueryBuilder</span>
+    or_like</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#or_not_between(field:FieldType,value1,value2):QueryBuilder-instance-method" class="tooltip">
+      <span>or_not_between(field : FieldType, value1, value2) : QueryBuilder</span>
+    or_not_between</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#or_not_in(field:FieldType,values:Array%7CTuple):QueryBuilder-instance-method" class="tooltip">
+      <span>or_not_in(field : FieldType, values : Array | Tuple) : QueryBuilder</span>
+    or_not_in</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#or_not_like(field:FieldType,value):QueryBuilder-instance-method" class="tooltip">
+      <span>or_not_like(field : FieldType, value) : QueryBuilder</span>
+    or_not_like</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#or_not_where(field:FieldType,op_or_val,value=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>or_not_where(field : FieldType, op_or_val, value = <span class="n">nil</span>) : QueryBuilder</span>
+    or_not_where</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#or_where(field:FieldType,op_or_val,value=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>or_where(field : FieldType, op_or_val, value = <span class="n">nil</span>) : QueryBuilder</span>
+    or_where</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#order_by(field:FieldType,dir=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>order_by(field : FieldType, dir = <span class="n">nil</span>) : QueryBuilder</span>
+    order_by</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#paginate(per_page,page):QueryBuilder-instance-method" class="tooltip">
+      <span>paginate(per_page, page) : QueryBuilder</span>
+    paginate</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#ph(position:Int):String-instance-method" class="tooltip">
+      <span>ph(position : Int) : String</span>
+    ph</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#query(&):QueryBuilder-instance-method" class="tooltip">
+      <span>query(&) : QueryBuilder</span>
+    query</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#query_count:Int-instance-method" class="tooltip">
+      <span>query_count : Int</span>
+    query_count</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#query_method:Symbol?-instance-method" class="tooltip">
+      <span>query_method : Symbol?</span>
+    query_method</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#quote(field:FieldType):String-instance-method" class="tooltip">
+      <span>quote(field : FieldType) : String</span>
+    quote</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#repair:QueryBuilder-instance-method" class="tooltip">
+      <span>repair : QueryBuilder<br/>repair(table : OneOrMoreFieldsType) : QueryBuilder</span>
+    repair</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#reset_query-instance-method" class="tooltip">
+      <span>reset_query</span>
+    reset_query</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#returning(*name:FieldType):QueryBuilder-instance-method" class="tooltip">
+      <span>returning(*name : FieldType) : QueryBuilder<br/>returning : String?<br/>returning(fields : OneOrMoreFieldsType) : QueryBuilder</span>
+    returning</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#right_join(table:FieldType,field1:FieldType,field2:FieldType?=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>right_join(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>) : QueryBuilder</span>
+    right_join</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#right_outer_join(table:FieldType,field1:FieldType,field2:FieldType?=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>right_outer_join(table : FieldType, field1 : FieldType, field2 : FieldType? = <span class="n">nil</span>) : QueryBuilder</span>
+    right_outer_join</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#select(fields:OneOrMoreFieldsType):QueryBuilder-instance-method" class="tooltip">
+      <span>select(fields : OneOrMoreFieldsType) : QueryBuilder<br/>select : String<br/>select(*name : FieldType) : QueryBuilder</span>
+    select</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#sum(field:FieldType,name=nil):QueryBuilder-instance-method" class="tooltip">
+      <span>sum(field : FieldType, name = <span class="n">nil</span>) : QueryBuilder</span>
+    sum</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#table(&):QueryBuilder-instance-method" class="tooltip">
+      <span>table(&) : QueryBuilder<br/>table(*name : FieldType) : QueryBuilder<br/>table : String<br/>table(name : OneOrMoreFieldsType) : QueryBuilder</span>
+    table</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#to_data_h(data:Hash%7CNamedTuple):DataHashType-instance-method" class="tooltip">
+      <span>to_data_h(data : Hash | NamedTuple) : DataHashType</span>
+    to_data_h</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#update(data:Hash%7CNamedTuple):QueryBuilder-instance-method" class="tooltip">
+      <span>update(data : Hash | NamedTuple) : QueryBuilder<br/>update(table : OneOrMoreFieldsType, data : Hash | NamedTuple) : QueryBuilder<br/>update(pk_name, pk_value, data : Hash | NamedTuple) : QueryBuilder</span>
+    update</a>, 
+    
+  
+    <a href="../../DBX/QueryBuilder.html#where(field:FieldType,op_or_val,value=nil,type=&quot;&quot;,and_or=&quot;AND&quot;):QueryBuilder-instance-method" class="tooltip">
+      <span>where(field : FieldType, op_or_val, value = <span class="n">nil</span>, type = <span class="s">&quot;&quot;</span>, and_or = <span class="s">&quot;AND&quot;</span>) : QueryBuilder<br/>where(&) : QueryBuilder</span>
+    where</a>
+    
+  
+
+
+    
+
+  <h3>Constructor methods inherited from class <code><a href="../../DBX/QueryBuilder.html">DBX::QueryBuilder</a></code></h3>
+  
+  
+    <a href="../../DBX/QueryBuilder.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>
+    
+  
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="ph(position:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>ph</strong>(position : Int)
+
+        <a class="method-permalink" href="#ph(position:Int)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Adds placeholder specific to PostgreSQL.
+Adds placeholder for a SQL argument.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
