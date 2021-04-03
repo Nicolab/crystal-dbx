@@ -10,6 +10,10 @@ targets:
   dbx:
     main: src/app.cr
 
+crystalline:
+  pg: spec/adapter/pg_spec.cr
+  sqlite: spec/adapter/sqlite_spec.cr
+
 dependencies:
   db:
     github: crystal-lang/crystal-db
@@ -34,3 +38,6 @@ development_dependencies:
   sqlite3:
     github: crystal-lang/crystal-sqlite3
     version: ~> 0.18.0
+  mg:
+   github: hkalexling/mg
+  #  version: ~> 0.4.0

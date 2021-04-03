@@ -42,8 +42,8 @@ module DBX::Adapter
       unless query.builder.query_method.nil?
         raise DBX::Error.new(
           %("create" method MUST not be composed. \
-          Uses "create" only, without other statement except the table. \
-          "Test.create" ou "query.table(:tests).create".))
+          Uses "create!" only, without other statement except the table. \
+          "Test.create!" ou "query.table(:tests).create".))
       end
 
       # work around, double quote (around table name)

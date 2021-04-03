@@ -18,18 +18,14 @@ class User < DBX::ORM::Model
 
   # DB table schema
   class Schema
-    include DB::Serializable
-    include JSON::Serializable
-    include JSON::Serializable::Unmapped
-
-    property id : Int64?
-    property name : String
-    property about : String
-    property age : Int32
+    field id : Int64?
+    field name : String
+    field about : String
+    field age : Int32
   end
 
-  class ModelQuery < DBX::ORM::ModelQuery(Test)
-    def select_all
+  class ModelQuery < DBX::ORM::ModelQuery
+    def select_custom
       self.select({:id, :name, :about, :age})
     end
   end

@@ -14,15 +14,11 @@ module DBX::ORM
   # class User < DBX::ORM::Model
   #   adapter :pg
   #
-  #   class Schema
-  #     include DB::Serializable
-  #     include JSON::Serializable
-  #     include JSON::Serializable::Unmapped
-  #
-  #     property id : Int64?
-  #     property name : String
-  #     property about : String
-  #     property age : Int32
+  #   class Schema # < DBX::ORM::Schema#(User)
+  #     field id : Int64?
+  #     field name : String
+  #     field about : String
+  #     field age : Int32
   #   end
   # end
   # ```
@@ -34,21 +30,20 @@ module DBX::ORM
   #   # ...
   #
   #   class ModelQuery < DBX::ORM::ModelQuery(User)
-  #     # By default `SELECT` value is `*`,
-  #     # this method select all fields explicitly.
-  #     def select_all
+  #     # Custom select
+  #     def select_custom
   #       self.select({:id, :name, :about, :age})
   #     end
   #   end
   # end
   # ```
   #
-  # In the model example above, we have added a new method (`select_all`) to `ModelQuery',
+  # In the model example above, we have added a new method (`select_custom`) to `ModelQuery',
   # which can be used in each query.
   #
   # ```
-  # user = User.find(id).select_all.to_o
-  # users = User.find.select_all.to_a
+  # user = User.find(id).select_custom.to_o
+  # users = User.find.select_custom.to_a
   # ```
   abstract class Model
     @@adapter : DBX::Adapter::Base?
@@ -56,25 +51,6 @@ module DBX::ORM
 
     # Model error.
     class Error < DBX::Error; end
-
-    # `Model` Schema.
-    class Schema
-      # Always returns this record's primary key value, even when the primary key
-      # isn't named `pk`.
-      @[DB::Field(ignore: true)]
-      @[JSON::Field(ignore: true)]
-      def pk!
-        self.pk.not_nil!
-      end
-
-      # Same as `pk` but may return `nil` when the record hasn't been saved
-      # instead of raising.
-      @[DB::Field(ignore: true)]
-      @[JSON::Field(ignore: true)]
-      def pk
-        self.id
-      end
-    end
 
     # Defines adapter class to use with this model.
     # *name* MUST be `pg` or `SQLite` (case-insensitive) as a `Symbol` or `String`.
@@ -166,8 +142,16 @@ module DBX::ORM
         @@fk_name = "#{self.table_name.to_s.rchop('s')}_id"
       end
 
+      # Returns the `Schema` class used by this model.
+      def self.schema_class
+        Schema
+      end
+
       # `DBX::Query` specific to `Model`.
       class ModelQuery < DBX::ORM::ModelQuery({{@type.name.id}})
+      end
+
+      class Schema < DBX::ORM::Schema
       end
 
       # MUST be placed after ModelQuery class

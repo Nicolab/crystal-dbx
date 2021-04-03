@@ -50,8 +50,12 @@ describe "DBX::Query executors" do
     Test.update({name: "test_update"}).where(:name, test.name).exec!
       .rows_affected.should eq 1
 
-    # Tests custom method (select_all)
-    Test.find.select_all.where(:name, "test_update").to_o!.id.should be_a(Int64)
+    # Tests custom method (select_custom)
+    norm(Test.find.select_custom.where(:name, "test_update").build.first).starts_with?(
+      "SELECT name, age, about, id FROM tests WHERE name ="
+    ).should be_true
+
+    Test.find.select_custom.where(:name, "test_update").to_o!.id.should be_a(Int64)
 
     Test.delete.where(:name, "test_update").exec!
       .rows_affected.should eq 1
@@ -61,9 +65,9 @@ describe "DBX::Query executors" do
 
   it "build" do
     if ADAPTER_NAME == :pg
-      expected_sql = %(SELECT * FROM tests WHERE id = $1 LIMIT $2)
+      expected_sql = %(SELECT * FROM tests WHERE tests.id = $1 LIMIT $2)
     else
-      expected_sql = %(SELECT * FROM tests WHERE id = ? LIMIT ?)
+      expected_sql = %(SELECT * FROM tests WHERE tests.id = ? LIMIT ?)
     end
 
     sql, args = Test.find(2).limit(1).build
@@ -141,6 +145,38 @@ describe "DBX::Query executors" do
     it "find(pk_value)" do
       expected = Test.find.to_a.first
       test = Test.find(expected.id).to_o!
+      test.should be_a Test::Schema
+      test.id.should eq expected.id
+      test.name.should eq expected.name
+      test.age.should eq expected.age
+      test.about.should eq expected.about
+    end
+
+    it "select_all" do
+      if ADAPTER_NAME == :pg
+        expected_where = %(WHERE tests.id = $1)
+      else
+        expected_where = %(WHERE tests.id = ?)
+      end
+
+      expected_sql = %(SELECT tests.id, tests.name, tests.about, tests.age FROM tests)
+      expected = Test.find.to_a.first
+
+      norm(Test.find.select_all.build.first).should eq norm(expected_sql)
+
+      test = Test.find.select_all.to_o!
+      test.should be_a Test::Schema
+      test.id.should eq expected.id
+      test.name.should eq expected.name
+      test.age.should eq expected.age
+      test.about.should eq expected.about
+
+      # -- by pk
+      norm(Test.find(expected.id).select_all.build.first).should eq(
+        norm("#{expected_sql} #{expected_where}")
+      )
+
+      test = Test.find(expected.id).select_all.to_o!
       test.should be_a Test::Schema
       test.id.should eq expected.id
       test.name.should eq expected.name

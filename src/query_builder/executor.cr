@@ -237,11 +237,19 @@ module DBX
 
     macro method_missing(call)
       {% begin %}
-        # See `DBX::QueryBuilder#{{call.name}}` method.
-        def {{call.name.id}}({{call.args.splat}}) : DBX::Query
-          @builder.{{call.name.id}}({{call.args.splat}})
-          self
-        end
+        {% if block = call.block %}
+          # See `DBX::QueryBuilder#{{call.name}}(&block` method.
+          def {{call.name.id}}({{call.args.splat}}) : DBX::Query
+            @builder.{{call.name.id}}({{call.args.splat}}) {{ block }}
+            self
+          end
+        {% else %}
+          # See `DBX::QueryBuilder#{{call.name}}` method.
+          def {{call.name.id}}({{call.args.splat}}) : DBX::Query
+            @builder.{{call.name.id}}({{call.args.splat}})
+            self
+          end
+        {% end %}
       {% end %}
     end
   end

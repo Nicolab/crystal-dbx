@@ -2,4 +2,4 @@
 
 # Prepare container(s) and install shards
 docker-compose build \
-  && ./scripts/run "shards install"
+  && ./scripts/run "shards install --ignore-crystal-version"

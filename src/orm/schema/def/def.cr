@@ -5,15 +5,5 @@
 # information and documentation: https://github.com/Nicolab/crystal-dbx
 # ------------------------------------------------------------------------------
 
-require "json"
-require "uuid"
-require "../adapter"
-require "../query_builder"
-require "./schema"
-require "./model_query"
-require "./model_mixin"
-require "./model"
-
-# DBX ORM (Object-Relational Mapping).
-module DBX::ORM
-end
+require "./field"
+require "./relation"

@@ -12,23 +12,20 @@ class Post < DBX::ORM::Model
 
   # DB table schema
   class Schema
-    include DB::Serializable
-    include JSON::Serializable
-    include JSON::Serializable::Unmapped
+    field id : Int64?
+    field title : String
+    field content : String
 
-    property id : Int64?
-    property title : String
-    property content : String
+    relation comments : Array(Comment)
   end
 
   # Custom (optional)
-  class ModelQuery < DBX::ORM::ModelQuery(Test)
+  class ModelQuery < DBX::ORM::ModelQuery
     def with_comments
-      self.join do
-        "LEFT JOIN #{Comment.table_name} AS c ON c.#{Post.fk_name} = #{Post.pk_name}"
-      end
-
-      # or self.left_join(Comment.table_name, ...)
+      self.rel("comments").left_join("comments", "comments.post_id", "posts.id")
+      # Or self.join { "LEFT JOIN comments ON comments.post_id = posts.id" }
+      # Or agnostic of changes:
+      # .left_join("#{Comment.table_name} AS c", "c.#{Comment}.#{Post.fk_name}", "#{Post.table_name}.#{Post.pk_name}")
     end
   end
 end

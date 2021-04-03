@@ -21,7 +21,7 @@ module DBX::ORM
 
     # Find one resource by its primary key.
     def find(pk_value) : ModelQuery
-      query.find(Model.pk_name, pk_value)
+      query.find("#{self.table_name}.#{Model.pk_name}", pk_value)
     end
 
     # Inserts a new resource.

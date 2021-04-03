@@ -35,14 +35,12 @@ require "db"
 #
 # ```
 # class User
-#   include JSON::Serializable
-#   include DB::Serializable
-#   include DB::Serializable::NonStrict
+#   include DBX::ORM::DSL
 #
-#   property lang : String
+#   field lang : String
 #
 #   @[JSON::Field(key: "firstName")]
-#   property first_name : String?
+#   field first_name : String?
 # end
 #
 # db = DBX.open "app", App.cfg.db_uri

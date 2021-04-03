@@ -5,70 +5,72 @@
 # information and documentation: https://github.com/Nicolab/crystal-dbx
 # ------------------------------------------------------------------------------
 
-require "../../spec_helper"
-require "../../../src/orm"
+require "mg"
+require "./*"
 
-class Test2 < DBX::ORM::Model
+MIG = MG::Migration.new db_open
+
+# Migrates to the latest version
+# MIG.migrate
+
+class User < DBX::ORM::Model
   # For generic tests adapters
   {% if ADAPTER_NAME == :pg %}adapter :pg{% end %}
   {% if ADAPTER_NAME == :sqlite %}adapter :sqlite{% end %}
 
-  table :tests
-  connection "test2"
+  table :users
+  connection "app"
 
   # DB table schema
-  class Schema < DBX::ORM::Schema # (Test2)
+  class Schema < DBX::ORM::Schema # (User)
     field id : Int64?
-    field name : String
-    field about : String
-    field age : Int32
+    field username : String
+
+    # relation has_one
+    field profile_id : Int64?
+
+    # has one Profil
+    relation profile : Profile
   end
 end
 
-class Test < DBX::ORM::Model
+class Profile < DBX::ORM::Model
   # For generic tests adapters
   {% if ADAPTER_NAME == :pg %}adapter :pg{% end %}
   {% if ADAPTER_NAME == :sqlite %}adapter :sqlite{% end %}
 
-  # table :tests # <= automatically resolved
+  table :profiles
+  connection "app"
 
   # DB table schema
-  class Schema < DBX::ORM::Schema # (Test)
+  class Schema < DBX::ORM::Schema # (Profile)
     field id : Int64?
     field name : String
-    field about : String
-    field age : Int32
-  end
 
-  class ModelQuery < DBX::ORM::ModelQuery(Test)
-    def select_custom
-      self.select({:name, :age, :about, :id})
-    end
+    # has_many User
+    relation users : Array(User)
   end
 end
 
-class TestPK < DBX::ORM::Model
+class Tag < DBX::ORM::Model
   # For generic tests adapters
   {% if ADAPTER_NAME == :pg %}adapter :pg{% end %}
   {% if ADAPTER_NAME == :sqlite %}adapter :sqlite{% end %}
 
-  table :tests
-
-  class_getter pk_name : String = "uid"
-  class_getter pk_type = String
-  class_getter fk_name = "test_uid"
+  table :tags
+  connection "app"
 
   # DB table schema
-  class Schema < DBX::ORM::Schema # (TestPK)
-    @[DB::Field(ignore: true)]
-    @[JSON::Field(ignore: true)]
-    def _pk
-      self.uid
-    end
-
-    field uid : String
+  class Schema < DBX::ORM::Schema # (Profile)
+    field id : Int64?
     field name : String
-    field about : String
-    field age : Int32
+    field user_id : Int64? = nil
+    field profile_id : Int64? = nil
+
+    # has_many User
+    relation users : Array(User)
+
+    # has_many Profil
+    relation profiles : Array(Profile)
   end
 end

@@ -73,5 +73,6 @@ Also, quickly:
 
 ## Author
 
-* [Nicolas Talle (@Nicolab)](https://github.com/Nicolab) - Creator and maintainer
-* This project is useful to you? [Sponsor the developer](https://github.com/sponsors/Nicolab)
+* [Nicolas Talle (@Nicolab)](https://github.com/Nicolab) - Creator and maintainer.
+* Thanks to [@ilourt](https://github.com/ilourt) for the feedbacks and thoughts.
+* This project is useful to you? [Sponsor the developer](https://github.com/sponsors/Nicolab).
