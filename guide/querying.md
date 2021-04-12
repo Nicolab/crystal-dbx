@@ -123,7 +123,7 @@ pp users
 
 ### ORM - Model query
 
-To build and execute the queries through a model.
+To build and execute the queries through a ORM model.
 
 Bootstrap:
 
@@ -141,19 +141,15 @@ class User < DBX::ORM::Model
   # connection "server2" # <= default is "app", but you can use another DB connection pool.
 
   # DB table schema
-  class Schema
-    include DB::Serializable
-    include JSON::Serializable
-    include JSON::Serializable::Unmapped
-
-    property id : Int64?
-    property username : String
-    property email : String
+  class Schema < DBX::ORM::Schema
+    field id : Int64?
+    field username : String
+    field email : String
   end
 
   # Custom (optional)
-  class ModelQuery < DBX::ORM::ModelQuery(Test)
-    def select_all
+  class ModelQuery < DBX::ORM::ModelQuery(User)
+    def select_custom
       self.select({:id, :username, :email})
     end
   end

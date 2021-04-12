@@ -17,14 +17,14 @@ class User < DBX::ORM::Model
   # table :users # <= automatically resolved
 
   # DB table schema
-  class Schema
+  class Schema < DBX::ORM::Schema
     field id : Int64?
     field name : String
     field about : String
     field age : Int32
   end
 
-  class ModelQuery < DBX::ORM::ModelQuery
+  class ModelQuery < DBX::ORM::ModelQuery(User)
     def select_custom
       self.select({:id, :name, :about, :age})
     end

@@ -6,6 +6,7 @@
 # ------------------------------------------------------------------------------
 
 module DBX::ORM::SchemaRelation
+  # Defines a relation.
   macro relation(var_decl, **opt)
     {% model_class = @type.class.stringify.gsub(/::Schema.class$/, "").id %}
     {% if var_decl.is_a?(TypeDeclaration) %}

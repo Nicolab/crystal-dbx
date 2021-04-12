@@ -4,7 +4,7 @@
 
 * DB connections manager
 * Query builder
-* ORM
+* ORM (alpha)
 
 DBX is a [Crystal lang](https://crystal-lang.org) module to query the database, built on top of [crystal-db](https://github.com/crystal-lang/crystal-db) (common API for DB drivers).
 

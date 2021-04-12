@@ -5,7 +5,7 @@ Migrations are outside the scope of DBX but closely linked in the developer's wo
 If you're using DBX to query your data, you likely want to manage your database schema as well.
 Migrations are a great way to do that, so here are some great tools to manage migrations:
 
-* [Crystal: MG](https://github.com/hkalexling/mg)
+* [Crystal: MG](https://github.com/hkalexling/mg) (my favorite, simple and efficient)
 * [Crystal: Micrate](https://github.com/amberframework/micrate)
 * [Rust: Refinery](https://github.com/rust-db/refinery)
 * [Go: Golang migrate](https://github.com/golang-migrate/migrate)

@@ -19,21 +19,22 @@ class User < DBX::ORM::Model
   # connection "server2" # <= default is "app", but you can use another DB connection pool.
 
   # DB table schema
-  class Schema
+  class Schema < DBX::ORM::Schema
     field id : Int64?
     field username : String
     field email : String
+    relation posts : Array(Post)
   end
 
   # Custom (optional)
-  class ModelQuery < DBX::ORM::ModelQuery
+  class ModelQuery < DBX::ORM::ModelQuery(User)
     def select_custom
       self.select({:id, :username, :email})
     end
 
     def with_posts
       self.rel(Post.table_name).join do
-        "LEFT JOIN #{Post.table_name} AS p ON p.#{Post.pk_name} = #{User.fk_name}"
+        "LEFT JOIN #{Post.table_name} AS p ON p.#{User.fk_name} = #{User.table_name}.#{User.pk_name}"
       end
     end
   end

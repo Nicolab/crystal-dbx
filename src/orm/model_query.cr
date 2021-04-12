@@ -79,6 +79,15 @@ module DBX::ORM
     # Relations / Ref
     # --------------------------------------------------------------------------
 
+    # Refers to the result of a join in a defined `relation` property path.
+    #
+    # ```
+    # users = User
+    #   .find
+    #   .rel("groups")
+    #   .left_join("groups", "groups.id", "users.group_id")
+    #   .to_a
+    # ```
     def rel(path : Symbol | String, table_alias : String | Symbol | Nil = nil) : ModelQuery(Model)
       r = Model::Schema.find_relation_from_path(path.to_s)
       @relations << r[:relation]

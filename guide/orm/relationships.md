@@ -1,5 +1,6 @@
 # Relationships
 
+> The _relation_ system is a feature in an alpha stage.
 > TODO: This doc should be completed with more details and examples.
 
 Database tables are often related to one another. For example, a blog post may have many comments.
@@ -11,16 +12,15 @@ class Post < DBX::ORM::Model
   adapter :pg
 
   # DB table schema
-  class Schema
+  class Schema < DBX::ORM::Schema
     field id : Int64?
     field title : String
     field content : String
-
     relation comments : Array(Comment)
   end
 
   # Custom (optional)
-  class ModelQuery < DBX::ORM::ModelQuery
+  class ModelQuery < DBX::ORM::ModelQuery(Post)
     def with_comments
       self.rel("comments").left_join("comments", "comments.post_id", "posts.id")
       # Or self.join { "LEFT JOIN comments ON comments.post_id = posts.id" }
