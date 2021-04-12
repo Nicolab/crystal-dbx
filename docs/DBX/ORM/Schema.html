@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="dbx">
-  <title>DBX::Adapter::Base - dbx master-dev</title>
+  <title>DBX::ORM::Schema - dbx master-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -56,12 +56,12 @@
       
         <ul>
   
-  <li class="parent open current" data-id="dbx/DBX/Adapter" data-name="dbx::adapter">
+  <li class="parent " data-id="dbx/DBX/Adapter" data-name="dbx::adapter">
       <a href="../../DBX/Adapter.html">Adapter</a>
       
         <ul>
   
-  <li class=" current" data-id="dbx/DBX/Adapter/Base" data-name="dbx::adapter::base">
+  <li class=" " data-id="dbx/DBX/Adapter/Base" data-name="dbx::adapter::base">
       <a href="../../DBX/Adapter/Base.html">Base</a>
       
     </li>
@@ -126,7 +126,7 @@
       
     </li>
   
-  <li class="parent " data-id="dbx/DBX/ORM" data-name="dbx::orm">
+  <li class="parent open current" data-id="dbx/DBX/ORM" data-name="dbx::orm">
       <a href="../../DBX/ORM.html">ORM</a>
       
         <ul>
@@ -156,7 +156,7 @@
       
     </li>
   
-  <li class="parent " data-id="dbx/DBX/ORM/Schema" data-name="dbx::orm::schema">
+  <li class="parent open current" data-id="dbx/DBX/ORM/Schema" data-name="dbx::orm::schema">
       <a href="../../DBX/ORM/Schema.html">Schema</a>
       
         <ul>
@@ -285,12 +285,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">abstract class</span> DBX::Adapter::Base
+  <span class="kind">class</span> DBX::ORM::Schema
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../DBX/Adapter/Base.html">DBX::Adapter::Base</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../DBX/ORM/Schema.html">DBX::ORM::Schema</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -304,31 +304,39 @@
     Overview
   </h2>
 
-  <p>Base adapter.</p>
-
-
-
-
+  <p><code><a href="../../DBX/ORM/Model.html">Model</a></code> Schema.</p>
 
 
 
 
 
   <h2>
-    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
+    <a id="included-modules" class="anchor" href="#included-modules">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Direct Known Subclasses
+    Included Modules
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type"><a href="../../DBX/Adapter/PostgreSQL.html">DBX::Adapter::PostgreSQL</a></li>
+      <li class="other-type">DB::Mappable</li>
     
-      <li class="other-type"><a href="../../DBX/Adapter/SQLite.html">DBX::Adapter::SQLite</a></li>
+      <li class="other-type">DB::Serializable</li>
+    
+      <li class="other-type"><a href="../../DBX/ORM/SchemaInjectFields.html">DBX::ORM::SchemaInjectFields</a></li>
+    
+      <li class="other-type"><a href="../../DBX/ORM/SchemaInjectForFinal.html">DBX::ORM::SchemaInjectForFinal</a></li>
+    
+      <li class="other-type">JSON::Serializable</li>
+    
+      <li class="other-type">JSON::Serializable::Unmapped</li>
     
   </ul>
+
+
+
+
 
 
 
@@ -345,12 +353,36 @@
   </h2>
   
     
-      adapter/adapter.cr
+      orm/schema/schema.cr
     
     <br/>
   
 
 
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="FIELDS">
+        <strong>FIELDS</strong> = <code>{} <span class="k">of</span> <span class="t">String</span> => <span class="t">HashLiteral</span>(<span class="t">String</span>, <span class="t">ASTNode</span>)</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="RELATIONS">
+        <strong>RELATIONS</strong> = <code>{} <span class="k">of</span> <span class="t">String</span> => <span class="t">ASTNode</span></code>
+      </dt>
+      
+    
+  </dl>
 
 
 
@@ -365,7 +397,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(db:DB::Database)-class-method" class="signature"><strong>.new</strong>(db : DB::Database)</a>
+        <a href="#new(rs:DB::ResultSet)-class-method" class="signature"><strong>.new</strong>(rs : DB::ResultSet)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new(pull:JSON::PullParser)-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
         
       </li>
     
@@ -384,16 +421,28 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#builder_class:QueryBuilder.class-class-method" class="signature"><strong>.builder_class</strong> : <span class="t">QueryBuilder</span>.<span class="k">class</span></a>
+        <a href="#fields:MetaFieldHash-class-method" class="signature"><strong>.fields</strong> : MetaFieldHash</a>
         
-          <div class="summary"><p>Returns query builder class.</p></div>
+          <div class="summary"><p>Returns all SQL fields definitions.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new_builder:QueryBuilder-class-method" class="signature"><strong>.new_builder</strong> : QueryBuilder</a>
+        <a href="#from_rs(rs:DB::ResultSet)-class-method" class="signature"><strong>.from_rs</strong>(rs : DB::ResultSet)</a>
         
-          <div class="summary"><p>Returns a new query builder instance.</p></div>
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sql_fields:String-class-method" class="signature"><strong>.sql_fields</strong> : String</a>
+        
+          <div class="summary"><p>Returns the SQL fields of the model separated by a comma (table.column, ...).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sql_rel_fields:String-class-method" class="signature"><strong>.sql_rel_fields</strong> : String</a>
+        
+          <div class="summary"><p>Returns the SQL fields of the model (for the relations) separated by a comma (table.column, ...).</p></div>
         
       </li>
     
@@ -412,21 +461,23 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#create!(query:DBX::Query,data:Hash%7CNamedTuple,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method" class="signature"><strong>#create!</strong>(query : DBX::Query, data : Hash | NamedTuple, as types, returning : DBX::QueryBuilder::OneOrMoreFieldsType = <span class="s">&quot;*&quot;</span>, pk_name : DBX::QueryBuilder::FieldType = <span class="n">:id</span>, pk_type = <span class="t">::</span><span class="t">Union</span>(<span class="t">Int64</span>, <span class="t">::</span><span class="t">Nil</span>))</a>
+        <a href="#_pk-instance-method" class="signature"><strong>#_pk</strong></a>
         
-          <div class="summary"><p>Creates a new record and returns.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#db:DB::Database-instance-method" class="signature"><strong>#db</strong> : DB::Database</a>
+          <div class="summary"><p>Same as <code><a href="../../DBX/ORM/Schema.html#_pk-instance-method">#_pk</a></code> but may return <code>nil</code> when the record hasn't been saved instead of raising.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new_builder:QueryBuilder-instance-method" class="signature"><strong>#new_builder</strong> : QueryBuilder</a>
+        <a href="#_pk!-instance-method" class="signature"><strong>#_pk!</strong></a>
         
-          <div class="summary"><p>Returns a new query builder instance.</p></div>
+          <div class="summary"><p>Always returns this record's primary key value, even when the primary key isn't named <code><a href="../../DBX/ORM/Schema.html#_pk-instance-method">#_pk</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#_ukey-instance-method" class="signature"><strong>#_ukey</strong></a>
+        
+          <div class="summary"><p>Unique (virtual) key used to compare the uniqueness of models.</p></div>
         
       </li>
     
@@ -437,6 +488,86 @@
 
 
 <div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
   
     
 
@@ -470,12 +601,26 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(db:DB::Database)-class-method">
+    <div class="entry-detail" id="new(rs:DB::ResultSet)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(db : DB::Database)
+        def self.<strong>new</strong>(rs : DB::ResultSet)
 
-        <a class="method-permalink" href="#new(db:DB::Database)-class-method">#</a>
+        <a class="method-permalink" href="#new(rs:DB::ResultSet)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : JSON::PullParser)
+
+        <a class="method-permalink" href="#new(pull:JSON::PullParser)-class-method">#</a>
       </div>
       
       <br/>
@@ -496,17 +641,17 @@
     Class Method Detail
   </h2>
   
-    <div class="entry-detail" id="builder_class:QueryBuilder.class-class-method">
+    <div class="entry-detail" id="fields:MetaFieldHash-class-method">
       <div class="signature">
         
-        def self.<strong>builder_class</strong> : <span class="t">QueryBuilder</span>.<span class="k">class</span>
+        def self.<strong>fields</strong> : <a href="../../DBX/ORM/Schema/MetaFieldHash.html">MetaFieldHash</a>
 
-        <a class="method-permalink" href="#builder_class:QueryBuilder.class-class-method">#</a>
+        <a class="method-permalink" href="#fields:MetaFieldHash-class-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Returns query builder class.</p>
+          <p>Returns all SQL fields definitions.</p>
         </div>
       
       <br/>
@@ -515,17 +660,50 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="new_builder:QueryBuilder-class-method">
+    <div class="entry-detail" id="from_rs(rs:DB::ResultSet)-class-method">
       <div class="signature">
         
-        def self.<strong>new_builder</strong> : <a href="../../DBX/QueryBuilder.html">QueryBuilder</a>
+        def self.<strong>from_rs</strong>(rs : DB::ResultSet)
 
-        <a class="method-permalink" href="#new_builder:QueryBuilder-class-method">#</a>
+        <a class="method-permalink" href="#from_rs(rs:DB::ResultSet)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sql_fields:String-class-method">
+      <div class="signature">
+        
+        def self.<strong>sql_fields</strong> : String
+
+        <a class="method-permalink" href="#sql_fields:String-class-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Returns a new query builder instance.</p>
+          <p>Returns the SQL fields of the model separated by a comma (table.column, ...).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sql_rel_fields:String-class-method">
+      <div class="signature">
+        
+        def self.<strong>sql_rel_fields</strong> : String
+
+        <a class="method-permalink" href="#sql_rel_fields:String-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the SQL fields of the model (for the relations) separated by a comma (table.column, ...).</p>
         </div>
       
       <br/>
@@ -546,18 +724,18 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="create!(query:DBX::Query,data:Hash|NamedTuple,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method">
+    <div class="entry-detail" id="_pk-instance-method">
       <div class="signature">
-        abstract 
-        def <strong>create!</strong>(query : <a href="../../DBX/Query.html">DBX::Query</a>, data : Hash | NamedTuple, as types, returning : <a href="../../DBX/QueryBuilder/OneOrMoreFieldsType.html">DBX::QueryBuilder::OneOrMoreFieldsType</a> = <span class="s">&quot;*&quot;</span>, pk_name : <a href="../../DBX/QueryBuilder/FieldType.html">DBX::QueryBuilder::FieldType</a> = <span class="n">:id</span>, pk_type = <span class="t">::</span><span class="t">Union</span>(<span class="t">Int64</span>, <span class="t">::</span><span class="t">Nil</span>))
+        
+        def <strong>_pk</strong>
 
-        <a class="method-permalink" href="#create!(query:DBX::Query,data:Hash%7CNamedTuple,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method">#</a>
+        <a class="method-permalink" href="#_pk-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Creates a new record and returns.
-See <code><a href="../../DBX/Query.html#create!(data:Hash%7CNamedTuple,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method">DBX::Query#create!</a></code> for more details.</p>
+          <p>Same as <code><a href="../../DBX/ORM/Schema.html#_pk-instance-method">#_pk</a></code> but may return <code>nil</code> when the record hasn't been saved
+instead of raising.</p>
         </div>
       
       <br/>
@@ -566,13 +744,19 @@ See <code><a href="../../DBX/Query.html#create!(data:Hash%7CNamedTuple,astypes,r
       </div>
     </div>
   
-    <div class="entry-detail" id="db:DB::Database-instance-method">
+    <div class="entry-detail" id="_pk!-instance-method">
       <div class="signature">
         
-        def <strong>db</strong> : DB::Database
+        def <strong>_pk!</strong>
 
-        <a class="method-permalink" href="#db:DB::Database-instance-method">#</a>
+        <a class="method-permalink" href="#_pk!-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Always returns this record's primary key value, even when the primary key
+isn't named <code><a href="../../DBX/ORM/Schema.html#_pk-instance-method">#_pk</a></code>.</p>
+        </div>
       
       <br/>
       <div>
@@ -580,17 +764,33 @@ See <code><a href="../../DBX/Query.html#create!(data:Hash%7CNamedTuple,astypes,r
       </div>
     </div>
   
-    <div class="entry-detail" id="new_builder:QueryBuilder-instance-method">
+    <div class="entry-detail" id="_ukey-instance-method">
       <div class="signature">
         
-        def <strong>new_builder</strong> : <a href="../../DBX/QueryBuilder.html">QueryBuilder</a>
+        def <strong>_ukey</strong>
 
-        <a class="method-permalink" href="#new_builder:QueryBuilder-instance-method">#</a>
+        <a class="method-permalink" href="#_ukey-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Returns a new query builder instance.</p>
+          <p>Unique (virtual) key used to compare the uniqueness of models.
+By default this method returns the primary key (<code><a href="../../DBX/ORM/Schema.html#_pk-instance-method">#_pk</a></code>) value.</p>
+
+<p>This method avoid to rely directly on the primary key in case there is none in
+the structure of the SQL table (even if there should always be one).
+Used in the relation algorithm.
+Also, can be useful when there is a need to check the uniqueness in other cases.</p>
+
+<p>If for some reason your model does not have a primary key,
+you can override this method to return a unique result
+related to the fields in your table, for example:</p>
+
+<pre><code class="language-crystal">@[<span class="t">DB</span><span class="t">::</span><span class="t">Field</span>(ignore: <span class="n">true</span>)]
+@[<span class="t">JSON</span><span class="t">::</span><span class="t">Field</span>(ignore: <span class="n">true</span>)]
+<span class="k">def</span> <span class="m">_ukey</span>
+  <span class="s">&quot;</span><span class="i">#{</span><span class="k">self</span>.group_id<span class="i">}</span><span class="s">.</span><span class="i">#{</span><span class="k">self</span>.user_id<span class="i">}</span><span class="s">&quot;</span>
+<span class="k">end</span></code></pre>
         </div>
       
       <br/>

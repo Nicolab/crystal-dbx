@@ -141,11 +141,6 @@
       
     </li>
   
-  <li class=" " data-id="dbx/DBX/ORM/Model/Schema" data-name="dbx::orm::model::schema">
-      <a href="../../DBX/ORM/Model/Schema.html">Schema</a>
-      
-    </li>
-  
 </ul>
 
       
@@ -158,6 +153,51 @@
   
   <li class=" current" data-id="dbx/DBX/ORM/ModelQuery" data-name="dbx::orm::modelquery(model)">
       <a href="../../DBX/ORM/ModelQuery.html">ModelQuery</a>
+      
+    </li>
+  
+  <li class="parent " data-id="dbx/DBX/ORM/Schema" data-name="dbx::orm::schema">
+      <a href="../../DBX/ORM/Schema.html">Schema</a>
+      
+        <ul>
+  
+  <li class=" " data-id="dbx/DBX/ORM/Schema/MetaField" data-name="dbx::orm::schema::metafield">
+      <a href="../../DBX/ORM/Schema/MetaField.html">MetaField</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/Schema/MetaFieldHash" data-name="dbx::orm::schema::metafieldhash">
+      <a href="../../DBX/ORM/Schema/MetaFieldHash.html">MetaFieldHash</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/Schema/RelationDef" data-name="dbx::orm::schema::relationdef">
+      <a href="../../DBX/ORM/Schema/RelationDef.html">RelationDef</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/SchemaField" data-name="dbx::orm::schemafield">
+      <a href="../../DBX/ORM/SchemaField.html">SchemaField</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/SchemaInjectFields" data-name="dbx::orm::schemainjectfields">
+      <a href="../../DBX/ORM/SchemaInjectFields.html">SchemaInjectFields</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/SchemaInjectForFinal" data-name="dbx::orm::schemainjectforfinal">
+      <a href="../../DBX/ORM/SchemaInjectForFinal.html">SchemaInjectForFinal</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/SchemaRelation" data-name="dbx::orm::schemarelation">
+      <a href="../../DBX/ORM/SchemaRelation.html">SchemaRelation</a>
       
     </li>
   
@@ -275,19 +315,18 @@ you own <code><a href="../../DBX/ORM/ModelQuery.html">ModelQuery</a></code> into
   <span class="c"># ...</span>
 
   <span class="k">class</span> <span class="t">ModelQuery</span> <span class="o">&lt;</span> <span class="t">DBX</span><span class="t">::</span><span class="t">ORM</span><span class="t">::</span><span class="t">ModelQuery</span>(<span class="t">User</span>)
-    <span class="c"># By default `SELECT` value is `*`,</span>
-    <span class="c"># this method select all fields explicitly.</span>
-    <span class="k">def</span> <span class="m">select_all</span>
+    <span class="c"># A custom `select`</span>
+    <span class="k">def</span> <span class="m">select_custom</span>
       <span class="k">self</span>.<span class="k">select</span>({<span class="n">:id</span>, <span class="n">:name</span>, <span class="n">:about</span>, <span class="n">:age</span>})
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
 
-<p>In the model example above, we have added a new method (<code>select_all</code>) to `ModelQuery',
+<p>In the model example above, we have added a new method (<code>select_custom</code>) to `ModelQuery',
 which can be used in each query.</p>
 
-<pre><code class="language-crystal">user <span class="o">=</span> <span class="t">User</span>.find(id).select_all.to_o
-users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a</code></pre>
+<pre><code class="language-crystal">user <span class="o">=</span> <span class="t">User</span>.find(id).select_custom.to_o
+users <span class="o">=</span> <span class="t">User</span>.find.select_custom.to_a</code></pre>
 
 
 
@@ -377,6 +416,41 @@ users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a<
         <a href="#query_one!-instance-method" class="signature"><strong>#query_one!</strong></a>
         
           <div class="summary"><p>Executes current query using current <code>Model::Schema</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rel(path:Symbol%7CString,table_alias:String%7CSymbol%7CNil=nil):ModelQuery(Model)-instance-method" class="signature"><strong>#rel</strong>(path : Symbol | String, table_alias : String | Symbol | Nil = <span class="n">nil</span>) : ModelQuery(Model)</a>
+        
+          <div class="summary"><p>Refers to the result of a join in a defined <code>relation</code> property path.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select_all(model_class:DBX::ORM::Model.class,table_alias:String%7CSymbol%7CNil=nil):ModelQuery(Model)-instance-method" class="signature"><strong>#select_all</strong>(model_class : <span class="t">DBX</span><span class="t">::</span><span class="t">ORM</span><span class="t">::</span><span class="t">Model</span>.<span class="k">class</span>, table_alias : String | Symbol | Nil = <span class="n">nil</span>) : ModelQuery(Model)</a>
+        
+          <div class="summary"><p>Selects the relation fields.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select_all:ModelQuery(Model)-instance-method" class="signature"><strong>#select_all</strong> : ModelQuery(Model)</a>
+        
+          <div class="summary"><p>Selects all SQL fields.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#selected_all?(model_class:DBX::ORM::Model.class,table_alias:String%7CSymbol%7CNil=nil):Bool-instance-method" class="signature"><strong>#selected_all?</strong>(model_class : <span class="t">DBX</span><span class="t">::</span><span class="t">ORM</span><span class="t">::</span><span class="t">Model</span>.<span class="k">class</span>, table_alias : String | Symbol | Nil = <span class="n">nil</span>) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the relation fields are selected, <code>false</code> otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#selected_all?:Bool-instance-method" class="signature"><strong>#selected_all?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the model fields are selected, <code>false</code> otherwise.</p></div>
         
       </li>
     
@@ -664,6 +738,110 @@ puts test.id</code></pre>
         <div class="doc">
           
           <p>Executes current query using current <code>Model::Schema</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rel(path:Symbol|String,table_alias:String|Symbol|Nil=nil):ModelQuery(Model)-instance-method">
+      <div class="signature">
+        
+        def <strong>rel</strong>(path : Symbol | String, table_alias : String | Symbol | Nil = <span class="n">nil</span>) : <a href="../../DBX/ORM/ModelQuery.html">ModelQuery</a>(Model)
+
+        <a class="method-permalink" href="#rel(path:Symbol%7CString,table_alias:String%7CSymbol%7CNil=nil):ModelQuery(Model)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Refers to the result of a join in a defined <code>relation</code> property path.</p>
+
+<pre><code class="language-crystal">users <span class="o">=</span> <span class="t">User</span>
+  .find
+  .rel(<span class="s">&quot;groups&quot;</span>)
+  .left_join(<span class="s">&quot;groups&quot;</span>, <span class="s">&quot;groups.id&quot;</span>, <span class="s">&quot;users.group_id&quot;</span>)
+  .to_a</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select_all(model_class:DBX::ORM::Model.class,table_alias:String|Symbol|Nil=nil):ModelQuery(Model)-instance-method">
+      <div class="signature">
+        
+        def <strong>select_all</strong>(model_class : <span class="t">DBX</span><span class="t">::</span><span class="t">ORM</span><span class="t">::</span><span class="t">Model</span>.<span class="k">class</span>, table_alias : String | Symbol | Nil = <span class="n">nil</span>) : <a href="../../DBX/ORM/ModelQuery.html">ModelQuery</a>(Model)
+
+        <a class="method-permalink" href="#select_all(model_class:DBX::ORM::Model.class,table_alias:String%7CSymbol%7CNil=nil):ModelQuery(Model)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Selects the relation fields.
+This method is automatically called by the methods related to the joins with a model class.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select_all:ModelQuery(Model)-instance-method">
+      <div class="signature">
+        
+        def <strong>select_all</strong> : <a href="../../DBX/ORM/ModelQuery.html">ModelQuery</a>(Model)
+
+        <a class="method-permalink" href="#select_all:ModelQuery(Model)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Selects all SQL fields.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="selected_all?(model_class:DBX::ORM::Model.class,table_alias:String|Symbol|Nil=nil):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>selected_all?</strong>(model_class : <span class="t">DBX</span><span class="t">::</span><span class="t">ORM</span><span class="t">::</span><span class="t">Model</span>.<span class="k">class</span>, table_alias : String | Symbol | Nil = <span class="n">nil</span>) : Bool
+
+        <a class="method-permalink" href="#selected_all?(model_class:DBX::ORM::Model.class,table_alias:String%7CSymbol%7CNil=nil):Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the relation fields are selected, <code>false</code> otherwise.
+See <code>select_rel_fields</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="selected_all?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>selected_all?</strong> : Bool
+
+        <a class="method-permalink" href="#selected_all?:Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the model fields are selected, <code>false</code> otherwise.
+See <code><a href="../../DBX/ORM/ModelQuery.html#select_all:ModelQuery(Model)-instance-method">#select_all</a></code></p>
         </div>
       
       <br/>

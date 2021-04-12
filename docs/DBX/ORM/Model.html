@@ -141,11 +141,6 @@
       
     </li>
   
-  <li class=" " data-id="dbx/DBX/ORM/Model/Schema" data-name="dbx::orm::model::schema">
-      <a href="../../DBX/ORM/Model/Schema.html">Schema</a>
-      
-    </li>
-  
 </ul>
 
       
@@ -158,6 +153,51 @@
   
   <li class=" " data-id="dbx/DBX/ORM/ModelQuery" data-name="dbx::orm::modelquery(model)">
       <a href="../../DBX/ORM/ModelQuery.html">ModelQuery</a>
+      
+    </li>
+  
+  <li class="parent " data-id="dbx/DBX/ORM/Schema" data-name="dbx::orm::schema">
+      <a href="../../DBX/ORM/Schema.html">Schema</a>
+      
+        <ul>
+  
+  <li class=" " data-id="dbx/DBX/ORM/Schema/MetaField" data-name="dbx::orm::schema::metafield">
+      <a href="../../DBX/ORM/Schema/MetaField.html">MetaField</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/Schema/MetaFieldHash" data-name="dbx::orm::schema::metafieldhash">
+      <a href="../../DBX/ORM/Schema/MetaFieldHash.html">MetaFieldHash</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/Schema/RelationDef" data-name="dbx::orm::schema::relationdef">
+      <a href="../../DBX/ORM/Schema/RelationDef.html">RelationDef</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/SchemaField" data-name="dbx::orm::schemafield">
+      <a href="../../DBX/ORM/SchemaField.html">SchemaField</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/SchemaInjectFields" data-name="dbx::orm::schemainjectfields">
+      <a href="../../DBX/ORM/SchemaInjectFields.html">SchemaInjectFields</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/SchemaInjectForFinal" data-name="dbx::orm::schemainjectforfinal">
+      <a href="../../DBX/ORM/SchemaInjectForFinal.html">SchemaInjectForFinal</a>
+      
+    </li>
+  
+  <li class=" " data-id="dbx/DBX/ORM/SchemaRelation" data-name="dbx::orm::schemarelation">
+      <a href="../../DBX/ORM/SchemaRelation.html">SchemaRelation</a>
       
     </li>
   
@@ -271,15 +311,11 @@
 <pre><code class="language-crystal"><span class="k">class</span> <span class="t">User</span> <span class="o">&lt;</span> <span class="t">DBX</span><span class="t">::</span><span class="t">ORM</span><span class="t">::</span><span class="t">Model</span>
   adapter <span class="n">:pg</span>
 
-  <span class="k">class</span> <span class="t">Schema</span>
-    <span class="k">include</span> <span class="t">DB</span><span class="t">::</span><span class="t">Serializable</span>
-    <span class="k">include</span> <span class="t">JSON</span><span class="t">::</span><span class="t">Serializable</span>
-    <span class="k">include</span> <span class="t">JSON</span><span class="t">::</span><span class="t">Serializable</span><span class="t">::</span><span class="t">Unmapped</span>
-
-    property id : <span class="t">Int64</span>?
-    property name : <span class="t">String</span>
-    property about : <span class="t">String</span>
-    property age : <span class="t">Int32</span>
+  <span class="k">class</span> <span class="t">Schema</span> <span class="c"># &lt; DBX::ORM::Schema#(User)</span>
+    field id : <span class="t">Int64</span>?
+    field name : <span class="t">String</span>
+    field about : <span class="t">String</span>
+    field age : <span class="t">Int32</span>
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
 
@@ -289,19 +325,18 @@
   <span class="c"># ...</span>
 
   <span class="k">class</span> <span class="t">ModelQuery</span> <span class="o">&lt;</span> <span class="t">DBX</span><span class="t">::</span><span class="t">ORM</span><span class="t">::</span><span class="t">ModelQuery</span>(<span class="t">User</span>)
-    <span class="c"># By default `SELECT` value is `*`,</span>
-    <span class="c"># this method select all fields explicitly.</span>
-    <span class="k">def</span> <span class="m">select_all</span>
+    <span class="c"># Custom select</span>
+    <span class="k">def</span> <span class="m">select_custom</span>
       <span class="k">self</span>.<span class="k">select</span>({<span class="n">:id</span>, <span class="n">:name</span>, <span class="n">:about</span>, <span class="n">:age</span>})
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
 
-<p>In the model example above, we have added a new method (<code>select_all</code>) to `ModelQuery',
+<p>In the model example above, we have added a new method (<code>select_custom</code>) to `ModelQuery',
 which can be used in each query.</p>
 
-<pre><code class="language-crystal">user <span class="o">=</span> <span class="t">User</span>.find(id).select_all.to_o
-users <span class="o">=</span> <span class="t">User</span>.find.select_all.to_a</code></pre>
+<pre><code class="language-crystal">user <span class="o">=</span> <span class="t">User</span>.find(id).select_custom.to_o
+users <span class="o">=</span> <span class="t">User</span>.find.select_custom.to_a</code></pre>
 
 
 

@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="dbx">
-  <title>DBX::Adapter::Base - dbx master-dev</title>
+  <title>DBX::ORM::SchemaRelation - dbx master-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -56,12 +56,12 @@
       
         <ul>
   
-  <li class="parent open current" data-id="dbx/DBX/Adapter" data-name="dbx::adapter">
+  <li class="parent " data-id="dbx/DBX/Adapter" data-name="dbx::adapter">
       <a href="../../DBX/Adapter.html">Adapter</a>
       
         <ul>
   
-  <li class=" current" data-id="dbx/DBX/Adapter/Base" data-name="dbx::adapter::base">
+  <li class=" " data-id="dbx/DBX/Adapter/Base" data-name="dbx::adapter::base">
       <a href="../../DBX/Adapter/Base.html">Base</a>
       
     </li>
@@ -126,7 +126,7 @@
       
     </li>
   
-  <li class="parent " data-id="dbx/DBX/ORM" data-name="dbx::orm">
+  <li class="parent open current" data-id="dbx/DBX/ORM" data-name="dbx::orm">
       <a href="../../DBX/ORM.html">ORM</a>
       
         <ul>
@@ -196,7 +196,7 @@
       
     </li>
   
-  <li class=" " data-id="dbx/DBX/ORM/SchemaRelation" data-name="dbx::orm::schemarelation">
+  <li class=" current" data-id="dbx/DBX/ORM/SchemaRelation" data-name="dbx::orm::schemarelation">
       <a href="../../DBX/ORM/SchemaRelation.html">SchemaRelation</a>
       
     </li>
@@ -285,26 +285,15 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">abstract class</span> DBX::Adapter::Base
+  <span class="kind">module</span> DBX::ORM::SchemaRelation
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../DBX/Adapter/Base.html">DBX::Adapter::Base</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
 
-  <h2>
-    <a id="overview" class="anchor" href="#overview">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Overview
-  </h2>
-
-  <p>Base adapter.</p>
 
 
 
@@ -315,22 +304,18 @@
 
 
   <h2>
-    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
+    <a id="direct-including-types" class="anchor" href="#direct-including-types">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Direct Known Subclasses
+    Direct including types
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type"><a href="../../DBX/Adapter/PostgreSQL.html">DBX::Adapter::PostgreSQL</a></li>
-    
-      <li class="other-type"><a href="../../DBX/Adapter/SQLite.html">DBX::Adapter::SQLite</a></li>
+      <li class="other-type"><a href="../../DBX/ORM/SchemaInjectForFinal.html">DBX::ORM::SchemaInjectForFinal</a></li>
     
   </ul>
-
-
 
 
 
@@ -345,7 +330,7 @@
   </h2>
   
     
-      adapter/adapter.cr
+      orm/schema/def/relation.cr
     
     <br/>
   
@@ -354,159 +339,64 @@
 
 
 
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new(db:DB::Database)-class-method" class="signature"><strong>.new</strong>(db : DB::Database)</a>
-        
-      </li>
-    
-  </ul>
+
+
+
 
 
 
   <h2>
-    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+    <a id="macro-summary" class="anchor" href="#macro-summary">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Class Method Summary
+    Macro Summary
   </h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#builder_class:QueryBuilder.class-class-method" class="signature"><strong>.builder_class</strong> : <span class="t">QueryBuilder</span>.<span class="k">class</span></a>
+        <a href="#relation(var_decl,**opt)-macro" class="signature"><strong>relation</strong>(var_decl, **opt)</a>
         
-          <div class="summary"><p>Returns query builder class.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#new_builder:QueryBuilder-class-method" class="signature"><strong>.new_builder</strong> : QueryBuilder</a>
-        
-          <div class="summary"><p>Returns a new query builder instance.</p></div>
+          <div class="summary"><p>Defines a relation.</p></div>
         
       </li>
     
   </ul>
-
-
-
-  <h2>
-    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#create!(query:DBX::Query,data:Hash%7CNamedTuple,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method" class="signature"><strong>#create!</strong>(query : DBX::Query, data : Hash | NamedTuple, as types, returning : DBX::QueryBuilder::OneOrMoreFieldsType = <span class="s">&quot;*&quot;</span>, pk_name : DBX::QueryBuilder::FieldType = <span class="n">:id</span>, pk_type = <span class="t">::</span><span class="t">Union</span>(<span class="t">Int64</span>, <span class="t">::</span><span class="t">Nil</span>))</a>
-        
-          <div class="summary"><p>Creates a new record and returns.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#db:DB::Database-instance-method" class="signature"><strong>#db</strong> : DB::Database</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#new_builder:QueryBuilder-instance-method" class="signature"><strong>#new_builder</strong> : QueryBuilder</a>
-        
-          <div class="summary"><p>Returns a new query builder instance.</p></div>
-        
-      </li>
-    
-  </ul>
-
-
 
 
 
 <div class="methods-inherited">
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
 
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(db:DB::Database)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(db : DB::Database)
 
-        <a class="method-permalink" href="#new(db:DB::Database)-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
+
+
 
 
 
   <h2>
-    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+    <a id="macro-detail" class="anchor" href="#macro-detail">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Class Method Detail
+    Macro Detail
   </h2>
   
-    <div class="entry-detail" id="builder_class:QueryBuilder.class-class-method">
+    <div class="entry-detail" id="relation(var_decl,**opt)-macro">
       <div class="signature">
         
-        def self.<strong>builder_class</strong> : <span class="t">QueryBuilder</span>.<span class="k">class</span>
+        macro <strong>relation</strong>(var_decl, **opt)
 
-        <a class="method-permalink" href="#builder_class:QueryBuilder.class-class-method">#</a>
+        <a class="method-permalink" href="#relation(var_decl,**opt)-macro">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Returns query builder class.</p>
+          <p>Defines a relation.</p>
         </div>
       
       <br/>
@@ -515,92 +405,6 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="new_builder:QueryBuilder-class-method">
-      <div class="signature">
-        
-        def self.<strong>new_builder</strong> : <a href="../../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#new_builder:QueryBuilder-class-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Returns a new query builder instance.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-
-
-
-  <h2>
-    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="create!(query:DBX::Query,data:Hash|NamedTuple,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method">
-      <div class="signature">
-        abstract 
-        def <strong>create!</strong>(query : <a href="../../DBX/Query.html">DBX::Query</a>, data : Hash | NamedTuple, as types, returning : <a href="../../DBX/QueryBuilder/OneOrMoreFieldsType.html">DBX::QueryBuilder::OneOrMoreFieldsType</a> = <span class="s">&quot;*&quot;</span>, pk_name : <a href="../../DBX/QueryBuilder/FieldType.html">DBX::QueryBuilder::FieldType</a> = <span class="n">:id</span>, pk_type = <span class="t">::</span><span class="t">Union</span>(<span class="t">Int64</span>, <span class="t">::</span><span class="t">Nil</span>))
-
-        <a class="method-permalink" href="#create!(query:DBX::Query,data:Hash%7CNamedTuple,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Creates a new record and returns.
-See <code><a href="../../DBX/Query.html#create!(data:Hash%7CNamedTuple,astypes,returning:DBX::QueryBuilder::OneOrMoreFieldsType=&quot;*&quot;,pk_name:DBX::QueryBuilder::FieldType=:id,pk_type=::Union(Int64,::Nil))-instance-method">DBX::Query#create!</a></code> for more details.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="db:DB::Database-instance-method">
-      <div class="signature">
-        
-        def <strong>db</strong> : DB::Database
-
-        <a class="method-permalink" href="#db:DB::Database-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="new_builder:QueryBuilder-instance-method">
-      <div class="signature">
-        
-        def <strong>new_builder</strong> : <a href="../../DBX/QueryBuilder.html">QueryBuilder</a>
-
-        <a class="method-permalink" href="#new_builder:QueryBuilder-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Returns a new query builder instance.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-
-
 
 
 </div>
