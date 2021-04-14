@@ -126,6 +126,24 @@ describe DBX::ORM::Schema do
     )
   end
 
+  it "should be able to create a serializable instance even if there is no table" do
+    now = Time.utc
+    noop = Noop::Schema.new(created_at: now, name: "noop", uid: "uuuuuu")
+    noop.should be_a DBX::ORM::Schema
+    noop.created_at.should be_a Time
+    noop.created_at.should eq now
+    noop.uid.should eq "uuuuuu"
+    noop.name.should eq "noop"
+    noop.to_json.should eq %({"createdAt":"#{now.to_rfc3339}","uid":"uuuuuu","name":"noop"})
+
+    noop = Noop::Schema.from_json %({"createdAt":"#{now.to_rfc3339(fraction_digits: 9)}","uid":"iii","name":"noop2"})
+    noop.should be_a DBX::ORM::Schema
+    noop.created_at.should be_a Time
+    noop.created_at.should eq now
+    noop.uid.should eq "iii"
+    noop.name.should eq "noop2"
+  end
+
   pending ".from_rs" do
     User
   end

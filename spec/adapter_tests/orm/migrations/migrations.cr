@@ -74,3 +74,32 @@ class Tag < DBX::ORM::Model
     relation profiles : Array(Profile)
   end
 end
+
+# Just a noop Model without relation nor table.
+class Noop < DBX::ORM::Model
+  # For generic tests adapters
+  {% if ADAPTER_NAME == :pg %}adapter :pg{% end %}
+  {% if ADAPTER_NAME == :sqlite %}adapter :sqlite{% end %}
+
+  table :noop
+  connection "app"
+
+  class_getter pk_name : String = "uid"
+  class_getter pk_type = String
+  class_getter fk_name = "noop_uid"
+
+  # DB table schema
+  class Schema < DBX::ORM::Schema
+    @[DB::Field(ignore: true)]
+    @[JSON::Field(ignore: true)]
+    def _pk
+      self.uid
+    end
+
+    @[JSON::Field(key: "createdAt")]
+    field created_at : Time
+
+    field uid : String
+    field name : String
+  end
+end
