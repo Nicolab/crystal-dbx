@@ -291,7 +291,7 @@ module DBX::ORM::SchemaInjectForFinal
             has_many: {{dec[:has_many]}}
           }
       {% end %}
-        {{"end".id}} # end: cond_start
+        {% if i > 0 %}{{"end".id}}{% end %} # end: cond_start
 
       raise DBX::Error.new %(Model not found for relation path: "#{path}") unless rel_model
 
